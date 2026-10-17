@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "site": "https://sionrealtypm.com",
+  "updated_at": "2026-10-17T02:11:32.354891+00:00",
+  "articles": [
+    {
+      "slug": "orlando-september-2026-market",
+      "category": "Market",
+      "kind": "Monthly report",
+      "title": "Orlando home sales ease in September; median price stays near $400,000",
+      "summary": "September sales fell 6.2% from August while the reported median price changed only slightly. Our first market brief separates regional sales data from neighborhood rental conditions.",
+      "body": "ORRA reported 2,325 Orlando-area home sales in September 2026, compared with 2,478 in August. The median sale price moved from $400,676 to $399,610, a decline of approximately 0.3%. Available inventory increased from 12,144 to 12,464 homes.\n\nThese are regional residential sales statistics, not a rent index or a ZIP 32835 report. They should not be presented as a direct measurement of rents in MetroWest, Windermere or Winter Garden. The source notes that figures reflect information available October 8 and may be revised.\n\nSion perspective: a regional slowdown makes recent, comparable properties especially useful when discussing an individual home. Rental pricing still requires a separate review of comparable rentals and the property itself.",
+      "source_name": "Orlando Regional REALTOR® Association — September 2026 narrative",
+      "source_url": "https://www.orlandorealtors.org/housingmarketnarrative",
+      "source_date": "Data through October 8, 2026; reporting period September 2026",
+      "chart": "[[\"August 2026\", 2478], [\"September 2026\", 2325]]",
+      "published": "2026-10-16",
+      "status": "published"
+    },
+    {
+      "slug": "orange-county-housing-priorities-october-2026",
+      "category": "Orange County",
+      "kind": "Community update",
+      "title": "Orange County asks residents to help shape housing priorities",
+      "summary": "A county consultation is collecting input for the next five-year Consolidated Plan. Residents and community partners can share housing needs and ideas through Engage Orange.",
+      "body": "Orange County announced on October 8 that it is seeking community input while preparing its next five-year Consolidated Plan. Housing needs, homelessness, public services, infrastructure and fair housing are among the topics identified by the County.\n\nResidents and community partners can complete the community needs assessment survey and follow participation opportunities through the County’s Engage Orange platform.\n\nThe plan will guide the use of federal CDBG, HOME and ESG funding. This is a planning and public-input process, not an announcement that an individual housing benefit or a specific construction project has been approved.\n\nFor residents in Orlando, Winter Garden, Windermere and nearby communities, the consultation offers a way to describe local needs. Check the official participation page for current opportunities and any deadlines.",
+      "source_name": "Orange County Government — October 8, 2026 announcement",
+      "source_url": "https://espanol.orangecountyfl.net/sdnewsroom/docfl/media-advisories/press-releases/2026/10/orange-county-seeks-community-input-on-housing-community-development-priorities/",
+      "source_date": "County announcement: October 8, 2026",
+      "chart": "",
+      "published": "2026-10-16",
+      "status": "published"
+    },
+    {
+      "slug": "live-local-orange-county-guide",
+      "category": "Laws & proposals",
+      "kind": "Explainer — existing law",
+      "title": "Live Local in Orange County: eligibility matters before a project moves forward",
+      "summary": "The County’s current guidance explains how qualifying affordable rental projects are reviewed. This guide covers an existing law, rather than a newly approved development.",
+      "body": "Orange County’s planning guidance describes the Live Local Act and its 2024 and 2025 amendments. The framework applies to qualifying multifamily and mixed-use residential projects in eligible commercial, industrial and mixed-use zoning areas.\n\nThe County states that at least 40% of units must be qualifying affordable rental housing for at least 30 years. Projects still must meet eligibility criteria, applicable development standards and submission requirements.\n\nThis is an explainer about an existing framework, checked October 16, 2026. It does not announce a new law this week or approval of any particular site.\n\nBefore drawing conclusions about a property, confirm the parcel’s jurisdiction and zoning. A county planning page should not be treated as a blanket approval for a parcel inside an incorporated city.",
+      "source_name": "Orange County Planning Division — Live Local Act",
+      "source_url": "https://www.ocfl.net/PlanningDevelopment/LiveLocalAct.aspx",
+      "source_date": "Existing-law guidance checked October 16, 2026",
+      "chart": "",
+      "published": "2026-10-16",
+      "status": "published"
+    },
+    {
+      "slug": "florida-home-insurance-renewal-guide",
+      "category": "Florida",
+      "kind": "Owner guide",
+      "title": "Florida insurance renewals: compare coverage as well as the premium",
+      "summary": "A lower or higher premium alone does not explain a policy renewal. Florida’s consumer guidance highlights property characteristics, coverage and mitigation credits that can affect pricing.",
+      "body": "Florida’s Department of Financial Services explains that homeowners insurance pricing depends on factors including location, dwelling coverage, construction and mitigation credits. Insurers may also consider the condition and age of the home and its systems.\n\nA wind mitigation inspection can document features that may qualify for credits. Eligibility and the resulting premium depend on the property and insurer; a credit is not a promise that every owner’s total bill will fall.\n\nFor a renewal review, compare coverage limits, exclusions and deductibles alongside the premium. Discuss the property’s actual occupancy and use with the insurance agent, particularly when a home is rented.\n\nThis is a consumer guide checked October 16, 2026, not an announcement of a new statewide rate reduction. Keep insurance costs separate from market rent figures when reviewing a rental property’s expenses.",
+      "source_name": "Florida Department of Financial Services — Homeowners Insurance Overview",
+      "source_url": "https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview",
+      "source_date": "Consumer guidance checked October 16, 2026",
+      "chart": "",
+      "published": "2026-10-16",
+      "status": "published"
+    }
+  ]
+}
