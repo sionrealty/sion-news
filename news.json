@@ -1,8 +1,50 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-10-19T13:07:14.353Z",
+  "updated_at": "2026-10-19T13:49:03.392Z",
   "articles": [
+    {
+      "slug": "florida-renters-insurance-american-modern-october-2026",
+      "category": "Florida",
+      "kind": "Insurance — October rate change",
+      "title": "American Modern renters-insurance rate cut takes effect; Orange County average is 13.4%",
+      "summary": "Florida approved an average 12.8% decrease for American Modern Home HO-4 policies.\nThe Orange County average is 13.4%.\nThe change applies to new policies and renewals starting October 11.\nThese are renters-insurance rates, not a statewide cut to landlords’ building insurance.",
+      "body": "Florida’s Office of Insurance Regulation announced on October 2, 2026, that American Modern Home Insurance Company received approval for an average 12.8% reduction in HO-4 renters-insurance rates. The change took effect October 11 for new policies and renewals.\n\nThe regulator reported an average decrease of 13.4% for the company’s Orange County business. These are averages, not a guaranteed reduction for every tenant or every insurer.\n\nHO-4 insurance protects a tenant’s belongings and provides personal-liability coverage. It does not insure the building structure, which requires the owner’s or landlord’s property coverage. Owners and tenants should distinguish these separate policies when reviewing expenses.\n\nThis report covers an October 2 announcement with an October 11 effective date; it is not a new rate announcement made today.",
+      "source_name": "Florida Office of Insurance Regulation",
+      "source_url": "https://www.floir.gov/newsroom/archives/item-details/2026/10/02/commissioner-mike-yaworsky-approves-an-average--12.8--rate-decrease-for-more-than-120-000-rental-insurance-policies--effective-this-month",
+      "source_date": "Announcement: October 2, 2026. New policies and renewals: effective October 11, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-19"
+    },
+    {
+      "slug": "florida-amendment-3-property-tax-proposal-2026",
+      "category": "Laws & proposals",
+      "kind": "Ballot proposal — not yet in effect",
+      "title": "Florida Amendment 3: proposed homestead and assessment changes await voters",
+      "summary": "Amendment 3 is a 2026 ballot proposal, not a tax change already in force.\nIt would expand qualifying homestead exemptions for non-school taxes.\nIt also proposes a lower annual assessment-growth cap for non-homestead property.\nEligibility and timing matter; owners should not assume an automatic tax-bill reduction.",
+      "body": "Florida’s Division of Elections lists Amendment 3 for the 2026 election. If voters approve it, the proposal would take effect January 1, 2027.\n\nFor qualifying homesteads, the official summary describes non-school-tax exemptions of $150,000 in 2027 and $250,000 in 2028. It also specifies different timing for people who are not Florida residents on December 31, 2026: the increased exemption would begin in their fifth exemption year, subject to the U.S. Constitution.\n\nThe proposal would lower the annual assessment-increase cap for non-homestead properties from 10% to 5%. An assessment cap is not a tax-rate cap or a promise that a tax bill will fall.\n\nThe measure remains subject to voter approval. It does not mean property taxes have already been abolished. Review the official summary and full text for a property-specific evaluation.",
+      "source_name": "Florida Department of State, Division of Elections — Amendment 3; CS/HJR 1F full text",
+      "source_url": "https://constitutionalinitiatives.dos.fl.gov/Home/InitDetail?account=10&seqnum=110",
+      "source_date": "2026 ballot measure; made ballot June 16, 2026. Official summary and full text checked October 19, 2026. January 1, 2027 effective date is conditional on approval.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-19"
+    },
+    {
+      "slug": "orange-county-tourist-development-tax-work-session-october-19-2026",
+      "category": "Orange County",
+      "kind": "County funding — meeting preview",
+      "title": "Orange County schedules October 19 discussion of future tourism-tax funding",
+      "summary": "County commissioners are scheduled to discuss Tourist Development Tax funding on October 19.\nThe special meeting runs from 12:30 to 3:30 p.m.\nStaff will present a proposed allocation scenario after reviewing additional projects.\nThe announcement describes a discussion, not final approval of every proposed allocation.",
+      "body": "Orange County commissioners are scheduled to hold a special meeting on Monday, October 19, 2026, from 12:30 to 3:30 p.m. to discuss Tourist Development Tax funding and possible future allocations.\n\nAn October 15 county announcement says staff developed a proposed funding scenario after evaluating additional projects. That review followed the Board’s August 25 consideration of the citizen advisory task force’s recommendations and projected financial capacity.\n\nThe meeting is scheduled in the BCC Chambers at the Orange County Administration Center, 201 S. Rosalind Avenue, Orlando. The county lists Orange TV and YouTube viewing options.\n\nThis is a preview of a county funding discussion. The notice does not establish that all proposed projects or allocations have received final approval. Any subsequent decisions should be checked against the meeting record.",
+      "source_name": "Orange County Government — October 15 meeting announcement",
+      "source_url": "https://newsroom.ocfl.net/media-advisories/press-releases/2026/10/orange-county-board-of-county-commissioners-to-discuss-tourist-development-tax-funding/",
+      "source_date": "Announcement: October 15, 2026. Meeting: October 19, 2026, 12:30–3:30 p.m. Orlando time. Preview published before the meeting.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-19"
+    },
     {
       "slug": "orlando-historic-homes-energy-efficiency-october-19-2026",
       "category": "Orange County",
