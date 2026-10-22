@@ -1,8 +1,50 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-10-19T13:49:03.392Z",
+  "updated_at": "2026-10-22T12:09:17.023Z",
   "articles": [
+    {
+      "slug": "winter-garden-reclaimed-water-october-19-update-2026",
+      "category": "Orange County",
+      "kind": "City of Winter Garden — utility update",
+      "title": "Winter Garden keeps reclaimed-water irrigation shut off during repairs",
+      "summary": "Winter Garden’s October 19 update says reclaimed water remains unavailable citywide.\nRepairs follow power-surge damage at the wastewater plant’s reclaimed-water facilities.\nThe city asks customers to keep irrigation systems off until further notice.\nThe notice concerns reclaimed irrigation water and gives no reopening date.",
+      "body": "Winter Garden’s latest published update, dated October 19, says the citywide reclaimed-water outage continues. The city’s website still displayed that instruction when checked October 22.\n\nA power surge damaged the wastewater plant’s reclaimed-water facilities on September 28. The city says initial repairs exposed more extensive damage, and repair work continues.\n\nCustomers are instructed to leave irrigation systems off until further notice. The October 19 update does not give a restoration date. Owners and property managers with affected irrigation systems can follow the linked city notice for changes.\n\nThis is a City of Winter Garden reclaimed-water service notice, not an Orange County-wide irrigation order. The reported update concerns irrigation service; it is not a drinking-water advisory.",
+      "source_name": "City of Winter Garden — reclaimed-water outage update",
+      "source_url": "https://www.cwgdn.com/CivicAlerts.aspx?AID=813",
+      "source_date": "Original notice: September 29, 2026. Latest stated update: October 19, 2026. Current city notice checked October 22, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-22"
+    },
+    {
+      "slug": "florida-first-premier-home-warranty-enforcement-october-2026",
+      "category": "Laws & proposals",
+      "kind": "Florida — regulatory enforcement",
+      "title": "Florida regulator orders First Premier to stop unlicensed home-warranty activity",
+      "summary": "Florida’s insurance regulator announced enforcement action on October 21.\nIt says First Premier Home Warranty Corp. sold warranties without the required Florida license.\nOIR ordered the company to cease and desist immediately under threat of administrative penalty.\nThe agency urges consumers to verify licensing before entering a contract.",
+      "body": "Florida’s Office of Insurance Regulation announced October 21 that it ordered First Premier Home Warranty Corp. to cease and desist immediately following a market-conduct examination.\n\nAccording to OIR, the New York-based company sold home warranties to Florida consumers without the required Florida license. The regulator also says it was not appointed as a sales representative for a Florida home-warranty association or authorized insurer.\n\nThis is administrative enforcement, with potential penalties for noncompliance.\n\nFor owners reviewing service contracts, the agency’s practical message is to check authorization before buying. Its announcement links to the official company-search database. The action concerns this company’s Florida activity; it does not announce a change in homeowners-insurance premiums.",
+      "source_name": "Florida Office of Insurance Regulation — October 21 enforcement announcement",
+      "source_url": "https://floir.gov/newsroom/archives/item-details/2026/10/21/insurance-commissioner-mike-yaworsky-orders-immediate-cease-and-desist-against-two-companies-for-unlicensed-activity",
+      "source_date": "OIR announcement: October 21, 2026, 2:30 p.m. Status checked October 22, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-22"
+    },
+    {
+      "slug": "tildenville-home-painting-orange-county-october-23-2026",
+      "category": "Orange County",
+      "kind": "County neighborhood program — event preview",
+      "title": "Orange County plans exterior painting for 14 Tildenville homes on October 23",
+      "summary": "Orange County announced a Tildenville neighborhood improvement event on October 21.\nMore than 100 volunteers are expected to paint 14 homes on Friday, October 23.\nThe effort pairs County Neighborhood Services with Rebuilding Together Greater Florida.\nThe selected homeowners will receive the exterior painting at no cost.",
+      "body": "Fourteen Tildenville homes are scheduled for exterior painting on Friday, October 23, through Orange County’s Fixing Up the Neighborhood program. The county announced the project October 21.\n\nMore than 100 volunteers are expected to participate in the effort organized by Orange County Neighborhood Services and Rebuilding Together Greater Florida. Painting is scheduled from 9:30 a.m. to 2:30 p.m., following an 8:30 a.m. kickoff.\n\nThe kickoff is at 233 Massey Avenue, with a Winter Garden mailing address. This is a county-led Tildenville project; a postal address does not establish municipal boundaries.\n\nThe announcement describes assistance for selected homes at no cost to participating homeowners. It does not announce an open application period or a general entitlement to free painting. The work is planned, rather than reported as completed.",
+      "source_name": "Orange County Government — Neighborhood Services announcement",
+      "source_url": "https://newsroom.ocfl.net/media-advisories/press-releases/2026/10/orange-county-neighborhood-services-and-rebuilding-together-partner-for-fixing-up-the-neighborhood-f-u-n-program-in-tildenville/",
+      "source_date": "Announcement: October 21, 2026. Planned event: October 23, 2026, Orlando time.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-22"
+    },
     {
       "slug": "florida-renters-insurance-american-modern-october-2026",
       "category": "Florida",
