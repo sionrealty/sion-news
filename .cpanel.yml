@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - /bin/sh /home2/sionreal/repositories/sion-news/deploy/deploy-news.sh
