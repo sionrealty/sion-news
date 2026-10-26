@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "home-svg-flags-compact-mobile",
+  "release": "smaller-flags-centered-mobile-menu",
   "files": [
     {
       "path": "portal/assets/app.js",
@@ -17,7 +17,7 @@
     {
       "path": "home/index.html",
       "patch": "home/index.patch.json",
-      "sha256": "39411269a2aaf4b780971a45abae27758dbd122dbf601a29c6073f0e98aa4785"
+      "sha256": "1e2c19c460e7524e69ddba8cb3cde24b8d6625a0914f2fbae9ce665065fa6e97"
     }
   ]
 }
