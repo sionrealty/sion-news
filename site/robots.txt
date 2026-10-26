@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /sion-imoveis/teste
+Disallow: /teste-sion
+Disallow: /index-
+
+Sitemap: https://sionrealtypm.com/sitemap.xml

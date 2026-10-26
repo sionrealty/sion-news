@@ -1,10 +1,10 @@
 {
-  "base_sha256": "39411269a2aaf4b780971a45abae27758dbd122dbf601a29c6073f0e98aa4785",
-  "sha256": "1e2c19c460e7524e69ddba8cb3cde24b8d6625a0914f2fbae9ce665065fa6e97",
+  "base_sha256": "1e2c19c460e7524e69ddba8cb3cde24b8d6625a0914f2fbae9ce665065fa6e97",
+  "sha256": "963a581c37b1c79ee89595128c278f17e4e41a0e431ee18244638a93d149e0f3",
   "replacements": [
     {
-      "find": "<style id=\"sion-mobile-menu-flags-v1\">\n.sion-languages button{display:inline-flex;align-items:center;justify-content:center;padding:6px 8px;min-width:44px;min-height:36px}\n.sion-flag{display:block;width:30px;height:20px;border-radius:2px}\n@media(max-width:700px){\nheader.nav{gap:8px;padding-top:10px;padding-bottom:10px}\nheader.nav .nav-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;gap:4px 6px!important;align-items:stretch;font-size:11px;letter-spacing:0;flex:none}\nheader.nav .nav-links a{display:flex;align-items:center;justify-content:center;text-align:center;min-width:0;min-height:38px;padding:3px 0;line-height:1.25;white-space:normal;overflow-wrap:normal}\n.sion-languages{margin:0;padding-top:2px;padding-bottom:2px;gap:6px}\n.sion-languages button{min-width:44px;min-height:36px}\n}\n</style>",
-      "replace": "<style id=\"sion-mobile-menu-flags-v2\">\n.sion-languages button{display:inline-flex;align-items:center;justify-content:center;padding:5px 6px;min-width:34px;min-height:30px}\n.sion-languages .sion-flag{display:block;width:22px;height:15px;border-radius:2px}\n@media(max-width:700px){\nheader.nav{gap:6px;padding-top:10px;padding-bottom:10px}\nheader.nav .nav-links{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));width:100%;gap:4px 6px!important;align-items:stretch;font-size:11px;letter-spacing:0;flex:none}\nheader.nav .nav-links>a{display:flex;align-items:center;justify-content:center;text-align:center;min-width:0;width:auto;min-height:34px;padding:3px 0;line-height:1.25;white-space:normal;overflow-wrap:normal;grid-column:span 3}\nheader.nav .nav-links>a:nth-child(n+5):nth-child(-n+7){grid-column:span 4}\nheader.nav .nav-links>a.owners-portal-link{grid-column:1 / -1!important;justify-self:center;width:auto!important;padding:5px 12px;margin:0;min-height:32px}\n.sion-languages{margin:0;padding-top:2px;padding-bottom:2px;gap:5px}\n.sion-languages button{min-width:34px;min-height:30px}\n}\n</style>"
+      "find": "</head>",
+      "replace": "<link rel=\"canonical\" href=\"https://sionrealtypm.com/\">\n<meta name=\"robots\" content=\"index,follow\">\n</head>"
     }
   ]
 }
