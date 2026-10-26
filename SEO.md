@@ -6,7 +6,7 @@ Index the main site, its public rental catalog at /sion-imoveis/index.php, publi
 
 Do not include the Owners Portal, reports, administration, investor information, tests or private files in sitemaps. Portal responses use authentication, access controls, private caching and X-Robots-Tag: noindex, nofollow, nosnippet. Search directives are not access control.
 
-/calculadora.html and /regioes.html currently have noindex,nofollow. Keep that setting until these tools are specifically approved for public search indexing.
+/regioes.html is approved by Patrick for public search indexing; it uses index,follow and its own canonical URL. /calculadora.html retains noindex,nofollow until specifically approved for public search indexing.
 
 site/robots.txt and site/sitemap.xml are baseline copies of the live public files captured on 2026-10-26; adding them to this repository does not deploy them. The current managed release changes only homepage metadata and the portal indexing header. Preserve live sitemap changes until a deployment path for these files is reviewed.
 

@@ -10,7 +10,7 @@ if(getenv('SION_DEPLOY_TEST_HOME'))$home=getenv('SION_DEPLOY_TEST_HOME');
 $work=$home.'/sion-code-deploy';
 if(!is_dir($work)&&!mkdir($work,0700,true))throw new RuntimeException('Cannot create deployment directory');
 $lock=fopen($work.'/lock','c');if(!$lock||!flock($lock,LOCK_EX|LOCK_NB))exit("Another code deployment is active.\n");
-$map=['home/index.html'=>'public_html/index.html','private/lib.php'=>'sion-portal-private/lib.php'];
+$map=['home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
 foreach(['api.php','app.php','bootstrap.php','index.php','rentals.php','.htaccess'] as $f)$map['portal/'.$f]='public_html/reports/'.$f;
 foreach(['accounts.js','annual-exports.js','annual.js','app.js','core.js','exports.js','jszip.min.js','listings.js','logo.png','pdf-lib.min.js','portal.css','server.js'] as $f)$map['portal/assets/'.$f]='public_html/reports/assets/'.$f;
 try{
@@ -22,9 +22,10 @@ try{
   foreach([$src,$dst,dirname($dst)] as $p)if(is_link($p))throw new RuntimeException('Symlink refused');
 
   // Home patches carry only the requested text changes; embedded images stay on the host.
-  if($key==='home/index.html'&&isset($f['patch'])){
-   if($f['patch']!=='home/index.patch.json')throw new RuntimeException('Patch path not allowed');
-   $patchPath=$repo.'/managed/files/home/index.patch.json';
+  if(in_array($key,['home/index.html','home/regioes.html'],true)&&isset($f['patch'])){
+   $expectedPatch=$key==='home/index.html'?'home/index.patch.json':'home/regioes.patch.json';
+   if($f['patch']!==$expectedPatch)throw new RuntimeException('Patch path not allowed');
+   $patchPath=$repo.'/managed/files/'.$expectedPatch;
    if(is_link($patchPath)||!is_file($patchPath)||!is_file($dst))throw new RuntimeException('Missing home patch or destination');
    $patch=json_decode(file_get_contents($patchPath),true,512,JSON_THROW_ON_ERROR);
    if(!hash_equals($f['sha256'],$patch['sha256']??''))throw new RuntimeException('Patch output hash mismatch');

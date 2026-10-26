@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "homepage-canonical-and-private-noindex",
+  "release": "allow-public-regions-indexing",
   "files": [
     {
       "path": "portal/assets/app.js",
@@ -18,6 +18,11 @@
       "path": "home/index.html",
       "patch": "home/index.patch.json",
       "sha256": "963a581c37b1c79ee89595128c278f17e4e41a0e431ee18244638a93d149e0f3"
+    },
+    {
+      "path": "home/regioes.html",
+      "patch": "home/regioes.patch.json",
+      "sha256": "364bd2e80a722d1d206d591287da3e2f9af6ba64a8e89802950ff1426ab047ba"
     }
   ]
 }

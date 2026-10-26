@@ -1,0 +1,10 @@
+{
+  "base_sha256": "63b0c4e8e9cd7f208d7f7426cb0650758e0a063fd835b661e9b157a7f55f2c1e",
+  "sha256": "364bd2e80a722d1d206d591287da3e2f9af6ba64a8e89802950ff1426ab047ba",
+  "replacements": [
+    {
+      "find": "<meta name=\"robots\" content=\"noindex,nofollow\">",
+      "replace": "<meta name=\"robots\" content=\"index,follow\">\n<link rel=\"canonical\" href=\"https://sionrealtypm.com/regioes.html\">"
+    }
+  ]
+}
