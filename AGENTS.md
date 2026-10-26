@@ -1,6 +1,6 @@
 # Sion news publishing
 
-This repository contains only public news for https://sionrealtypm.com. Do not upload credentials, client/tenant records, rental listings or unrelated website code.
+This repository contains public news and, as explicitly authorized by Patrick on 2026-10-25, code-only website/Owners Portal releases for https://sionrealtypm.com. Never upload credentials, config.php, encryption keys, databases, seed.json, reports, client/tenant records, listing contents/photos, logs, backups or reset links.
 
 ## Destination and writer
 
@@ -34,3 +34,7 @@ Every article requires these string fields in this order (the importer normalize
 - `published`: valid `YYYY-MM-DD` date in America/New_York. Future dates stay hidden until that date.
 
 The importer updates News only. It preserves website-side manual edits, opinions, archiving and deletions rather than silently overwriting them. It leaves the last valid content visible if this feed cannot be fetched or validated.
+
+## Managed code releases
+Patrick authorized automatic code deployment through the existing server cron (observed every 20 minutes). deploy/deploy-news.sh invokes deploy/deploy-managed.php before the unchanged News deployment. managed/release.json is an exact allowlist of changed files with SHA-256 hashes; sources belong under managed/files/. The initial setup manifest is empty and must not change the live portal or homepage. Runtime data and account management stay on the authenticated server.
+Before changing code, obtain the latest live/source baseline; do not overwrite user edits with an old local snapshot. Test the actual requested change and update only its needed files. Never deploy installation/reset scripts or perform database/schema migrations through this mechanism. Public repository code may include generic server library code, but no secrets or private data. Deploying a commit is not proof the host ran it; verify /home2/sionreal/sion-code-deploy/status.json and the live behavior. Backups are outside public_html. Reject symlinks, invalid PHP, checksum mismatches and paths outside the fixed code map. Do not claim the known email-delivery issue is fixed until verified.

@@ -1,6 +1,13 @@
 #!/bin/sh
 set -eu
 umask 077
+# Managed website/portal code updates, authorized by Patrick; never deploy data.
+for SITE_PHP in /usr/local/bin/php /usr/bin/php; do
+  if test -x "$SITE_PHP"; then
+    "$SITE_PHP" /home2/sionreal/repositories/sion-news/deploy/deploy-managed.php || echo "Managed code update failed; previous files retained."
+    break
+  fi
+done
 REPO=/home2/sionreal/repositories/sion-news
 TARGET=/home2/sionreal/public_html/sion-imoveis/news.php
 SOURCE="$REPO/site/sion-imoveis/news.php"
