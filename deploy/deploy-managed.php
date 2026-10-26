@@ -20,6 +20,28 @@ try{
  foreach($release['files'] as $f){$key=$f['path']??'';if(!isset($map[$key])||isset($seen[$key]))throw new RuntimeException('Path not allowed: '.$key);$seen[$key]=true;
   $src=$repo.'/managed/files/'.$key;$dst=$home.'/'.$map[$key];
   foreach([$src,$dst,dirname($dst)] as $p)if(is_link($p))throw new RuntimeException('Symlink refused');
+
+  // Home patches carry only the requested text changes; embedded images stay on the host.
+  if($key==='home/index.html'&&isset($f['patch'])){
+   if($f['patch']!=='home/index.patch.json')throw new RuntimeException('Patch path not allowed');
+   $patchPath=$repo.'/managed/files/home/index.patch.json';
+   if(is_link($patchPath)||!is_file($patchPath)||!is_file($dst))throw new RuntimeException('Missing home patch or destination');
+   $patch=json_decode(file_get_contents($patchPath),true,512,JSON_THROW_ON_ERROR);
+   if(!hash_equals($f['sha256'],$patch['sha256']??''))throw new RuntimeException('Patch output hash mismatch');
+   $current=file_get_contents($dst);
+   if(hash_equals($f['sha256'],hash('sha256',$current))){$src=$dst;}
+   else{
+    if(!hash_equals($patch['base_sha256']??'',hash('sha256',$current)))throw new RuntimeException('Homepage changed since patch preparation');
+    if(!is_array($patch['replacements']??null)||count($patch['replacements'])>10)throw new RuntimeException('Invalid home patch');
+    foreach($patch['replacements'] as $op){
+     if(!is_string($op['find']??null)||$op['find']===''||!is_string($op['replace']??null)||substr_count($current,$op['find'])!==1)throw new RuntimeException('Home patch requires a unique match');
+     $current=str_replace($op['find'],$op['replace'],$current);
+    }
+    if(!hash_equals($f['sha256'],hash('sha256',$current)))throw new RuntimeException('Home patch result mismatch');
+    $src=tempnam($work,'.home-source-');if(!$src)throw new RuntimeException('Cannot stage home source');
+    $patchSources[]=$src;if(file_put_contents($src,$current)===false)throw new RuntimeException('Cannot write home source');
+   }
+  }
   if(!is_file($src)||!is_file($dst))throw new RuntimeException('Missing existing code file: '.$key);
   if(!preg_match('/^[a-f0-9]{64}$/D',$f['sha256']??'')||!hash_equals($f['sha256'],hash_file('sha256',$src)))throw new RuntimeException('Hash mismatch: '.$key);
   if(str_ends_with($key,'.php')){exec(escapeshellarg(PHP_BINARY).' -l '.escapeshellarg($src).' 2>&1',$output,$code);if($code!==0)throw new RuntimeException('PHP syntax error: '.$key);}
@@ -36,4 +58,4 @@ try{
  file_put_contents($work.'/status.json',json_encode($status,JSON_PRETTY_PRINT),LOCK_EX);
  echo 'Sion code automation OK: '.count($jobs).' code files updated; database, credentials and reports untouched.'.PHP_EOL;
 }catch(Throwable $e){fwrite(STDERR,'Managed code update failed: '.$e->getMessage().PHP_EOL);exit(1);}
-finally{foreach($staged??[] as [$tmp])if(is_file($tmp))unlink($tmp);}
+finally{foreach($staged??[] as [$tmp])if(is_file($tmp))unlink($tmp);foreach($patchSources??[] as $tmp)if(is_file($tmp))unlink($tmp);}

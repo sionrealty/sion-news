@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "historical-occupancy-labels-only",
+  "release": "home-svg-flags-compact-mobile",
   "files": [
     {
       "path": "portal/assets/app.js",
@@ -13,6 +13,11 @@
     {
       "path": "private/lib.php",
       "sha256": "de31134da647a3abb99bbcc4aa66047109c80b0444b66ac9f74e1406832c6f3a"
+    },
+    {
+      "path": "home/index.html",
+      "patch": "home/index.patch.json",
+      "sha256": "39411269a2aaf4b780971a45abae27758dbd122dbf601a29c6073f0e98aa4785"
     }
   ]
 }
