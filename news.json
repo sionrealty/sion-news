@@ -1,8 +1,50 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-10-22T12:09:17.023Z",
+  "updated_at": "2026-10-27T16:07:54.225Z",
   "articles": [
+    {
+      "slug": "orange-county-hiawassee-pedestrian-safety-study-october-2026",
+      "category": "Orange County",
+      "kind": "Transportation — county study",
+      "title": "Orange County considers Hiawassee Road pedestrian and cyclist improvements",
+      "summary": "Orange County scheduled a hearing on proposed Hiawassee Road safety improvements.\nThe study covers the corridor from Balboa Drive to Silver Star Road.\nOptions include a multiuse path, protected crossings and traffic calming.\nThe county’s October 26 notice describes recommendations, not completed construction.",
+      "body": "Orange County’s October 27 commission agenda included a public hearing on a roadway study for Hiawassee Road between Balboa Drive and Silver Star Road.\n\nThe county’s October 26 preview says the study recommends a 10-foot multiuse path on the west side, protected midblock crossings and traffic-calming measures. The county identifies the corridor as fourth on its high-injury network.\n\nThe published preview requested commission direction on the study. It does not establish that a project has been approved for construction or provide a construction schedule. The described stretch is the one identified in the county notice; it should not be assumed to cover all of Hiawassee Road.",
+      "source_name": "Orange County Government — October 27 commission meeting preview",
+      "source_url": "https://newsroom.ocfl.net/media-advisories/press-releases/2026/10/media-preview-orange-county-board-of-county-commissioners-meeting-october-27/",
+      "source_date": "County preview: October 26, 2026. Hearing scheduled October 27, 2026; subsequent board action not verified.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-27"
+    },
+    {
+      "slug": "orange-county-residential-zoning-hearing-october-2026",
+      "category": "Laws & proposals",
+      "kind": "Orange County — proposed zoning amendments",
+      "title": "Orange County reviews proposed residential zoning changes",
+      "summary": "Orange County listed a first public hearing on proposed zoning amendments for October 27.\nThe proposals address manufactured homes and residential compatibility, among other topics.\nThe county describes this as the first of two required hearings.\nThe published agenda does not establish that any changes have taken effect.",
+      "body": "Orange County listed proposed Chapter 38 zoning amendments for a first public hearing on October 27, according to the county’s October 26 meeting preview.\n\nThe notice says the proposals would revise definitions and standards for mobile and manufactured homes, address where such homes and private schools may be allowed, and add residential-compatibility standards for rezoning applications. It also refers to architectural glazing requirements in the Horizon West Village Center District.\n\nThe county describes this as the first of two required public hearings. These are proposals, not a statement that new zoning rules have been adopted or that a particular property is approved for development. Owners should check the final ordinance and applicable local jurisdiction before relying on any change.",
+      "source_name": "Orange County Government — October 27 commission meeting preview",
+      "source_url": "https://newsroom.ocfl.net/media-advisories/press-releases/2026/10/media-preview-orange-county-board-of-county-commissioners-meeting-october-27/",
+      "source_date": "County preview: October 26, 2026; first hearing scheduled October 27. Subsequent action not verified.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-27"
+    },
+    {
+      "slug": "orlando-women-families-center-groundbreaking-october-2026",
+      "category": "Orange County",
+      "kind": "Orlando — housing and community services",
+      "title": "Orlando center for women and families schedules groundbreaking",
+      "summary": "The Coalition for the Homeless plans an October 28 groundbreaking in Orlando.\nThe proposed center would combine temporary housing with health and support services.\nOrange County cites $19.5 million in county-supported funding and $10 million from Orlando.\nThe facility is planned; the announcement does not say it is open.",
+      "body": "The Coalition for the Homeless of Central Florida plans to break ground October 28 on a new Center for Women and Families in Orlando, according to an Orange County announcement published October 26.\n\nThe county says the more than 105,000-square-foot facility is expected to expand the Coalition’s service capacity by 40% to 50%. Plans include 112 additional short-term residential beds, a health clinic, childcare and youth programs, and more than 20 bridge-housing units with over 75 beds.\n\nThe announcement identifies $19.5 million in Orange County support through federal programs, $10 million from the City of Orlando, and additional federal grants and partnerships. The project is a planned service facility; the announcement does not describe it as completed or open.",
+      "source_name": "Orange County Government — Foundations Project announcement",
+      "source_url": "https://newsroom.ocfl.net/media-advisories/press-releases/2026/10/coalition-for-the-homeless-of-central-florida-to-break-ground-on-new-center-for-women-and-families/",
+      "source_date": "Announcement: October 26, 2026. Groundbreaking scheduled October 28, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-10-27"
+    },
     {
       "slug": "winter-garden-reclaimed-water-october-19-update-2026",
       "category": "Orange County",
