@@ -50,13 +50,32 @@ $lang=is_string($_GET['lang']??null)&&isset($flags[$_GET['lang']])?$_GET['lang']
 if($articleLang)$slug=$editions[$lang];
 $a=null;
 if($slug!==''){$q=news_db()->prepare("SELECT * FROM news_articles WHERE slug=? AND status='published' AND published<=?");$q->execute([$slug,date('Y-m-d')]);$a=$q->fetch();if(!$a){http_response_code(404);public_start('Article not found','Sion news','news.php');echo '<h1>Article not found</h1><a href="news.php">Back to news</a>';public_end();exit;}}
-$categories=['Orange County','Market','Florida','Laws & proposals'];
+// Opinion is an editorial type in the feed; expose it as its own public section.
+$opinionPrefixes=['Opinion | %','Opinião | %','Opinión | %'];
+$opinionSql="(kind LIKE ? OR kind LIKE ? OR kind LIKE ?)";
+$isOpinion=static function(array $row):bool{
+ return $row['category']==='Opinion'||preg_match('/^(Opinion|Opinião|Opinión)\s*\|/u',(string)$row['kind'])===1;
+};
+$publicLabel=static function(array $row)use($isOpinion):array{
+ if($isOpinion($row)){
+  $row['category']='Opinion';
+  $row['kind']=preg_replace('/^(Opinion|Opinião|Opinión)\s*\|\s*/u','',$row['kind']);
+ }
+ return $row;
+};
+$categories=['Orange County','Market','Florida','Laws & proposals','Opinion'];
 $category=is_string($_GET['category']??null)&&in_array($_GET['category'],$categories,true)?$_GET['category']:'';
 $page=1;$pages=1;$total=0;$perPage=8;$list=[];$listingPath='news.php';
 if(!$a){
  $p=news_db();$today=date('Y-m-d');
  $where="status='published' AND published<=? AND slug NOT IN (?,?)";$params=array_merge([$today],array_values(array_diff_key($editions,[$lang=>true])));
- if($category!==''){$where.=' AND category=?';$params[]=$category;}
+ if($category==='Opinion'){
+  $where.=" AND (category='Opinion' OR ".$opinionSql.")";
+  $params=array_merge($params,$opinionPrefixes);
+ }elseif($category!==''){
+  $where.=' AND category=? AND NOT '.$opinionSql;
+  $params=array_merge($params,[$category],$opinionPrefixes);
+ }
  $count=$p->prepare('SELECT COUNT(*) FROM news_articles WHERE '.$where);$count->execute($params);$total=(int)$count->fetchColumn();
  $pages=max(1,(int)ceil($total/$perPage));
  $requested=is_string($_GET['page']??null)?filter_var($_GET['page'],FILTER_VALIDATE_INT,['options'=>['min_range'=>1]]):1;
@@ -88,7 +107,7 @@ echo str_replace('</head>','<link rel="stylesheet" href="/sion-imoveis/news.php?
 if(!$newsControlsPlaced)echo $newsControls;
 ?>
 
-<?php if($a):?>
+<?php if($a):$a=$publicLabel($a);?>
 <?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
 <article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
 <?php paragraphs($a['body']);$chart=json_decode($a['chart'],true);if(is_array($chart)&&count($chart)>0):?>
@@ -109,7 +128,7 @@ if(!$newsControlsPlaced)echo $newsControls;
 </style>
 <nav class="filters" aria-label="News categories"><a href="news.php?lang=<?=h($lang)?>"<?=$category===''?' aria-current="true"':''?>>All</a><?php foreach($categories as $cat):?><a href="news.php?category=<?=rawurlencode($cat)?>&amp;lang=<?=h($lang)?>"<?=$category===$cat?' aria-current="true"':''?>><?=h($cat)?></a><?php endforeach;?></nav>
 <?php if($total>0):?><p class="news-results-count">Showing <?=h((string)($offset+1))?>–<?=h((string)min($offset+$perPage,$total))?> of <?=h((string)$total)?> articles</p><?php endif;?>
-<div class="news-grid"><?php foreach($list as $row)echo preg_replace('/(href="news\.php\?article=[^"]+)"/', '$1&amp;lang='.h($lang).'"',news_card($row));if(!$list)echo '<p>No articles in this category yet.</p>';?></div>
+<div class="news-grid"><?php foreach($list as $row)echo preg_replace('/(href="news\.php\?article=[^"]+)"/', '$1&amp;lang='.h($lang).'"',news_card($publicLabel($row)));if(!$list)echo '<p>No articles in this category yet.</p>';?></div>
 <?php if($pages>1):?>
 <nav class="news-pagination" aria-label="News pages">
 <?php if($page>1):?><a href="<?=h($urlFor($page-1))?>" rel="prev">← Previous</a><?php else:?><span class="disabled" aria-disabled="true">← Previous</span><?php endif;?>
