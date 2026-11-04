@@ -4,7 +4,33 @@ news_feed_sync(news_db());
 $slug=is_string($_GET['article']??null)?$_GET['article']:'';
 $editions=['pt'=>'onda-azul-2026-pt','en'=>'onda-azul-2026-en','es'=>'onda-azul-2026-es'];
 $flags=['en'=>['English','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#fff"/><rect y="0.000" width="30" height="1.538" fill="#b22234"/><rect y="3.077" width="30" height="1.538" fill="#b22234"/><rect y="6.154" width="30" height="1.538" fill="#b22234"/><rect y="9.231" width="30" height="1.538" fill="#b22234"/><rect y="12.308" width="30" height="1.538" fill="#b22234"/><rect y="15.385" width="30" height="1.538" fill="#b22234"/><rect y="18.462" width="30" height="1.538" fill="#b22234"/><rect width="12" height="10.77" fill="#3c3b6e"/><circle cx="1" cy="1" r=".45" fill="white"/><circle cx="3" cy="1" r=".45" fill="white"/><circle cx="5" cy="1" r=".45" fill="white"/><circle cx="7" cy="1" r=".45" fill="white"/><circle cx="9" cy="1" r=".45" fill="white"/><circle cx="11" cy="1" r=".45" fill="white"/><circle cx="1" cy="3" r=".45" fill="white"/><circle cx="3" cy="3" r=".45" fill="white"/><circle cx="5" cy="3" r=".45" fill="white"/><circle cx="7" cy="3" r=".45" fill="white"/><circle cx="9" cy="3" r=".45" fill="white"/><circle cx="11" cy="3" r=".45" fill="white"/><circle cx="1" cy="5" r=".45" fill="white"/><circle cx="3" cy="5" r=".45" fill="white"/><circle cx="5" cy="5" r=".45" fill="white"/><circle cx="7" cy="5" r=".45" fill="white"/><circle cx="9" cy="5" r=".45" fill="white"/><circle cx="11" cy="5" r=".45" fill="white"/><circle cx="1" cy="7" r=".45" fill="white"/><circle cx="3" cy="7" r=".45" fill="white"/><circle cx="5" cy="7" r=".45" fill="white"/><circle cx="7" cy="7" r=".45" fill="white"/><circle cx="9" cy="7" r=".45" fill="white"/><circle cx="11" cy="7" r=".45" fill="white"/><circle cx="1" cy="9" r=".45" fill="white"/><circle cx="3" cy="9" r=".45" fill="white"/><circle cx="5" cy="9" r=".45" fill="white"/><circle cx="7" cy="9" r=".45" fill="white"/><circle cx="9" cy="9" r=".45" fill="white"/><circle cx="11" cy="9" r=".45" fill="white"/></svg>'],'pt'=>['Português','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#009b3a"/><path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00"/><circle cx="15" cy="10" r="5" fill="#002776"/><path d="M10.3 8.4Q15 7.6 19.6 11.8" fill="none" stroke="white" stroke-width="1"/></svg>'],'es'=>['Español','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/><path d="M8 8h4v5q-2 2-4 0Z" fill="#aa151b" stroke="#fff" stroke-width=".5"/><path d="M8 7h4M9 6h2" stroke="#aa151b"/></svg>']];
+$cleanNews=preg_match('~^/news(?:/|\\?|$)~',$_SERVER['REQUEST_URI']??'')===1;
+if($slug==='blue-wave-2026')$slug=$editions['en'];
 $articleLang=array_search($slug,$editions,true);
+if($cleanNews){
+ ob_start(static function(string $html)use($editions):string{
+  return preg_replace_callback('~(href|action)="([^"]+)"~',static function(array $match)use($editions):string{
+   $url=html_entity_decode($match[2],ENT_QUOTES,'UTF-8');
+   if(preg_match('~^(?:https://sionrealtypm\\.com)?(?:/sion-imoveis/)?news\\.php(?:\\?(.*))?$~',$url,$parts)){
+    parse_str($parts[1]??'',$query);
+    $slug=is_string($query['article']??null)?$query['article']:'';
+    unset($query['article']);
+    if(in_array($slug,$editions,true)){
+     $query['lang']=$query['lang']??array_search($slug,$editions,true);
+     $slug='blue-wave-2026';
+    }
+    if(($query['lang']??null)==='en')unset($query['lang']);
+    $url='/news'.($slug!==''?'/'.rawurlencode($slug):'').($query?'?'.http_build_query($query,'','&',PHP_QUERY_RFC3986):'');
+    if($match[1]==='action')$url='/news';
+    return $match[1].'="'.h($url).'"';
+   }
+   if($url==='index.php')return 'href="/imoveis"';
+   if(preg_match('~^[a-z0-9_-]+\\.(?:php|css)$~i',$url))return $match[1].'="/sion-imoveis/'.h($url).'"';
+   return $match[0];
+  },$html)??$html;
+ });
+}
+
 $lang=is_string($_GET['lang']??null)&&isset($flags[$_GET['lang']])?$_GET['lang']:($articleLang?:'en');
 if($articleLang)$slug=$editions[$lang];
 $a=null;
