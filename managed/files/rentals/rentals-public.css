@@ -16,12 +16,16 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 .public-rentals #rental-results .gallery{width:230px;min-width:0;position:relative;border-radius:8px;background:#f7f5ef;overflow:visible;align-self:start}
 .public-rentals #rental-results .gallery-main{display:block;position:relative;width:100%;height:180px;padding:0;background:#f4f1eb;border:1px solid #e5ded3;border-radius:8px;cursor:zoom-in;overflow:hidden}
 .public-rentals #rental-results .gallery-main img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
-.public-rentals .gallery-thumbs{display:flex;gap:5px;overflow-x:auto;padding:7px 0 3px;scrollbar-width:thin}
+.public-rentals .gallery-thumbs{display:flex;gap:5px;overflow-x:auto;padding:7px 0 3px;scrollbar-width:thin;position:static}
 .public-rentals .gallery-thumb{flex:0 0 48px;width:48px;height:44px;padding:2px;background:#fff;border:1px solid #d9d2c7;border-radius:5px;cursor:pointer}
 .public-rentals .gallery-thumb[aria-pressed="true"]{border:2px solid #a77b43}
 .public-rentals .gallery-thumb img{display:block;width:100%;height:100%;object-fit:contain}
-.public-rentals .gallery-controls{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:5px;flex-wrap:nowrap}
-.public-rentals .gallery-controls button,.public-rentals .gallery-controls span{background:#fffdf2;color:#493c2d;border:1px solid #d8c5a9;border-radius:5px;font-size:11px;padding:3px 6px;white-space:nowrap}
+.public-rentals .gallery-controls{display:flex;align-items:center;justify-content:center;gap:9px;margin:6px 0 0;min-height:24px;position:static}
+.public-rentals .gallery-controls button{appearance:none;border:0;background:transparent;color:#8b683b;padding:2px 4px;font-size:19px;line-height:1;cursor:pointer;box-shadow:none;border-radius:0}
+.public-rentals .gallery-controls button:hover{color:#50371d}
+.public-rentals .gallery-controls [data-count]{font-size:11px;color:#756a5c;white-space:nowrap}
+.public-rentals .gallery-controls .gallery-open{margin-left:auto;font-size:11px;line-height:1.3;color:#856334;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.public-rentals .gallery-controls-single{justify-content:flex-end}
 .public-rentals .gallery-empty{min-height:180px;padding:12px;color:#716a60;background:#f1eee8;border-radius:8px}
 .public-rentals #rental-results .rental-copy{min-width:0;display:block;color:#332f29}
 .public-rentals #rental-results .rental-copy p{margin:2px 0 5px;color:#443c32}
@@ -35,8 +39,30 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 .public-rentals #sion-all-map{width:100%;height:440px;border:0;border-radius:8px}
 .public-rentals #sion-map-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .public-rentals #sion-map-links a{color:#79552b;border:1px solid #e0d3bf;border-radius:6px;padding:6px 9px}
-@media(max-width:650px){.public-rentals .rentals-bar{flex-wrap:wrap}.public-rentals .rentals-logo{max-width:140px}.public-rentals #rental-results .rental{grid-template-columns:90px minmax(0,1fr);gap:10px}.public-rentals #rental-results .gallery{width:100%}.public-rentals #rental-results .gallery-main{height:110px}.public-rentals .gallery-thumb{flex-basis:34px;width:34px;height:32px}.public-rentals .gallery-controls{flex-wrap:wrap}.public-rentals .gallery-controls .gallery-open{width:100%}.public-rentals #rental-results .rental-copy h2{font-size:16px}.public-rentals #rental-results .rental-copy .price{font-size:17px}}
-
+@media(max-width:650px){
+ .public-rentals .rentals-bar{flex-wrap:wrap;gap:10px;padding:12px}
+ .public-rentals .rentals-logo{max-width:140px}
+ .public-rentals .rental-tools{grid-template-columns:minmax(0,1fr);gap:10px;padding:12px}
+ .public-rentals .rental-tools label{display:block;width:100%}
+ .public-rentals #zip-search{max-width:none;width:100%;box-sizing:border-box}
+ .public-rentals .view-switch{justify-self:start}
+ .public-rentals #rental-results .rental{display:flex;flex-direction:column;gap:12px;padding:12px}
+ .public-rentals #rental-results .gallery{width:100%;max-width:100%;box-sizing:border-box;background:transparent}
+ .public-rentals #rental-results .gallery-main{width:100%;height:auto;aspect-ratio:4/3;max-height:320px}
+ .public-rentals #rental-results .gallery-main img{width:100%;height:100%;object-fit:contain}
+ .public-rentals .gallery-thumbs{gap:7px;padding:8px 0 4px;max-width:100%;overflow-x:auto}
+ .public-rentals .gallery-thumb{flex:0 0 58px;width:58px;height:48px}
+ .public-rentals .gallery-controls{justify-content:center;gap:12px;flex-wrap:nowrap}
+ .public-rentals .gallery-controls .gallery-open{width:auto;margin-left:auto}
+ .public-rentals #rental-results .rental-copy{width:100%;min-width:0}
+ .public-rentals #rental-results .rental-copy h2{font-size:17px}
+ .public-rentals #rental-results .rental-copy .price{font-size:19px}
+ .public-rentals #rental-results .rental-copy .button{margin-top:6px}
+}
+@media(min-width:651px) and (max-width:850px){
+ .public-rentals #rental-results .rental{grid-template-columns:210px minmax(0,1fr)}
+ .public-rentals #rental-results .gallery{width:210px}
+}
 /* Small location preview at the bottom of List mode. */
 .public-rentals #sion-list-map{margin-top:12px;padding:12px;background:#fff;border:1px solid #e5ded3;border-radius:10px;color:#332f29}
 .public-rentals #sion-list-map iframe{display:block;width:100%;height:220px;border:0;border-radius:7px}
@@ -52,14 +78,3 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 #sion-photo-dialog .photo-dialog-view button{padding:10px 4px;background:#f5eee3;border:1px solid #d8c5a9;border-radius:7px;cursor:pointer}
 #sion-photo-dialog #sion-photo-counter{text-align:center;margin:8px 0 0}
 
-/* All navigation lives below the image, never on top of it. */
-.public-rentals #rental-results .gallery-controls .gallery-open{font-size:10px;padding:4px 6px;background:#f7f1e6;color:#674d2e;cursor:pointer}
-.public-rentals #rental-results .gallery-controls button{cursor:pointer}
-.public-rentals #rental-results .gallery-controls-single{justify-content:flex-end}
-
-/* Override legacy gallery overlay rules: controls must be in document flow. */
-body.public-rentals #rental-results .rental .gallery{display:flex!important;flex-direction:column!important;align-items:stretch!important;height:auto!important;max-height:none!important;overflow:visible!important}
-body.public-rentals #rental-results .rental .gallery .gallery-main{position:relative!important;flex:0 0 auto!important;order:1!important}
-body.public-rentals #rental-results .rental .gallery .gallery-thumbs{position:static!important;inset:auto!important;transform:none!important;float:none!important;order:2!important;flex:0 0 auto!important;width:100%!important;height:auto!important;max-height:none!important;z-index:auto!important}
-body.public-rentals #rental-results .rental .gallery .gallery-controls{position:static!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;float:none!important;order:3!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:auto!important;min-height:25px!important;margin:5px 0 0!important;padding:0!important;z-index:auto!important;background:transparent!important;box-shadow:none!important}
-body.public-rentals #rental-results .rental .gallery .gallery-controls button,body.public-rentals #rental-results .rental .gallery .gallery-controls span{position:static!important;transform:none!important;flex:0 0 auto!important;line-height:1.3!important;font-size:10px!important;padding:3px 6px!important}
