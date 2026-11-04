@@ -26,15 +26,15 @@
     },
     {
       "path": "portal/assets/listings.js",
-      "sha256": "d83f08827f6f5ec9af57ddd317302ab02a986bf4ca065a9b8d8b6a061aef70da"
+      "sha256": "cfbcc84d3112f7ad037fb1eb361be0001b64acdc94713eb0c5cc9967f914d797"
     },
     {
       "path": "portal/rentals.php",
-      "sha256": "b25a4c54fc2cb6fc986e560fc0fd15448f891915a2b1ec7be4221d21d9e4ba40"
+      "sha256": "0d38c93161889426c54adca8b9076513cc143d61913e904e09607a4712f853c0"
     },
     {
       "path": "rentals/index.php",
-      "sha256": "51f16a59a3ae2917eed3241820b54b49cce99e9178d488c8e7cf46d44d6da3fd"
+      "sha256": "4cb2a6de37f0fdd8f7d43005d83716350d5e0ea6c4fd5a3f548ff64fb49c04f5"
     }
   ]
 }
