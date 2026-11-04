@@ -10,7 +10,7 @@ if(getenv('SION_DEPLOY_TEST_HOME'))$home=getenv('SION_DEPLOY_TEST_HOME');
 $work=$home.'/sion-code-deploy';
 if(!is_dir($work)&&!mkdir($work,0700,true))throw new RuntimeException('Cannot create deployment directory');
 $lock=fopen($work.'/lock','c');if(!$lock||!flock($lock,LOCK_EX|LOCK_NB))exit("Another code deployment is active.\n");
-$map=['home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
+$map=['rentals/index.php'=>'public_html/sion-imoveis/index.php','home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
 foreach(['api.php','app.php','bootstrap.php','index.php','rentals.php','.htaccess'] as $f)$map['portal/'.$f]='public_html/reports/'.$f;
 foreach(['accounts.js','annual-exports.js','annual.js','app.js','core.js','exports.js','jszip.min.js','listings.js','logo.png','pdf-lib.min.js','portal.css','server.js'] as $f)$map['portal/assets/'.$f]='public_html/reports/assets/'.$f;
 try{
