@@ -22,11 +22,11 @@
     },
     {
       "path": "portal/assets/app.js",
-      "sha256": "2711fac36fef177bc9e6ba2d684998d050cfc478a6956cc52a2ce3bad3a55411"
+      "sha256": "7f08847aa6ebe21626d9031648924aeda67374ccf155e1d613c475c1edc5ec6e"
     },
     {
       "path": "portal/assets/listings.js",
-      "sha256": "f1716562c6a71501c59f547d4f6e3b4e478d4e19cd09367c420603eb4be900e2"
+      "sha256": "a443b7f36e751a153e2b292ca100780f23d9ac04193c0bdc929a0a7b2b4ac6a9"
     },
     {
       "path": "portal/rentals.php",
