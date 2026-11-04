@@ -22,6 +22,49 @@ for candidate in /usr/local/bin/php /usr/bin/php; do
 done
 if test -z "$PHP"; then echo "PHP executable not found; no deployment performed" >&2; exit 1; fi
 "$PHP" -l "$SOURCE"
+# Add narrowly scoped public aliases without replacing existing host rules.
+ROOT=/home2/sionreal/public_html
+RULES="$ROOT/.htaccess"
+test ! -L "$RULES"
+if ! test -f "$RULES" || ! grep -Fxq '# BEGIN SION PUBLIC ALIASES' "$RULES"; then
+  test ! -e "$ROOT/news" && test ! -e "$ROOT/imoveis"
+  mkdir -p "$BACKUPS"
+  chmod 700 "$BACKUPS"
+  ROUTE_TEMP=$(mktemp "$ROOT/.sion-routes.XXXXXX")
+  trap 'rm -f "$ROUTE_TEMP"' 0 HUP INT TERM
+  cat > "$ROUTE_TEMP" <<'SION_ROUTES'
+# BEGIN SION PUBLIC ALIASES
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^news/?$ sion-imoveis/news.php [END]
+RewriteRule ^news/([a-z0-9-]{1,120})/?$ sion-imoveis/news.php?article=$1 [END,QSA]
+RewriteRule ^imoveis/?$ sion-imoveis/index.php [END]
+</IfModule>
+# END SION PUBLIC ALIASES
+SION_ROUTES
+  if test -f "$RULES"; then
+    ROUTE_BACKUP="$BACKUPS/root-htaccess-$(date -u +%Y%m%dT%H%M%SZ)-$"
+    cp -p "$RULES" "$ROUTE_BACKUP"
+    cat "$ROUTE_BACKUP" >> "$ROUTE_TEMP"
+    cmp -s "$RULES" "$ROUTE_BACKUP" || exit 1
+  fi
+  chmod 644 "$ROUTE_TEMP"
+  mv -f "$ROUTE_TEMP" "$RULES"
+  # Keep the original rules if the new aliases fail the public smoke check.
+  if ! curl -fsS --max-time 10 https://sionrealtypm.com/news | grep -Fq 'THE SION JOURNAL' ||
+     ! curl -fsS --max-time 10 https://sionrealtypm.com/news/onda-azul-2026-en | grep -Fq 'Patrick Portela' ||
+     ! curl -fsS --max-time 10 https://sionrealtypm.com/imoveis > /dev/null; then
+    if test -n "${ROUTE_BACKUP:-}"; then
+      cp -p "$ROUTE_BACKUP" "$ROUTE_TEMP"
+      mv -f "$ROUTE_TEMP" "$RULES"
+    else
+      rm -f "$RULES"
+    fi
+    echo "Public alias verification failed; restored original routing." >&2
+  fi
+  trap - 0 HUP INT TERM
+fi
+
 if test -f "$TARGET" && cmp -s "$SOURCE" "$TARGET"; then
   echo "News page already matches this release."
   exit 0
