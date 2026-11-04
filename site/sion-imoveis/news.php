@@ -66,9 +66,11 @@ public_start($a?$a['title']:'News & local insights',$a?$a['summary']:'Housing ne
 </style>
 <nav class="sion-languages" aria-label="News language"><?php foreach($flags as $code=>[$label,$flag]):
  $target=[];
- if($a)$target['article']=$articleLang?$editions[$code]:$slug;
+ $formAction=$cleanNews?'/news':'news.php';
+ if($a&&$cleanNews)$formAction.='/'.rawurlencode($articleLang?'blue-wave-2026':$slug);
+ elseif($a)$target['article']=$articleLang?$editions[$code]:$slug;
  elseif($category!=='')$target['category']=$category;
-?><form action="news.php" method="get"><?php foreach($target as $name=>$value):?><input type="hidden" name="<?=h($name)?>" value="<?=h($value)?>"><?php endforeach;?><button type="submit" name="lang" value="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>" aria-pressed="<?=$code===$lang?'true':'false'?>"><?=$flag?></button></form><?php endforeach;?></nav>
+?><form action="<?=h($formAction)?>" method="get"><?php foreach($target as $name=>$value):?><input type="hidden" name="<?=h($name)?>" value="<?=h($value)?>"><?php endforeach;?><button type="submit" name="lang" value="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>" aria-pressed="<?=$code===$lang?'true':'false'?>"><?=$flag?></button></form><?php endforeach;?></nav>
 <?php if($a):?>
 <?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
 <article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
