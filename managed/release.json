@@ -1,11 +1,7 @@
 {
   "version": 1,
-  "release": "allow-public-regions-indexing",
+  "release": "archive-rental-property-and-select-investor",
   "files": [
-    {
-      "path": "portal/assets/app.js",
-      "sha256": "0265a0f3605a82270f0fe31ecf82043e97384d635b7adb2aa82946f37e5f0b18"
-    },
     {
       "path": "portal/api.php",
       "sha256": "a44f1d650558fe7acb2f587b978f0fad6314313b89e50ed18525a2d139b08381"
@@ -23,6 +19,18 @@
       "path": "home/regioes.html",
       "patch": "home/regioes.patch.json",
       "sha256": "364bd2e80a722d1d206d591287da3e2f9af6ba64a8e89802950ff1426ab047ba"
+    },
+    {
+      "path": "portal/assets/app.js",
+      "sha256": "2711fac36fef177bc9e6ba2d684998d050cfc478a6956cc52a2ce3bad3a55411"
+    },
+    {
+      "path": "portal/assets/listings.js",
+      "sha256": "13cbbde03c0b52a61d895431e0a2fda63f58eca3ebe4510df9525cef341bd131"
+    },
+    {
+      "path": "portal/rentals.php",
+      "sha256": "5e8ae4fdc4e6fe1c3b4df54900839a4bbca1c84ed73ae2e416b48ebbb49f00e0"
     }
   ]
 }
