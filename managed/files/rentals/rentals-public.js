@@ -78,11 +78,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   thumbs.forEach((t,i)=>t.addEventListener('click',()=>select(i)));
   gallery?.querySelector('[data-prev]')?.addEventListener('click',()=>select(index-1));
   gallery?.querySelector('[data-next]')?.addEventListener('click',()=>select(index+1));
-  gallery?.querySelector('[data-expand]')?.addEventListener('click',()=>{
+  const expandPhoto=()=>{
    if(!dialog||typeof dialog.showModal!=='function')return;
    selectedGallery={sources,index,title:c.querySelector('h2')?.textContent||'Property',select};
    displayExpanded();dialog.showModal();
-  });
+  };
+  gallery?.querySelector('[data-expand]')?.addEventListener('click',expandPhoto);
+  gallery?.querySelector('[data-open-larger]')?.addEventListener('click',expandPhoto);
   select(0);
  });
  render();
