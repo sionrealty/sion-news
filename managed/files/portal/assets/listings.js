@@ -12,7 +12,51 @@ function listedProperties(){return db.properties.filter(listingReady);}
 function availableForRent(p){return !p.archived&&listingStatus(p)==='vacant';}
 function propertyListForView(){return properties().filter(p=>state.view==='available-rentals'?availableForRent(p):!availableForRent(p));}
 function listingField(key,label,value,type='text'){return `<label>${label}<input name="${key}" type="${type}" value="${e(value??'')}" ${type==='number'?'min="0" step="0.01"':''}></label>`;}
-propertyPage=function(){const available=state.view==='available-rentals';return pagehead('Imóveis · cadastro único',available?'Disponíveis para alugar':'Fotos e anúncios',available?'Unidades disponíveis para locação. Edite fotos, preço e publicação sem alterar os relatórios.':'Imóveis alugados, ocupados e demais cadastros. Os disponíveis ficam em uma seção separada.',`<button class="btn primary" data-act="newproperty">+ Cadastrar imóvel</button>`)+propertyTabs()+`<div class="notice info"><strong>Teste de anúncios.</strong> O preço e a situação do anúncio não alteram os relatórios mensais nem o 1099. A conexão com o site oficial será feita na etapa de integração.</div><section class="property-cards">${propertyListForView().map(p=>{const l=listing(p),ref=financialReference(p);return `<article class="card property-card">${l.photos?.length?`<img class="property-thumb" src="${l.photos?.[0]||""}" alt="Capa do anúncio">`:'<div class="property-thumb empty-photo">Adicionar fotos do imóvel</div>'}<h2>${e(p.name)}</h2><div class="property-reference"><small>Referência financeira · somente leitura</small><p>Aluguel contratado no cadastro: <strong>${p.rentConfirmed?money(p.rent):'A confirmar'}</strong></p><p>${ref?'Último relatório: '+months[ref.report.month-1]+' '+ref.report.year+' · Recebido: '+money(C.row(ref.row).received):'Sem relatório anterior para este imóvel.'}</p></div><label>Situação do anúncio<select data-ad-status="${e(p.id)}" aria-label="Situação do anúncio de ${e(p.name)}">${[['draft','Rascunho / não anunciar'],['vacant','Disponível para alugar'],['occupied','Alugado / fora do site']].map(([k,v])=>`<option value="${k}" ${listingStatus(p)===k?'selected':''}>${v}</option>`).join('')}</select></label><p>Preço anunciado: <strong>${l.price>0?money(l.price):'Sob consulta'}</strong></p><p><span class="pill ${listingReady(p)?'':'warn'}">${listingReady(p)?'Na vitrine de teste':listingStatus(p)==='vacant'?'Informe endereço e valor do aluguel para publicar':'Fora da vitrine'}</span> · ${l.photos?.length||0} fotos</p><button class="btn primary" data-listings="edit" data-id="${e(p.id)}">Fotos e anúncio</button><button class="btn" data-listings="delete-property" data-id="${e(p.id)}">Excluir imóvel</button><button type="button" class="btn primary" data-listings="save-property" data-id="${e(p.id)}">Salvar</button></article>`;}).join('')||'<article class="card">Cadastre o primeiro imóvel para este investidor.</article>'}</section>`;};
+// Compact, responsive property cards. All data comes from the existing owner records.
+const sionPropertyListStyle=`<style>
+.property-cards.sion-compact{display:flex;flex-direction:column;gap:10px}
+.sion-compact .property-card{display:grid;grid-template-columns:145px minmax(0,1fr);gap:12px;padding:12px;align-items:start}
+.sion-compact .property-thumb{width:145px;height:112px;object-fit:cover;border-radius:8px;grid-row:1 / span 2}
+.sion-compact .property-main{min-width:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(190px,.9fr);gap:8px 16px}
+.sion-compact .property-main h2{font-size:16px;margin:0 0 7px;grid-column:1/-1;overflow-wrap:anywhere}
+.sion-compact .property-reference{margin:0;padding:8px}
+.sion-compact .property-reference p{margin:4px 0}
+.sion-compact .property-commercial p{margin:5px 0}
+.sion-compact .property-commercial label{display:block;margin:0}
+.sion-compact .property-commercial select{width:100%;max-width:360px}
+.sion-compact .property-actions{grid-column:2;display:flex;gap:7px;justify-content:flex-end;flex-wrap:wrap}
+.sion-property-pages{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sion-property-pages .controls{display:flex;align-items:center;gap:10px}
+@media(max-width:700px){
+.sion-compact .property-card{grid-template-columns:80px minmax(0,1fr);gap:8px;padding:9px}
+.sion-compact .property-thumb{width:80px;height:80px}
+.sion-compact .property-main{grid-template-columns:minmax(0,1fr);gap:6px}
+.sion-compact .property-main h2{font-size:14px}
+.sion-compact .property-actions{grid-column:1/-1;justify-content:flex-start}
+.sion-compact .property-actions .btn{font-size:12px;padding:7px}
+}
+</style>`;
+function sionPageSize(){return window.matchMedia('(max-width:700px)').matches?5:10;}
+let sionPropertyPageNumber=1;
+propertyPage=function(){
+ const available=state.view==='available-rentals',items=propertyListForView(),size=sionPageSize(),pages=Math.max(1,Math.ceil(items.length/size));
+ sionPropertyPageNumber=Math.max(1,Math.min(sionPropertyPageNumber,pages));
+ const first=(sionPropertyPageNumber-1)*size,shown=items.slice(first,first+size);
+ return pagehead('Imóveis · cadastro único',available?'Disponíveis para alugar':'Fotos e anúncios',available?'Unidades disponíveis para locação. Edite fotos, preço e publicação sem alterar os relatórios.':'Imóveis alugados, ocupados e demais cadastros. Os disponíveis ficam em uma seção separada.',`<button class="btn primary" data-act="newproperty">+ Cadastrar imóvel</button>`)
+ +propertyTabs()+sionPropertyListStyle
+ +`<div class="notice info"><strong>Teste de anúncios.</strong> O preço e a situação do anúncio não alteram os relatórios mensais nem o 1099. A conexão com o site oficial será feita na etapa de integração.</div><section class="property-cards sion-compact">`
+ + (shown.map(p=>{const l=listing(p),ref=financialReference(p);return `<article class="card property-card">
+ ${l.photos?.length?`<img class="property-thumb" src="${l.photos[0]}" alt="Capa do anúncio de ${e(p.name)}" loading="lazy">`:'<div class="property-thumb empty-photo">Adicionar fotos</div>'}
+ <div class="property-main"><h2>${e(p.name)}</h2>
+ <div class="property-reference"><small>Referência financeira · somente leitura</small><p>Aluguel contratado no cadastro: <strong>${p.rentConfirmed?money(p.rent):'A confirmar'}</strong></p><p>${ref?'Último relatório: '+months[ref.report.month-1]+' '+ref.report.year+' · Recebido: '+money(C.row(ref.row).received):'Sem relatório anterior para este imóvel.'}</p></div>
+ <div class="property-commercial"><label>Situação do anúncio<select data-ad-status="${e(p.id)}" aria-label="Situação do anúncio de ${e(p.name)}">${[['draft','Rascunho / não anunciar'],['vacant','Disponível para alugar'],['occupied','Alugado / fora do site']].map(([k,v])=>`<option value="${k}" ${listingStatus(p)===k?'selected':''}>${v}</option>`).join('')}</select></label><p>Preço anunciado: <strong>${l.price>0?money(l.price):'Sob consulta'}</strong></p><p><span class="pill ${listingReady(p)?'':'warn'}">${listingReady(p)?'Na vitrine de teste':listingStatus(p)==='vacant'?'Informe endereço e valor do aluguel para publicar':'Fora da vitrine'}</span> · ${l.photos?.length||0} fotos</p></div>
+ </div><div class="property-actions"><button class="btn primary" data-listings="edit" data-id="${e(p.id)}">Fotos e anúncio</button><button class="btn" data-listings="delete-property" data-id="${e(p.id)}">Excluir imóvel</button><button type="button" class="btn primary" data-listings="save-property" data-id="${e(p.id)}">Salvar</button></div></article>`;}).join('')||'<article class="card">Nenhum imóvel nesta seção.</article>')
+ +`</section><nav class="sion-property-pages" aria-label="Páginas dos imóveis"><span>Mostrando ${items.length?first+1:0}–${Math.min(first+size,items.length)} de ${items.length} imóveis · ${size} por página</span><div class="controls"><button type="button" class="btn" data-sion-page="prev" ${sionPropertyPageNumber===1?'disabled':''}>← Anterior</button><span>Página ${sionPropertyPageNumber} de ${pages}</span><button type="button" class="btn" data-sion-page="next" ${sionPropertyPageNumber===pages?'disabled':''}>Próxima →</button></div></nav>`;
+};
+document.addEventListener('click',event=>{const b=event.target.closest('[data-sion-page]');if(!b)return;const pages=Math.max(1,Math.ceil(propertyListForView().length/sionPageSize()));sionPropertyPageNumber=Math.max(1,Math.min(pages,sionPropertyPageNumber+(b.dataset.sionPage==='next'?1:-1)));render();document.querySelector('.property-tabs')?.scrollIntoView({block:'start'});});
+window.addEventListener('resize',()=>{if(['properties','available-rentals'].includes(state.view)&&sionPageSize()!==sionLastPageSize){sionLastPageSize=sionPageSize();render();}});
+let sionLastPageSize=sionPageSize();
+
 content=function(){if(state.view==='available-rentals'&&admin())return propertyPage();if(state.view==='property-finance'&&admin())return propertyTabs()+originalPropertyPage();if(state.view==='listing-edit'&&admin())return listingEditor();if(state.view==='rental-preview'&&admin())return rentalPreview();return originalContent();};
 const originalRender=render;
 render=function(){originalRender();if(!admin())return;const nav=document.querySelector('.sidebar .nav');if(nav){const base=nav.querySelector('[data-view="properties"]');if(base){const btn=document.createElement('button');btn.type='button';btn.dataset.view='available-rentals';btn.className=state.view==='available-rentals'?'active':'';btn.innerHTML=icon('properties')+'Disponíveis para alugar';base.insertAdjacentElement('afterend',btn);}}if(['listing-edit','rental-preview','property-finance'].includes(state.view))document.querySelector('[data-view="properties"]')?.classList.add('active');};
