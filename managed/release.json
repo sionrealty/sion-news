@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "correct-public-rental-price-cents",
+  "release": "save-button-on-rental-cards",
   "files": [
     {
       "path": "portal/api.php",
@@ -26,7 +26,7 @@
     },
     {
       "path": "portal/assets/listings.js",
-      "sha256": "13cbbde03c0b52a61d895431e0a2fda63f58eca3ebe4510df9525cef341bd131"
+      "sha256": "340baa08437ceae7ec01b8b6269c4b21e5854cf681659876b77156ad5bbb5e3b"
     },
     {
       "path": "portal/rentals.php",
