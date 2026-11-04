@@ -51,9 +51,9 @@ try{
  $back=$work.'/backups/'.gmdate('Ymd-His').'-'.bin2hex(random_bytes(4));$applied=[];$staged=[];
  if($jobs){mkdir($back,0700,true);
   // Stage and back up every changed file before touching any destination.
-  foreach($jobs as [$src,$dst,$relative,$mode]){$backup=$back.'/'.$relative;if(!is_dir(dirname($backup)))mkdir(dirname($backup),0700,true);if(!copy($dst,$backup))throw new RuntimeException('Backup failed');chmod($backup,0600);$tmp=tempnam(dirname($dst),'.sion-code-');if(!$tmp||!copy($src,$tmp))throw new RuntimeException('Staging failed');chmod($tmp,$mode);$staged[]=[$tmp,$dst,$backup,$mode];}
+  foreach($jobs as [$src,$dst,$relative,$mode]){$backup=$back.'/'.$relative;if(!is_dir(dirname($backup)))mkdir(dirname($backup),0700,true);if(is_file($dst)){if(!copy($dst,$backup))throw new RuntimeException('Backup failed');chmod($backup,0600);}$tmp=tempnam(dirname($dst),'.sion-code-');if(!$tmp||!copy($src,$tmp))throw new RuntimeException('Staging failed');chmod($tmp,$mode);$staged[]=[$tmp,$dst,$backup,$mode];}
   try{foreach($staged as [$tmp,$dst,$backup,$mode]){if(!rename($tmp,$dst))throw new RuntimeException('Activation failed');$applied[]=[$dst,$backup,$mode];}}
-  catch(Throwable $e){foreach(array_reverse($applied) as [$dst,$backup,$mode]){copy($backup,$dst);chmod($dst,$mode);}throw $e;}
+  catch(Throwable $e){foreach(array_reverse($applied) as [$dst,$backup,$mode]){if(is_file($backup)){copy($backup,$dst);chmod($dst,$mode);}else{unlink($dst);}}throw $e;}
  }
  $status=['checked_at'=>gmdate('c'),'release'=>$release['release']??'configuration','files_checked'=>count($release['files']),'files_updated'=>count($jobs),'state'=>'ok'];
  file_put_contents($work.'/status.json',json_encode($status,JSON_PRETTY_PRINT),LOCK_EX);
