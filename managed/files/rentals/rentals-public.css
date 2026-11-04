@@ -11,12 +11,19 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 .public-rentals #rental-count{grid-column:1/-1;margin:0}
 .public-rentals #rental-results{display:flex;flex-direction:column;gap:8px}
 .public-rentals #rental-results[hidden],.public-rentals #sion-map-panel[hidden],.public-rentals [hidden]{display:none!important}
-.public-rentals #rental-results .rental{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:start;gap:12px;padding:10px;background:#fff;color:#332f29;border:1px solid #e5ded3;border-radius:10px;min-height:0;box-shadow:none}
-.public-rentals #rental-results .gallery{width:180px;height:180px;min-width:0;position:relative;overflow:hidden;border-radius:8px;background:#f1eee8;min-height:0}
-.public-rentals #rental-results .gallery img{display:block;width:180px;height:180px;max-width:100%;max-height:180px;object-fit:cover}
-.public-rentals #rental-results .gallery img[hidden]{display:none}
-.public-rentals #rental-results .gallery-controls{position:absolute;bottom:4px;left:4px;right:4px;display:flex;align-items:center;justify-content:space-between;gap:3px}
-.public-rentals .gallery-controls button,.public-rentals .gallery-controls span{background:#fffdf2;color:#493c2d;border:1px solid #d8c5a9;border-radius:5px;font-size:11px;padding:3px 5px}
+.public-rentals #rental-results .rental{display:grid;grid-template-columns:230px minmax(0,1fr);align-items:start;gap:12px;padding:10px;background:#fff;color:#332f29;border:1px solid #e5ded3;border-radius:10px;min-height:0;box-shadow:none}
+/* Full-photo gallery: no crop or zoom; miniatures sit beneath. */
+.public-rentals #rental-results .gallery{width:230px;min-width:0;position:relative;border-radius:8px;background:#f7f5ef;overflow:visible;align-self:start}
+.public-rentals #rental-results .gallery-main{display:block;position:relative;width:100%;height:180px;padding:0;background:#f4f1eb;border:1px solid #e5ded3;border-radius:8px;cursor:zoom-in;overflow:hidden}
+.public-rentals #rental-results .gallery-main img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+.public-rentals .gallery-expand-label{position:absolute;right:5px;bottom:5px;padding:3px 6px;background:#fffdf4e8;border-radius:5px;color:#493c2d;font-size:11px}
+.public-rentals .gallery-thumbs{display:flex;gap:5px;overflow-x:auto;padding:7px 0 3px;scrollbar-width:thin}
+.public-rentals .gallery-thumb{flex:0 0 48px;width:48px;height:44px;padding:2px;background:#fff;border:1px solid #d9d2c7;border-radius:5px;cursor:pointer}
+.public-rentals .gallery-thumb[aria-pressed="true"]{border:2px solid #a77b43}
+.public-rentals .gallery-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.public-rentals .gallery-controls{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:3px}
+.public-rentals .gallery-controls button,.public-rentals .gallery-controls span{background:#fffdf2;color:#493c2d;border:1px solid #d8c5a9;border-radius:5px;font-size:12px;padding:3px 9px}
+.public-rentals .gallery-empty{min-height:180px;padding:12px;color:#716a60;background:#f1eee8;border-radius:8px}
 .public-rentals #rental-results .rental-copy{min-width:0;display:block;color:#332f29}
 .public-rentals #rental-results .rental-copy p{margin:2px 0 5px;color:#443c32}
 .public-rentals #rental-results .rental-copy h2{margin:2px 0 5px;font-size:17px;color:#30291f}
@@ -29,9 +36,19 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 .public-rentals #sion-all-map{width:100%;height:440px;border:0;border-radius:8px}
 .public-rentals #sion-map-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .public-rentals #sion-map-links a{color:#79552b;border:1px solid #e0d3bf;border-radius:6px;padding:6px 9px}
-@media(max-width:650px){.public-rentals .rentals-bar{flex-wrap:wrap}.public-rentals .rentals-logo{max-width:140px}.public-rentals #rental-results .rental{grid-template-columns:90px minmax(0,1fr);gap:10px}.public-rentals #rental-results .gallery{width:90px;height:90px;min-height:0}.public-rentals #rental-results .gallery img{width:90px;height:90px}.public-rentals #rental-results .rental-copy h2{font-size:16px}.public-rentals #rental-results .rental-copy .price{font-size:17px}}
+@media(max-width:650px){.public-rentals .rentals-bar{flex-wrap:wrap}.public-rentals .rentals-logo{max-width:140px}.public-rentals #rental-results .rental{grid-template-columns:90px minmax(0,1fr);gap:10px}.public-rentals #rental-results .gallery{width:100%}.public-rentals #rental-results .gallery-main{height:110px}.public-rentals .gallery-thumb{flex-basis:34px;width:34px;height:32px}.public-rentals .gallery-expand-label{font-size:9px}.public-rentals #rental-results .rental-copy h2{font-size:16px}.public-rentals #rental-results .rental-copy .price{font-size:17px}}
 
 /* Small location preview at the bottom of List mode. */
 .public-rentals #sion-list-map{margin-top:12px;padding:12px;background:#fff;border:1px solid #e5ded3;border-radius:10px;color:#332f29}
 .public-rentals #sion-list-map iframe{display:block;width:100%;height:220px;border:0;border-radius:7px}
 .public-rentals #sion-list-map[hidden]{display:none!important}
+
+/* Enlarged gallery viewer, keyboard accessible and constrained to viewport. */
+#sion-photo-dialog{max-width:min(94vw,1100px);max-height:92vh;width:900px;padding:14px;border:1px solid #ded3c1;border-radius:12px;background:#fffdf8;color:#332f29;box-shadow:0 16px 60px #0005}
+#sion-photo-dialog::backdrop{background:#000b}
+#sion-photo-dialog .photo-dialog-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;font-weight:600}
+#sion-photo-dialog .photo-dialog-toolbar button{padding:7px 12px;border:1px solid #bfa77f;border-radius:7px;background:#fff;color:#493c2d;cursor:pointer}
+#sion-photo-dialog .photo-dialog-view{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:6px;align-items:center}
+#sion-photo-dialog .photo-dialog-view img{width:100%;height:auto;max-height:72vh;object-fit:contain}
+#sion-photo-dialog .photo-dialog-view button{padding:10px 4px;background:#f5eee3;border:1px solid #d8c5a9;border-radius:7px;cursor:pointer}
+#sion-photo-dialog #sion-photo-counter{text-align:center;margin:8px 0 0}
