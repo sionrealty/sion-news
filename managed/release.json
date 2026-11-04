@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "separate-available-rentals",
+  "release": "clean-csp-safe-public-rentals",
   "files": [
     {
       "path": "portal/api.php",
@@ -34,7 +34,15 @@
     },
     {
       "path": "rentals/index.php",
-      "sha256": "51f16a59a3ae2917eed3241820b54b49cce99e9178d488c8e7cf46d44d6da3fd"
+      "sha256": "31fd1c8334302e409700ed255a8400a772eef933e8b32920ada2a01ae65afa41"
+    },
+    {
+      "path": "rentals/rentals-public.css",
+      "sha256": "e5ec1c9683d013f8704e717b6f20c94ee9e6a0df40b80f612db64f9141e50fc8"
+    },
+    {
+      "path": "rentals/rentals-public.js",
+      "sha256": "7dff7efca91efe2adc7c154d7596bfdf2264c29085c24c5d907bbc2198c421b5"
     }
   ]
 }
