@@ -1,7 +1,7 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-04T13:37:11.728Z",
+  "updated_at": "2026-11-04T13:44:25.528Z",
   "articles": [
     {
       "slug": "florida-amendment-3-unofficial-election-results-november-2026",
@@ -13,6 +13,34 @@
       "source_name": "Florida Department of State, Division of Elections — Florida Election Watch",
       "source_url": "https://floridaelectionwatch.gov/CompareStateToCounty/900003",
       "source_date": "November 3, 2026 general election; unofficial returns reviewed November 4, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-04"
+    },
+    {
+      "slug": "orange-county-november-2026-property-tax-payment-window",
+      "category": "Orange County",
+      "kind": "County tax calendar",
+      "title": "November payment window opens for Orange County property taxes",
+      "summary": "Orange County’s November property tax payment window carries a 4% early payment discount.\nThe discount drops to 3% in December, 2% in January and 1% in February.\nThe county’s regular payment deadline is March 31.\nOwners can look up their current bill through the county tax collector.",
+      "body": "Orange County property owners can check their 2026 real estate tax bills as the November payment window opens. The Orange County Tax Collector lists a 4% discount for November payments, followed by 3% in December, 2% in January and 1% in February. The regular deadline is March 31, 2027.\n\nThe county’s online lookup allows owners to locate their bill by parcel ID or address. Owners whose lender pays taxes through escrow can check whether the lender is handling payment before submitting a separate payment. This is Orange County’s regular collection calendar and is separate from the November statewide vote on Amendment 3.",
+      "source_name": "Orange County Tax Collector",
+      "source_url": "https://octaxcol.com/taxes/about-property-tax/",
+      "source_date": "Official payment calendar reviewed November 4, 2026; 2026 tax bills and 2026–2027 collection cycle.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-04"
+    },
+    {
+      "slug": "orlando-downtown-development-advisory-board-november-4-2026",
+      "category": "Orange County",
+      "kind": "City of Orlando — public meeting",
+      "title": "Orlando reschedules downtown development advisory meeting for November 4",
+      "summary": "The City of Orlando lists a downtown development advisory meeting for November 4.\nThe meeting replaces the canceled October 28 session.\nIt is scheduled for 3 p.m. at Orlando City Hall.\nThe notice announces the meeting and does not establish a project approval.",
+      "body": "Orlando moved its Downtown Development Board and Community Redevelopment Agency Advisory Board meeting from October 28 to Wednesday, November 4. The city’s calendar lists a 3 p.m. start in the Veterans Conference Room on the second floor of City Hall, 400 South Orange Avenue.\n\nThe advisory board’s work concerns redevelopment within its designated downtown district. This meeting notice does not establish that any project, zoning change or funding request was approved. It is a City of Orlando meeting, separate from Orange County’s development proceedings.",
+      "source_name": "City of Orlando — public meeting calendar",
+      "source_url": "https://www.orlando.gov/Our-Government/Public-Meetings/Downtown-Development-BoardCRA-Advisory-Board-Meeting-11426",
+      "source_date": "City calendar reviewed November 4, 2026; meeting rescheduled from October 28 to November 4.",
       "chart": "",
       "status": "published",
       "published": "2026-11-04"
