@@ -53,7 +53,15 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
  .public-rentals .gallery-thumbs{gap:7px;padding:8px 0 4px;max-width:100%;overflow-x:auto}
  .public-rentals .gallery-thumb{flex:0 0 58px;width:58px;height:48px}
  .public-rentals .gallery-controls{justify-content:center;gap:12px;flex-wrap:nowrap}
- .public-rentals .gallery-controls .gallery-open{width:auto;margin-left:auto}
+ /* Mobile: expand in the top-left corner; centered arrows and counter below thumbnails. */
+ .public-rentals #rental-results .gallery{position:relative}
+ .public-rentals #rental-results .gallery-controls{display:flex;justify-content:center;align-items:center;gap:18px;position:static;min-height:30px}
+ .public-rentals #rental-results .gallery-controls [data-prev],
+ .public-rentals #rental-results .gallery-controls [data-next]{font-size:23px;padding:2px 7px}
+ .public-rentals #rental-results .gallery-controls [data-count]{font-size:12px}
+ .public-rentals #rental-results .gallery-controls .gallery-open{position:absolute;top:10px;left:10px;right:auto;bottom:auto;z-index:2;margin:0;width:34px;height:34px;border-radius:50%;background:#fffdf3e8;box-shadow:0 1px 5px #0002;color:#77552e}
+ .public-rentals #rental-results .gallery-controls .gallery-open::after{font-size:21px}
+ .public-rentals #rental-results .gallery-controls-single{min-height:0;margin:0}
  .public-rentals #rental-results .rental-copy{width:100%;min-width:0}
  .public-rentals #rental-results .rental-copy h2{font-size:17px}
  .public-rentals #rental-results .rental-copy .price{font-size:19px}
