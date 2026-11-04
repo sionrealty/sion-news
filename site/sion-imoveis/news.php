@@ -3,7 +3,7 @@ require_once __DIR__.'/news-common.php';
 news_feed_sync(news_db());
 $slug=is_string($_GET['article']??null)?$_GET['article']:'';
 $editions=['pt'=>'onda-azul-2026-pt','en'=>'onda-azul-2026-en','es'=>'onda-azul-2026-es'];
-$flags=['pt'=>['🇧🇷','Português'],'en'=>['🇺🇸','English'],'es'=>['🇪🇸','Español']];
+$flags=['en'=>['English','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#fff"/><rect y="0.000" width="30" height="1.538" fill="#b22234"/><rect y="3.077" width="30" height="1.538" fill="#b22234"/><rect y="6.154" width="30" height="1.538" fill="#b22234"/><rect y="9.231" width="30" height="1.538" fill="#b22234"/><rect y="12.308" width="30" height="1.538" fill="#b22234"/><rect y="15.385" width="30" height="1.538" fill="#b22234"/><rect y="18.462" width="30" height="1.538" fill="#b22234"/><rect width="12" height="10.77" fill="#3c3b6e"/><circle cx="1" cy="1" r=".45" fill="white"/><circle cx="3" cy="1" r=".45" fill="white"/><circle cx="5" cy="1" r=".45" fill="white"/><circle cx="7" cy="1" r=".45" fill="white"/><circle cx="9" cy="1" r=".45" fill="white"/><circle cx="11" cy="1" r=".45" fill="white"/><circle cx="1" cy="3" r=".45" fill="white"/><circle cx="3" cy="3" r=".45" fill="white"/><circle cx="5" cy="3" r=".45" fill="white"/><circle cx="7" cy="3" r=".45" fill="white"/><circle cx="9" cy="3" r=".45" fill="white"/><circle cx="11" cy="3" r=".45" fill="white"/><circle cx="1" cy="5" r=".45" fill="white"/><circle cx="3" cy="5" r=".45" fill="white"/><circle cx="5" cy="5" r=".45" fill="white"/><circle cx="7" cy="5" r=".45" fill="white"/><circle cx="9" cy="5" r=".45" fill="white"/><circle cx="11" cy="5" r=".45" fill="white"/><circle cx="1" cy="7" r=".45" fill="white"/><circle cx="3" cy="7" r=".45" fill="white"/><circle cx="5" cy="7" r=".45" fill="white"/><circle cx="7" cy="7" r=".45" fill="white"/><circle cx="9" cy="7" r=".45" fill="white"/><circle cx="11" cy="7" r=".45" fill="white"/><circle cx="1" cy="9" r=".45" fill="white"/><circle cx="3" cy="9" r=".45" fill="white"/><circle cx="5" cy="9" r=".45" fill="white"/><circle cx="7" cy="9" r=".45" fill="white"/><circle cx="9" cy="9" r=".45" fill="white"/><circle cx="11" cy="9" r=".45" fill="white"/></svg>'],'pt'=>['Português','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#009b3a"/><path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00"/><circle cx="15" cy="10" r="5" fill="#002776"/><path d="M10.3 8.4Q15 7.6 19.6 11.8" fill="none" stroke="white" stroke-width="1"/></svg>'],'es'=>['Español','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/><path d="M8 8h4v5q-2 2-4 0Z" fill="#aa151b" stroke="#fff" stroke-width=".5"/><path d="M8 7h4M9 6h2" stroke="#aa151b"/></svg>']];
 $articleLang=array_search($slug,$editions,true);
 $lang=is_string($_GET['lang']??null)&&isset($flags[$_GET['lang']])?$_GET['lang']:($articleLang?:'en');
 if($articleLang)$slug=$editions[$lang];
@@ -29,15 +29,20 @@ if(!$a){
 public_start($a?$a['title']:'News & local insights',$a?$a['summary']:'Housing news, market reports and owner guides for Orlando, Orange County and Florida.',($a?'news.php?article='.rawurlencode($a['slug']):$listingPath));
 ?>
 <style>
-.news-languages{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin:0 0 18px}
-.news-languages a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid transparent;border-radius:6px;text-decoration:none;font-size:22px}
-.news-languages a[aria-current="true"],.news-languages a:hover,.news-languages a:focus-visible{border-color:#c9b484}
+.sion-languages{display:flex;gap:5px;align-items:center;justify-content:flex-end;flex-shrink:0;padding-top:8px;padding-bottom:4px}
+.sion-languages button{font:600 11px/1.2 inherit;font-family:inherit;font-size:11px;letter-spacing:.04em;background:transparent;color:inherit;border:1px solid #b99b5866;border-radius:5px;padding:8px;cursor:pointer;min-height:36px}
+.sion-languages button[aria-pressed="true"]{background:#c5a461;color:#151815;border-color:#c5a461}
+.sion-languages button:focus-visible{outline:2px solid #d7b974;outline-offset:3px}
+.sion-languages form{margin:0}
+.sion-languages .sion-flag{display:block;width:22px;height:15px;border-radius:2px}
+@media(max-width:1100px){.sion-languages{margin:8px 0}}
+@media(max-width:700px){.sion-languages{width:100%;padding-bottom:6px}.sion-languages button{min-width:58px;min-height:40px}}
 </style>
-<nav class="news-languages" aria-label="News language"><?php foreach($flags as $code=>[$flag,$label]):
- $target=['lang'=>$code];
+<nav class="sion-languages" aria-label="News language"><?php foreach($flags as $code=>[$label,$flag]):
+ $target=[];
  if($a)$target['article']=$articleLang?$editions[$code]:$slug;
  elseif($category!=='')$target['category']=$category;
-?><a href="<?=h('news.php?'.http_build_query($target,'','&',PHP_QUERY_RFC3986))?>" hreflang="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>"<?=$code===$lang?' aria-current="true"':''?>><?=h($flag)?></a><?php endforeach;?></nav>
+?><form action="news.php" method="get"><?php foreach($target as $name=>$value):?><input type="hidden" name="<?=h($name)?>" value="<?=h($value)?>"><?php endforeach;?><button type="submit" name="lang" value="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>" aria-pressed="<?=$code===$lang?'true':'false'?>"><?=$flag?></button></form><?php endforeach;?></nav>
 <?php if($a):?>
 <?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
 <article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
