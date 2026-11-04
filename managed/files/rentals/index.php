@@ -12,6 +12,17 @@ page_start('Apartments for Rent','en','public-rentals'); ?>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 /* Same compact proportions as Owners Portal; no legacy rentals.css or rentals.js. */
+/* Keep the original Sion light palette even when the global theme is dark. */
+body.public-rentals,body.public-rentals main,body.public-rentals .panel,body.public-rentals .rental-tools,body.public-rentals #rental-results .rental.panel,body.public-rentals #sion-map-panel{background:#fffdf8!important;color:#302b25!important;color-scheme:light!important}
+body.public-rentals .rental-copy,body.public-rentals .rental-copy p,body.public-rentals .rental-copy h2,body.public-rentals .rental-tools label{color:#302b25!important}
+body.public-rentals .muted,body.public-rentals .small{color:#72695e!important}
+body.public-rentals a:not(.button){color:#816039!important}
+body.public-rentals .rental.panel{border:1px solid #e8dfd2!important;box-shadow:none!important}
+body.public-rentals .view-switch button{background:#fffaf1!important;color:#4b4034!important;border-color:#d8cbbb!important}
+body.public-rentals .view-switch button[aria-pressed="true"]{background:#aa7d43!important;color:#fff!important}
+body.public-rentals .rental-copy .button{background:#e7c18a!important;color:#372c1d!important;border-color:#cfa66c!important}
+body.public-rentals input{background:#fff!important;color:#302b25!important}
+
 .rentals-bar{display:flex;align-items:center;gap:18px;margin-bottom:20px}.rentals-logo{width:112px;max-height:85px;object-fit:contain}
 .rental-tools{display:flex;align-items:end;gap:16px;flex-wrap:wrap;justify-content:space-between;padding:14px;margin-bottom:14px;border:1px solid #e4e1da;border-radius:10px}
 .rental-tools label{display:grid;gap:6px;font-size:13px}.rental-tools input{padding:10px;min-width:210px;border:1px solid #ddd;border-radius:7px}
