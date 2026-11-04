@@ -9,28 +9,31 @@
     }
 }
 page_start('Apartments for Rent','en','public-rentals'); ?>
-<link rel="stylesheet" href="rentals.css?v=5">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-/* Presentation only: compact rows, one shared map, original listing content. */
-#rental-results{display:block!important}
-#rental-results .rental.panel{display:grid!important;grid-template-columns:148px minmax(0,1fr)!important;grid-template-rows:auto!important;gap:14px!important;padding:12px!important;margin:0 0 10px!important;min-height:0!important;align-items:start!important}
-#rental-results .rental .gallery{grid-column:1!important;grid-row:1!important;width:148px!important;max-width:148px!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden}
-#rental-results .rental .gallery img:not([hidden]){display:block!important;width:148px!important;height:112px!important;max-width:148px!important;max-height:112px!important;object-fit:cover!important;border-radius:8px!important}
-#rental-results .rental .gallery img[hidden]{display:none!important}
-#rental-results .rental .rental-copy{grid-column:2!important;grid-row:1!important;display:block!important;min-width:0!important;width:auto!important;margin:0!important;padding:0!important}
-#rental-results .rental .rental-copy p{margin:3px 0!important;line-height:1.35!important}
-#rental-results .rental .rental-copy h2{font-size:1.12rem!important;margin:3px 0!important}
-#rental-results .rental .rental-copy .price{font-size:1.1rem!important;margin:0 0 4px!important}
-#rental-results .rental .rental-copy .description{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
-#rental-results .rental .rental-copy .button{padding:7px 10px!important;margin-top:5px!important}
-#rental-results .rental .gallery-controls{position:static!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;margin-top:4px!important}
-#rental-results .rental .gallery-controls button{position:static!important;padding:2px 8px!important}
-#rental-results .rental .property-map{display:none!important}
+/* Same compact proportions as Owners Portal; no legacy rentals.css or rentals.js. */
+.rentals-bar{display:flex;align-items:center;gap:18px;margin-bottom:20px}.rentals-logo{width:112px;max-height:85px;object-fit:contain}
+.rental-tools{display:flex;align-items:end;gap:16px;flex-wrap:wrap;justify-content:space-between;padding:14px;margin-bottom:14px;border:1px solid #e4e1da;border-radius:10px}
+.rental-tools label{display:grid;gap:6px;font-size:13px}.rental-tools input{padding:10px;min-width:210px;border:1px solid #ddd;border-radius:7px}
+.view-switch{display:flex!important;gap:5px!important}.view-switch button{cursor:pointer;padding:10px 18px;border:1px solid #d2d2ce;background:#fff;border-radius:7px}.view-switch button[aria-pressed="true"]{background:#385d54;color:#fff}
+#rental-results{display:flex!important;flex-direction:column!important;gap:10px!important}
+#rental-results .rental.panel{display:grid!important;grid-template-columns:145px minmax(0,1fr)!important;grid-template-rows:auto!important;gap:12px!important;align-items:start!important;margin:0!important;padding:12px!important;min-height:0!important;height:auto!important;overflow:visible!important}
+#rental-results .rental.panel .gallery{grid-column:1!important;grid-row:1!important;display:block!important;position:relative!important;width:145px!important;height:auto!important;min-height:0!important;max-width:145px!important;margin:0!important;padding:0!important;overflow:hidden!important}
+#rental-results .rental.panel .gallery img{width:145px!important;height:112px!important;min-height:0!important;max-height:112px!important;max-width:145px!important;object-fit:cover!important;border-radius:8px!important;margin:0!important;padding:0!important}
+#rental-results .rental.panel .gallery img[hidden]{display:none!important}
+#rental-results .rental.panel .gallery img:not([hidden]){display:block!important}
+#rental-results .rental.panel .rental-copy{grid-column:2!important;grid-row:1!important;display:block!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0!important}
+#rental-results .rental.panel .rental-copy p{margin:3px 0!important;line-height:1.4!important}
+#rental-results .rental.panel .rental-copy h2{font-size:17px!important;margin:4px 0!important}
+#rental-results .rental.panel .rental-copy .price{font-size:18px!important;margin:0 0 4px!important}
+#rental-results .rental.panel .rental-copy .description{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important}
+#rental-results .rental.panel .rental-copy .button{display:inline-block;padding:7px 11px;margin-top:6px}
+#rental-results .rental.panel .gallery-controls{display:flex!important;position:static!important;align-items:center;justify-content:space-between;gap:3px;padding-top:5px}
+#rental-results .rental.panel .gallery-controls button{position:static!important;padding:2px 7px!important}
+#rental-results .rental.panel .property-map{display:none!important}
 #rental-results[hidden],#sion-map-panel[hidden],#no-matches[hidden],#rental-results .rental[hidden]{display:none!important}
-#sion-map-panel{padding:14px!important;margin:12px 0!important}
-#sion-all-map{height:520px;width:100%;border-radius:9px;z-index:0;background:#e9efeb}
-@media(max-width:650px){#rental-results .rental.panel{grid-template-columns:90px minmax(0,1fr)!important;gap:9px!important;padding:9px!important}#rental-results .rental .gallery{width:90px!important;max-width:90px!important}#rental-results .rental .gallery img:not([hidden]){width:90px!important;height:90px!important}#sion-all-map{height:410px}}
+#sion-map-panel{padding:12px!important;margin:10px 0!important}#sion-all-map{height:540px;width:100%;border-radius:8px;background:#e6eeeb;z-index:0}
+@media(max-width:650px){#rental-results .rental.panel{grid-template-columns:85px minmax(0,1fr)!important;gap:8px!important;padding:9px!important}#rental-results .rental.panel .gallery{width:85px!important;max-width:85px!important}#rental-results .rental.panel .gallery img{width:85px!important;max-width:85px!important;height:85px!important;max-height:85px!important}#sion-all-map{height:420px}}
 </style>
 <header class="bar rentals-bar"><img class="rentals-logo" src="sion-logo.png" alt="Sion Realty &amp; Property Management"><div><span class="eyebrow">SION REALTY & PROPERTY MANAGEMENT</span><h1>Apartments for Rent</h1><p>Find your next home in Orlando.</p></div></header>
 <?php if(!$items):?><section class="panel"><h2>No rentals listed right now</h2><p>Please contact us to ask about availability.</p><a class="button" href="https://wa.me/13214427790" target="_blank" rel="noopener">Information on WhatsApp</a></section><?php endif?>
@@ -39,7 +42,7 @@ page_start('Apartments for Rent','en','public-rentals'); ?>
 <div class="rentals" id="rental-results"><?php foreach($items as $item):$pics=$item['portal_photos'];$address=trim($item['address']);$search=$address?:$item['location'];$mapAddress=$address;if($mapAddress && $item['zip'] && !str_contains($mapAddress,$item['zip']))$mapAddress.=' '.$item['zip'];$automaticMap=$mapAddress?'https://maps.google.com/maps?q='.rawurlencode($mapAddress).'&z=16&output=embed':'';$message='Hello! I saw '.$item['title'].($item['price']>0?' listed for '.money($item['price']).' per month':'').' on the Sion website. I would like more information.';$whats='https://wa.me/13214427790?text='.rawurlencode($message);$mapSearch='https://www.google.com/maps/search/?api=1&query='.rawurlencode($search);$directions='https://www.google.com/maps/dir/?api=1&destination='.rawurlencode($search);?>
 <article class="rental panel" data-rental data-zip="<?=h($item['zip']?:$item['location'])?>"><div class="gallery" data-gallery><?php if(!$pics):?><p class="muted">Pictures Coming Soon</p><?php endif?><?php foreach($pics as $i=>$pic):?><img src="<?=h(is_string($pic)?$pic:'media.php?id='.rawurlencode((string)$pic['id']))?>" alt="<?=h($item['title'])?> — photo <?=$i+1?>" <?=$i?'hidden loading="lazy"':''?>><?php endforeach?><?php if(count($pics)>1):?><div class="gallery-controls"><button type="button" data-prev aria-label="Previous photo">←</button><span data-count>1 / <?=count($pics)?></span><button type="button" data-next aria-label="Next photo">→</button></div><?php endif?></div>
 <div class="rental-copy"><p class="price"><?php if($item['price']>0):?><?=h(money($item['price']))?><span> / month</span><?php else:?>Contact us for rent<?php endif?></p><h2><?=h($item['title'])?></h2><p class="muted"><?=h($item['location'])?></p><?php if($address):?><p class="rental-address"><a href="<?=h($mapSearch)?>" target="_blank" rel="noopener"><?=h($address)?><?= $item['zip'] && !str_contains($address,$item['zip'])?' · '.h($item['zip']):''?></a></p><?php endif?><?php if($item['beds']>0 || $item['baths']>0):?><p class="facts"><?php if($item['beds']>0):?><?=(int)$item['beds']?> beds<?php endif?><?php if($item['beds']>0 && $item['baths']>0):?> · <?php endif?><?php if($item['baths']>0):?><?=h((float)$item['baths'])?> baths<?php endif?></p><?php endif?><?php if($item['available']):?><p>Available <?=h(date('M j, Y',strtotime($item['available'])))?></p><?php endif?><?php if($item['description']!==''):?><p class="description"><?=nl2br(h($item['description']))?></p><?php endif?><a class="button" href="<?=h($whats)?>" target="_blank" rel="noopener">Information on WhatsApp</a><?php if($address):?><a class="map-link" href="<?=h($directions)?>" target="_blank" rel="noopener">Get directions ↗</a><?php endif?></div>
-<details class="property-map" aria-label="Location of <?=h($item['title'])?>"><summary>View property map · <?=h($address?:$item['location'])?></summary><?php $mapSource=$automaticMap?:$item['map_embed'];if($mapSource):?><iframe src="<?=h($mapSource)?>" title="Google Maps — <?=h($search)?>" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="muted small"><?=h($address?:$item['location'])?> · Use + / − to zoom and drag the map to explore.</p><?php else:?><p class="muted">The location map will appear here when the property address is added.</p><?php endif?></details></article>
+</article>
 <?php endforeach?></div><p id="no-matches" class="panel" hidden>No available rentals match this ZIP code. Try another ZIP or clear the search.</p><p class="muted small">Availability and rental terms are subject to confirmation.</p><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
