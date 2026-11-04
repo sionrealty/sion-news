@@ -1,9 +1,24 @@
 <?php
+if(($_GET['asset']??null)==='language-flags.css'){
+ header('Content-Type: text/css; charset=UTF-8');
+ header('X-Content-Type-Options: nosniff');
+ echo <<<'SION_FLAGS_CSS'
+.site-header nav .news-contact-languages{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;vertical-align:middle}
+.site-header nav .sion-languages{display:inline-flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.site-header nav .sion-languages form{display:inline-flex;margin:0;padding:0}
+.site-header nav .sion-languages button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:36px;min-height:36px;margin:0;padding:6px;background:transparent;color:inherit;border:1px solid #b99b5866;border-radius:5px;cursor:pointer}
+.site-header nav .sion-languages button[aria-pressed="true"]{background:#f2e8d1;border-color:#b99b58}
+.site-header nav .sion-languages button:focus-visible{outline:2px solid #b99b58;outline-offset:2px}
+.site-header nav .sion-languages button svg.sion-flag{display:block;width:22px;height:15px;min-width:22px;max-width:none;visibility:visible;opacity:1;border-radius:2px}
+@media(max-width:700px){.site-header nav .news-contact-languages{gap:6px}.site-header nav .sion-languages{gap:3px}.site-header nav .sion-languages button{min-width:32px;min-height:40px;padding:3px}}
+SION_FLAGS_CSS;
+ exit;
+}
 require_once __DIR__.'/news-common.php';
 news_feed_sync(news_db());
 $slug=is_string($_GET['article']??null)?$_GET['article']:'';
 $editions=['pt'=>'onda-azul-2026-pt','en'=>'onda-azul-2026-en','es'=>'onda-azul-2026-es'];
-$flags=['en'=>['English','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#fff"/><rect y="0.000" width="30" height="1.538" fill="#b22234"/><rect y="3.077" width="30" height="1.538" fill="#b22234"/><rect y="6.154" width="30" height="1.538" fill="#b22234"/><rect y="9.231" width="30" height="1.538" fill="#b22234"/><rect y="12.308" width="30" height="1.538" fill="#b22234"/><rect y="15.385" width="30" height="1.538" fill="#b22234"/><rect y="18.462" width="30" height="1.538" fill="#b22234"/><rect width="12" height="10.77" fill="#3c3b6e"/><circle cx="1" cy="1" r=".45" fill="white"/><circle cx="3" cy="1" r=".45" fill="white"/><circle cx="5" cy="1" r=".45" fill="white"/><circle cx="7" cy="1" r=".45" fill="white"/><circle cx="9" cy="1" r=".45" fill="white"/><circle cx="11" cy="1" r=".45" fill="white"/><circle cx="1" cy="3" r=".45" fill="white"/><circle cx="3" cy="3" r=".45" fill="white"/><circle cx="5" cy="3" r=".45" fill="white"/><circle cx="7" cy="3" r=".45" fill="white"/><circle cx="9" cy="3" r=".45" fill="white"/><circle cx="11" cy="3" r=".45" fill="white"/><circle cx="1" cy="5" r=".45" fill="white"/><circle cx="3" cy="5" r=".45" fill="white"/><circle cx="5" cy="5" r=".45" fill="white"/><circle cx="7" cy="5" r=".45" fill="white"/><circle cx="9" cy="5" r=".45" fill="white"/><circle cx="11" cy="5" r=".45" fill="white"/><circle cx="1" cy="7" r=".45" fill="white"/><circle cx="3" cy="7" r=".45" fill="white"/><circle cx="5" cy="7" r=".45" fill="white"/><circle cx="7" cy="7" r=".45" fill="white"/><circle cx="9" cy="7" r=".45" fill="white"/><circle cx="11" cy="7" r=".45" fill="white"/><circle cx="1" cy="9" r=".45" fill="white"/><circle cx="3" cy="9" r=".45" fill="white"/><circle cx="5" cy="9" r=".45" fill="white"/><circle cx="7" cy="9" r=".45" fill="white"/><circle cx="9" cy="9" r=".45" fill="white"/><circle cx="11" cy="9" r=".45" fill="white"/></svg>'],'pt'=>['Português','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#009b3a"/><path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00"/><circle cx="15" cy="10" r="5" fill="#002776"/><path d="M10.3 8.4Q15 7.6 19.6 11.8" fill="none" stroke="white" stroke-width="1"/></svg>'],'es'=>['Español','<svg class="sion-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/><path d="M8 8h4v5q-2 2-4 0Z" fill="#aa151b" stroke="#fff" stroke-width=".5"/><path d="M8 7h4M9 6h2" stroke="#aa151b"/></svg>']];
+$flags=['en'=>['English','<svg class="sion-flag" width="22" height="15" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#fff"/><rect y="0.000" width="30" height="1.538" fill="#b22234"/><rect y="3.077" width="30" height="1.538" fill="#b22234"/><rect y="6.154" width="30" height="1.538" fill="#b22234"/><rect y="9.231" width="30" height="1.538" fill="#b22234"/><rect y="12.308" width="30" height="1.538" fill="#b22234"/><rect y="15.385" width="30" height="1.538" fill="#b22234"/><rect y="18.462" width="30" height="1.538" fill="#b22234"/><rect width="12" height="10.77" fill="#3c3b6e"/><circle cx="1" cy="1" r=".45" fill="white"/><circle cx="3" cy="1" r=".45" fill="white"/><circle cx="5" cy="1" r=".45" fill="white"/><circle cx="7" cy="1" r=".45" fill="white"/><circle cx="9" cy="1" r=".45" fill="white"/><circle cx="11" cy="1" r=".45" fill="white"/><circle cx="1" cy="3" r=".45" fill="white"/><circle cx="3" cy="3" r=".45" fill="white"/><circle cx="5" cy="3" r=".45" fill="white"/><circle cx="7" cy="3" r=".45" fill="white"/><circle cx="9" cy="3" r=".45" fill="white"/><circle cx="11" cy="3" r=".45" fill="white"/><circle cx="1" cy="5" r=".45" fill="white"/><circle cx="3" cy="5" r=".45" fill="white"/><circle cx="5" cy="5" r=".45" fill="white"/><circle cx="7" cy="5" r=".45" fill="white"/><circle cx="9" cy="5" r=".45" fill="white"/><circle cx="11" cy="5" r=".45" fill="white"/><circle cx="1" cy="7" r=".45" fill="white"/><circle cx="3" cy="7" r=".45" fill="white"/><circle cx="5" cy="7" r=".45" fill="white"/><circle cx="7" cy="7" r=".45" fill="white"/><circle cx="9" cy="7" r=".45" fill="white"/><circle cx="11" cy="7" r=".45" fill="white"/><circle cx="1" cy="9" r=".45" fill="white"/><circle cx="3" cy="9" r=".45" fill="white"/><circle cx="5" cy="9" r=".45" fill="white"/><circle cx="7" cy="9" r=".45" fill="white"/><circle cx="9" cy="9" r=".45" fill="white"/><circle cx="11" cy="9" r=".45" fill="white"/></svg>'],'pt'=>['Português','<svg class="sion-flag" width="22" height="15" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#009b3a"/><path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00"/><circle cx="15" cy="10" r="5" fill="#002776"/><path d="M10.3 8.4Q15 7.6 19.6 11.8" fill="none" stroke="white" stroke-width="1"/></svg>'],'es'=>['Español','<svg class="sion-flag" width="22" height="15" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/><path d="M8 8h4v5q-2 2-4 0Z" fill="#aa151b" stroke="#fff" stroke-width=".5"/><path d="M8 7h4M9 6h2" stroke="#aa151b"/></svg>']];
 $cleanNews=preg_match('~^/news(?:/|\\?|$)~',$_SERVER['REQUEST_URI']??'')===1;
 if($slug==='blue-wave-2026')$slug=$editions['en'];
 $articleLang=array_search($slug,$editions,true);
@@ -69,19 +84,10 @@ $newsControls=ob_get_clean();
 $newsHeader=preg_replace_callback('~(<a\\b[^>]*href="(?:/sion-imoveis/)?contact\\.php"[^>]*>[^<]*</a>)(?=\\s*</nav>)~i',static function(array $match)use($newsControls):string{
  return '<span class="news-contact-languages">'.$match[1].$newsControls.'</span>';
 },$newsHeader,1,$newsControlsPlaced)??$newsHeader;
-echo $newsHeader;
+echo str_replace('</head>','<link rel="stylesheet" href="/sion-imoveis/news.php?asset=language-flags.css"></head>',$newsHeader);
 if(!$newsControlsPlaced)echo $newsControls;
 ?>
-<style>
-.site-header nav .news-contact-languages{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;vertical-align:middle}
-.site-header nav .sion-languages{display:inline-flex;align-items:center;gap:5px;flex-wrap:nowrap}
-.site-header nav .sion-languages form{display:inline-flex;margin:0;padding:0}
-.site-header nav .sion-languages button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:36px;min-height:36px;margin:0;padding:6px;background:transparent;color:inherit;border:1px solid #b99b5866;border-radius:5px;cursor:pointer}
-.site-header nav .sion-languages button[aria-pressed="true"]{background:#f2e8d1;border-color:#b99b58}
-.site-header nav .sion-languages button:focus-visible{outline:2px solid #b99b58;outline-offset:2px}
-.site-header nav .sion-languages button svg.sion-flag{display:block;width:22px;height:15px;min-width:22px;max-width:none;visibility:visible;opacity:1;border-radius:2px}
-@media(max-width:700px){.site-header nav .news-contact-languages{gap:6px}.site-header nav .sion-languages{gap:3px}.site-header nav .sion-languages button{min-width:32px;min-height:40px;padding:3px}}
-</style>
+
 <?php if($a):?>
 <?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
 <article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
