@@ -1,8 +1,22 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-02T13:39:04.790Z",
+  "updated_at": "2026-11-04T13:37:11.728Z",
   "articles": [
+    {
+      "slug": "florida-amendment-3-unofficial-election-results-november-2026",
+      "category": "Laws & proposals",
+      "kind": "Florida — unofficial election results",
+      "title": "Florida property-tax amendment clears 60% threshold in unofficial count",
+      "summary": "Florida’s November 3 election returns show roughly 62% support for Amendment 3.\nThe unofficial tally exceeds the 60% required for passage.\nThe measure would increase eligible homestead exemptions for non-school taxes and lower the assessment cap for non-homestead property.\nCertification is pending; the measure does not change current tax bills.",
+      "body": "Florida’s Division of Elections reported approximately 62% support for Amendment 3 in its unofficial returns for the November 3, 2026 general election. The measure was above the 60% threshold required for a constitutional amendment in the tally reviewed November 4. The result was not yet certified.\n\nIf the result is certified as approved, the amendment specifies a January 1, 2027 effective date. It raises the exemption for qualifying homesteads to $150,000 in 2027 and $250,000 in 2028 for non-school levies. Special timing applies to qualifying owners who were not Florida residents on December 31, 2026; under the text, the higher exemption generally begins in their fifth exemption year, subject to federal constitutional limits.\n\nThe measure also lowers the annual assessment-growth cap for non-homestead property from 10% to 5%. An assessment cap limits growth in taxable assessment under the applicable rules; it does not cap the total bill or guarantee savings. Any further local homestead relief depends on the procedures and approvals described in the amendment.\n\nOfficial amendment text and eligibility provisions: https://constitutionalinitiatives.dos.fl.gov/Home/InitDetail?account=10&seqnum=110",
+      "source_name": "Florida Department of State, Division of Elections — Florida Election Watch",
+      "source_url": "https://floridaelectionwatch.gov/CompareStateToCounty/900003",
+      "source_date": "November 3, 2026 general election; unofficial returns reviewed November 4, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-04"
+    },
     {
       "slug": "dr-phillips-vistas-hoa-roof-assessment-lawsuit-october-2026",
       "category": "Orange County",
