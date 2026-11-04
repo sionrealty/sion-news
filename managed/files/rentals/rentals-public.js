@@ -3,14 +3,15 @@ document.addEventListener('DOMContentLoaded',()=>{
  const list=document.getElementById('rental-results'),panel=document.getElementById('sion-map-panel'),search=document.getElementById('zip-search'),count=document.getElementById('rental-count'),empty=document.getElementById('no-matches');
  const listBtn=document.querySelector('[data-view="list"]'),mapBtn=document.querySelector('[data-view="map"]');
  if(!list||!listBtn||!mapBtn)return;
- const cards=[...list.querySelectorAll('[data-rental]')];let mode='list';
+ const cards=[...list.querySelectorAll('[data-rental]')],smallMap=document.getElementById('sion-list-map'),smallFrame=document.getElementById('sion-list-map-frame');let mode='list';
  const visible=()=>cards.filter(c=>!c.hidden);
  function render(){
   const q=(search?.value||'').trim().toLowerCase();
   cards.forEach(c=>{c.hidden=!!q&&!String(c.dataset.zip||'').toLowerCase().includes(q)});
   const active=visible();if(count)count.textContent=active.length+' available';
   if(empty)empty.hidden=active.length!==0;
-  list.hidden=mode==='map';if(panel)panel.hidden=mode!=='map';
+  list.hidden=mode==='map';if(panel)panel.hidden=mode!=='map';if(smallMap)smallMap.hidden=mode==='map'||active.length===0;
+  if(mode==='list'&&smallFrame&&active.length){const address=active[0].dataset.address||'Orlando, FL';const url='https://maps.google.com/maps?q='+encodeURIComponent(address+', Orlando, FL')+'&z=13&output=embed';if(smallFrame.getAttribute('src')!==url)smallFrame.src=url;}
   listBtn.setAttribute('aria-pressed',String(mode==='list'));mapBtn.setAttribute('aria-pressed',String(mode==='map'));
   if(mode==='map')showMap(active);
  }
