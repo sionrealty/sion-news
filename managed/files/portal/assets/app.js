@@ -118,7 +118,7 @@ function handleDataChange(event){const el=event.target,live=event.type==='input'
  if(el.id==='year-select'){state.year=Number(el.value);render();return;}
  if(!el.dataset.field&&!el.dataset.meta&&el.dataset.receipt===undefined&&el.dataset.expense===undefined&&!el.dataset.prop)return;
  requireAdmin();
- if(el.dataset.prop){const p=prop(el.dataset.prop);if(el.dataset.key==='status')p.status=el.value;else{const n=C.cents(el.value);if(n!==null&&n<0)throw Error('Aluguel não pode ser negativo.');p.rent=n;p.rentConfirmed=n!==null;}save();if(live)updateLiveTotals();return;}
+ if(el.dataset.prop){const p=prop(el.dataset.prop);if(el.dataset.key==='status'){p.status=el.value;if(el.value==='vacant'||el.value==='occupied'){p.listing={...(p.listing||{}),availability:el.value};}else if(p.listing?.availability){p.listing={...p.listing,availability:'draft'};}}else{const n=C.cents(el.value);if(n!==null&&n<0)throw Error('Aluguel não pode ser negativo.');p.rent=n;p.rentConfirmed=n!==null;}save();if(live)updateLiveTotals();return;}
  const r=report();if(!r||r.historical||r.status==='published')throw Error('Este relatório não está disponível para edição.');
  const x=r.rows.find(r=>r.propertyId===state.property);
  if(el.dataset.meta){r[el.dataset.meta]=el.value;if(['start','end'].includes(el.dataset.meta)&&r.start&&r.end){const fmt=d=>d.split('-').reverse().join('/');r.period=fmt(r.start)+' - '+fmt(r.end);}}
