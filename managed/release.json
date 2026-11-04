@@ -34,11 +34,11 @@
     },
     {
       "path": "rentals/index.php",
-      "sha256": "dd433ffaa352bee82d31c0b669f55b44648c378012e015450b976dc96682d163"
+      "sha256": "3cf4439e87e561525aa1adb1221e10a84f58958374c79d4d0d99a95063d08bc3"
     },
     {
       "path": "rentals/rentals-public.css",
-      "sha256": "23172dff633cd5e3892537265e8cddf17e7762b46e9edf1ac4cfb6c431a9ed59"
+      "sha256": "7793e7c853c1f067215b839380de5804b8872daf154d6cdfc706c03192095afb"
     },
     {
       "path": "rentals/rentals-public.js",
