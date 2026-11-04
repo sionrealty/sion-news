@@ -1,0 +1,32 @@
+/* Public rentals: single maintained stylesheet, light Sion palette. */
+body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
+.public-rentals .rentals-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;background:#fff;border:1px solid #e6dfd3;border-radius:12px;padding:16px}
+.public-rentals .rentals-logo{max-width:210px;max-height:100px;object-fit:contain}
+.public-rentals .rental-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;background:#fff;padding:14px;margin:14px 0;border:1px solid #e6dfd3;border-radius:10px;color:#332f29}
+.public-rentals .rental-tools label{font-weight:600;color:#332f29}
+.public-rentals #zip-search{display:block;width:100%;max-width:360px;margin-top:5px;background:#fff;color:#332f29;border:1px solid #cfc8ba;border-radius:6px;padding:9px}
+.public-rentals .view-switch{display:flex;gap:5px;justify-self:end}
+.public-rentals .view-switch button{padding:10px 18px;background:#fff;color:#6c512e;border:1px solid #bfa77f;border-radius:7px;cursor:pointer}
+.public-rentals .view-switch button[aria-pressed="true"]{background:#a77b43;color:#fff}
+.public-rentals #rental-count{grid-column:1/-1;margin:0}
+.public-rentals #rental-results{display:flex;flex-direction:column;gap:10px}
+.public-rentals #rental-results[hidden],.public-rentals #sion-map-panel[hidden],.public-rentals [hidden]{display:none!important}
+.public-rentals #rental-results .rental{display:grid;grid-template-columns:145px minmax(0,1fr);align-items:start;gap:14px;padding:12px;background:#fff;color:#332f29;border:1px solid #e5ded3;border-radius:10px;min-height:0;box-shadow:none}
+.public-rentals #rental-results .gallery{width:145px;min-width:0;position:relative;overflow:hidden;border-radius:8px;background:#f1eee8;min-height:112px}
+.public-rentals #rental-results .gallery img{display:block;width:145px;height:112px;max-width:100%;object-fit:cover}
+.public-rentals #rental-results .gallery img[hidden]{display:none}
+.public-rentals #rental-results .gallery-controls{position:absolute;bottom:4px;left:4px;right:4px;display:flex;align-items:center;justify-content:space-between;gap:3px}
+.public-rentals .gallery-controls button,.public-rentals .gallery-controls span{background:#fffdf2;color:#493c2d;border:1px solid #d8c5a9;border-radius:5px;font-size:11px;padding:3px 5px}
+.public-rentals #rental-results .rental-copy{min-width:0;display:block;color:#332f29}
+.public-rentals #rental-results .rental-copy p{margin:3px 0 7px;color:#443c32}
+.public-rentals #rental-results .rental-copy h2{margin:2px 0 7px;font-size:19px;color:#30291f}
+.public-rentals #rental-results .rental-copy .price{font-size:20px;font-weight:700;color:#91672f}
+.public-rentals #rental-results .price span{font-size:12px;font-weight:400}
+.public-rentals #rental-results .description{font-size:13px;line-height:1.35}
+.public-rentals #rental-results .rental-copy a:not(.button){color:#856334}
+.public-rentals #rental-results .rental-copy .button{display:inline-block;background:#c79c5c;color:#fff;padding:7px 10px;border-radius:6px;font-size:12px;text-decoration:none;margin-right:8px}
+.public-rentals #sion-map-panel{background:#fff;border:1px solid #e5ded3;border-radius:10px;padding:16px;color:#332f29}
+.public-rentals #sion-all-map{width:100%;height:440px;border:0;border-radius:8px}
+.public-rentals #sion-map-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.public-rentals #sion-map-links a{color:#79552b;border:1px solid #e0d3bf;border-radius:6px;padding:6px 9px}
+@media(max-width:650px){.public-rentals .rentals-bar{flex-wrap:wrap}.public-rentals .rentals-logo{max-width:140px}.public-rentals #rental-results .rental{grid-template-columns:90px minmax(0,1fr);gap:10px}.public-rentals #rental-results .gallery{width:90px;min-height:90px}.public-rentals #rental-results .gallery img{width:90px;height:90px}.public-rentals #rental-results .rental-copy h2{font-size:16px}.public-rentals #rental-results .rental-copy .price{font-size:17px}}
