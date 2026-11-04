@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "optional-public-rental-price",
+  "release": "separate-available-rentals",
   "files": [
     {
       "path": "portal/api.php",
@@ -26,7 +26,7 @@
     },
     {
       "path": "portal/assets/listings.js",
-      "sha256": "cfbcc84d3112f7ad037fb1eb361be0001b64acdc94713eb0c5cc9967f914d797"
+      "sha256": "04d3fa0d9ff93b260ded820e59dedd80d0b95705857847d48e6d51643a355814"
     },
     {
       "path": "portal/rentals.php",
