@@ -5,7 +5,7 @@
         if (!is_array($ad) || !is_string($ad['address'] ?? null) || !is_string($ad['title'] ?? null) || !is_string($ad['description'] ?? null) || !is_numeric($ad['price'] ?? null)) continue;
         $pics = array_values(array_filter((array)($ad['photos'] ?? []), static fn($v) => is_string($v) && preg_match('~^data:image/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+$~D',$v)));
         preg_match('/\b[0-9]{5}(?:-[0-9]{4})?\b/', $ad['address'], $zip);
-        $items[] = ['title'=>$ad['title'],'address'=>$ad['address'],'description'=>$ad['description'],'price'=>(float)$ad['price'],'beds'=>(int)($ad['beds']??0),'baths'=>(float)($ad['baths']??0),'location'=>is_string($ad['area']??null)?$ad['area']:'','zip'=>$zip[0]??'','available'=>is_string($ad['availableDate']??null)?$ad['availableDate']:'','map_embed'=>'','portal_photos'=>$pics];
+        $items[] = ['title'=>$ad['title'],'address'=>$ad['address'],'description'=>$ad['description'],'price'=>(float)$ad['price']/100,'beds'=>(int)($ad['beds']??0),'baths'=>(float)($ad['baths']??0),'location'=>is_string($ad['area']??null)?$ad['area']:'','zip'=>$zip[0]??'','available'=>is_string($ad['availableDate']??null)?$ad['availableDate']:'','map_embed'=>'','portal_photos'=>$pics];
     }
 }
 page_start('Apartments for Rent','en','public-rentals'); ?>

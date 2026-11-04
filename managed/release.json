@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "connect-public-rentals-to-owners-portal",
+  "release": "correct-public-rental-price-cents",
   "files": [
     {
       "path": "portal/api.php",
@@ -34,7 +34,7 @@
     },
     {
       "path": "rentals/index.php",
-      "sha256": "d2ff6abeb225e69827f615ec06978fc90d41b1a3f4f9868cf98f0e7fd7f14d83"
+      "sha256": "14aad725ff02049b37d64ace5c0b19e4141956c8a4890342582ef6d81b439ba3"
     }
   ]
 }
