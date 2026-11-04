@@ -52,25 +52,36 @@ if(!$a){
  $urlFor=function(int $number)use($category,$lang):string{$args=['lang'=>$lang];if($category!=='')$args['category']=$category;if($number>1)$args['page']=$number;return 'news.php'.($args?'?'.http_build_query($args,'','&',PHP_QUERY_RFC3986):'');};
  $listingPath=$urlFor($page);
 }
+ob_start();
 public_start($a?$a['title']:'News & local insights',$a?$a['summary']:'Housing news, market reports and owner guides for Orlando, Orange County and Florida.',($a?'news.php?article='.rawurlencode($a['slug']):$listingPath));
+$newsHeader=ob_get_clean();
+ob_start();
 ?>
-<style>
-.sion-languages{display:flex;gap:5px;align-items:center;justify-content:flex-end;flex-shrink:0;padding-top:8px;padding-bottom:4px}
-.sion-languages button{font:600 11px/1.2 inherit;font-family:inherit;font-size:11px;letter-spacing:.04em;background:transparent;color:inherit;border:1px solid #b99b5866;border-radius:5px;padding:8px;cursor:pointer;min-height:36px}
-.sion-languages button[aria-pressed="true"]{background:#c5a461;color:#151815;border-color:#c5a461}
-.sion-languages button:focus-visible{outline:2px solid #d7b974;outline-offset:3px}
-.sion-languages form{margin:0}
-.sion-languages .sion-flag{display:block;width:22px;height:15px;border-radius:2px}
-@media(max-width:1100px){.sion-languages{margin:8px 0}}
-@media(max-width:700px){.sion-languages{width:100%;padding-bottom:6px}.sion-languages button{min-width:58px;min-height:40px}}
-</style>
-<nav class="sion-languages" aria-label="News language"><?php foreach($flags as $code=>[$label,$flag]):
+<span class="sion-languages" role="group" aria-label="News language"><?php foreach($flags as $code=>[$label,$flag]):
  $target=[];
  $formAction=$cleanNews?'/news':'news.php';
  if($a&&$cleanNews)$formAction.='/'.rawurlencode($articleLang?'blue-wave-2026':$slug);
  elseif($a)$target['article']=$articleLang?$editions[$code]:$slug;
  elseif($category!=='')$target['category']=$category;
-?><form action="<?=h($formAction)?>" method="get"><?php foreach($target as $name=>$value):?><input type="hidden" name="<?=h($name)?>" value="<?=h($value)?>"><?php endforeach;?><button type="submit" name="lang" value="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>" aria-pressed="<?=$code===$lang?'true':'false'?>"><?=$flag?></button></form><?php endforeach;?></nav>
+?><form action="<?=h($formAction)?>" method="get"><?php foreach($target as $name=>$value):?><input type="hidden" name="<?=h($name)?>" value="<?=h($value)?>"><?php endforeach;?><button type="submit" name="lang" value="<?=h($code)?>" aria-label="<?=h($label)?>" title="<?=h($label)?>" aria-pressed="<?=$code===$lang?'true':'false'?>"><?=$flag?></button></form><?php endforeach;?></span>
+<?php
+$newsControls=ob_get_clean();
+$newsHeader=preg_replace_callback('~(<a\\b[^>]*href="(?:/sion-imoveis/)?contact\\.php"[^>]*>[^<]*</a>)(?=\\s*</nav>)~i',static function(array $match)use($newsControls):string{
+ return '<span class="news-contact-languages">'.$match[1].$newsControls.'</span>';
+},$newsHeader,1,$newsControlsPlaced)??$newsHeader;
+echo $newsHeader;
+if(!$newsControlsPlaced)echo $newsControls;
+?>
+<style>
+.site-header nav .news-contact-languages{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;vertical-align:middle}
+.site-header nav .sion-languages{display:inline-flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.site-header nav .sion-languages form{display:inline-flex;margin:0;padding:0}
+.site-header nav .sion-languages button{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:36px;min-height:36px;margin:0;padding:6px;background:transparent;color:inherit;border:1px solid #b99b5866;border-radius:5px;cursor:pointer}
+.site-header nav .sion-languages button[aria-pressed="true"]{background:#f2e8d1;border-color:#b99b58}
+.site-header nav .sion-languages button:focus-visible{outline:2px solid #b99b58;outline-offset:2px}
+.site-header nav .sion-languages button svg.sion-flag{display:block;width:22px;height:15px;min-width:22px;max-width:none;visibility:visible;opacity:1;border-radius:2px}
+@media(max-width:700px){.site-header nav .news-contact-languages{gap:6px}.site-header nav .sion-languages{gap:3px}.site-header nav .sion-languages button{min-width:32px;min-height:40px;padding:3px}}
+</style>
 <?php if($a):?>
 <?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
 <article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
