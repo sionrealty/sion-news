@@ -9,7 +9,7 @@
     }
 }
 page_start('Apartments for Rent','en','public-rentals'); ?>
-<link rel="stylesheet" href="rentals-public.css?v=5">
+<link rel="stylesheet" href="rentals-public.css?v=6">
 <header class="bar rentals-bar"><img class="rentals-logo" src="sion-logo.png" alt="Sion Realty &amp; Property Management"><div><span class="eyebrow">SION REALTY & PROPERTY MANAGEMENT</span><h1>Apartments for Rent</h1><p>Find your next home in Orlando.</p></div></header>
 <?php if(!$items):?><section class="panel"><h2>No rentals listed right now</h2><p>Please contact us to ask about availability.</p><a class="button" href="https://wa.me/13214427790" target="_blank" rel="noopener">Information on WhatsApp</a></section><?php endif?>
 <?php if($items):?><div class="rental-tools"><label for="zip-search">Search by ZIP code<input type="search" id="zip-search" inputmode="numeric" maxlength="10" placeholder="e.g. 32835"></label><div class="view-switch" aria-label="Rental view"><button type="button" data-view="list" aria-pressed="true">List</button><button type="button" data-view="map" aria-pressed="false">Map</button></div><p class="muted small" id="rental-count" role="status"><?=count($items)?> available</p></div><?php endif?>
