@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "save-button-on-rental-cards",
+  "release": "optional-public-rental-price",
   "files": [
     {
       "path": "portal/api.php",
@@ -26,15 +26,15 @@
     },
     {
       "path": "portal/assets/listings.js",
-      "sha256": "340baa08437ceae7ec01b8b6269c4b21e5854cf681659876b77156ad5bbb5e3b"
+      "sha256": "d83f08827f6f5ec9af57ddd317302ab02a986bf4ca065a9b8d8b6a061aef70da"
     },
     {
       "path": "portal/rentals.php",
-      "sha256": "5e8ae4fdc4e6fe1c3b4df54900839a4bbca1c84ed73ae2e416b48ebbb49f00e0"
+      "sha256": "b25a4c54fc2cb6fc986e560fc0fd15448f891915a2b1ec7be4221d21d9e4ba40"
     },
     {
       "path": "rentals/index.php",
-      "sha256": "14aad725ff02049b37d64ace5c0b19e4141956c8a4890342582ef6d81b439ba3"
+      "sha256": "51f16a59a3ae2917eed3241820b54b49cce99e9178d488c8e7cf46d44d6da3fd"
     }
   ]
 }
