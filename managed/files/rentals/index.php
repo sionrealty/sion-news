@@ -50,6 +50,20 @@ document.addEventListener('DOMContentLoaded',function(){
  const listButton=document.querySelector('.view-switch [data-view="list"]'),mapButton=document.querySelector('.view-switch [data-view="map"]');
  const search=document.getElementById('zip-search'),count=document.getElementById('rental-count'),noMatches=document.getElementById('no-matches'),message=document.getElementById('sion-map-message');
  if(!list||!panel||!listButton||!mapButton)return;
+ // Force compact layout at the element level; existing theme rules cannot resize it.
+ function compact(){
+  const mobile=window.matchMedia('(max-width:650px)').matches,w=mobile?85:145,h=mobile?85:112;
+  const set=(el,values)=>{if(!el)return;for(const [k,v] of Object.entries(values))el.style.setProperty(k,v,'important');};
+  set(list,{'display':'flex','flex-direction':'column','gap':'10px'});
+  list.querySelectorAll('[data-rental]').forEach(card=>{
+   set(card,{'display':'grid','grid-template-columns':w+'px minmax(0,1fr)','grid-template-rows':'auto','gap':'12px','align-items':'start','height':'auto','min-height':'0','padding':'12px','margin':'0','width':'100%'});
+   const gallery=card.querySelector('[data-gallery]'),copy=card.querySelector('.rental-copy');
+   set(gallery,{'display':'block','position':'relative','grid-column':'1','grid-row':'1','width':w+'px','min-width':'0','max-width':w+'px','height':'auto','min-height':'0','max-height':'none','overflow':'hidden','margin':'0','padding':'0'});
+   gallery?.querySelectorAll('img').forEach(img=>set(img,{'width':w+'px','min-width':'0','max-width':w+'px','height':h+'px','min-height':'0','max-height':h+'px','object-fit':'cover','margin':'0','padding':'0'}));
+   set(copy,{'display':'block','grid-column':'2','grid-row':'1','width':'auto','min-width':'0','max-width':'none','height':'auto','margin':'0','padding':'0'});
+  });
+ }
+ compact();window.addEventListener('resize',compact);
  const cards=Array.from(list.querySelectorAll('[data-rental]'));let map=null,layer=null,mode='list',requestId=0;
  function filtered(){return cards.filter(card=>!card.hidden);}
  function filter(){
