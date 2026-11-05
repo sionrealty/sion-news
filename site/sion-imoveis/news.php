@@ -56,6 +56,37 @@ $lang=is_string($_GET['lang']??null)&&isset($flags[$_GET['lang']])?$_GET['lang']
 if($articleLang)$slug=$editions[$lang];
 $a=null;
 if($slug!==''){$q=news_db()->prepare("SELECT * FROM news_articles WHERE slug=? AND status='published' AND published<=?");$q->execute([$slug,date('Y-m-d')]);$a=$q->fetch();if(!$a){http_response_code(404);public_start('Article not found','Sion news','news.php');echo '<h1>Article not found</h1><a href="news.php">Back to news</a>';public_end();exit;}}
+// Localized newsletter lead. Serve it only while the English source matches this translation.
+$hasTranslation=false;
+if($a&&$a['slug']==='miami-river-faena-residences-construction-start-2026'
+ &&hash('sha256',implode("\n",[$a['title'],$a['summary'],$a['body']]))==='7855d324273ae6762c39257a445afb48abe50fff62b8ea7cf52b180c8f16d357'){
+ $translation=match($lang){
+  'pt'=>[
+   'title'=>'Começa a construção de empreendimento com 434 unidades no Rio Miami',
+   'summary'=>'Começaram as obras do Faena Residences Miami, segundo a Florida Construction News.
+O projeto prevê 434 unidades em duas torres de 68 andares.
+As incorporadoras anunciaram o início após fechar um financiamento de US$ 817 milhões.
+O terreno fica no número 24 da SW Fourth Street, na cidade de Miami.',
+   'body'=>'Começaram as obras do Faena Residences Miami, empreendimento de duas torres no Rio Miami, informou a Florida Construction News em 4 de novembro. As incorporadoras Fortune International Group e KAR Properties anunciaram o início depois de fechar US$ 817 milhões em financiamento para a construção, estruturado pela Tyko Capital. A Coastal Construction é a empreiteira geral.
+
+O projeto prevê 434 unidades em duas torres de 68 andares, com aproximadamente 802 pés (244 metros) de altura, no número 24 da SW Fourth Street. O terreno fica na cidade de Miami, no condado de Miami-Dade. O valor divulgado corresponde ao financiamento da obra e não indica quantas unidades foram vendidas. O marco é o início da construção, e as unidades ainda serão entregues.',
+   'source_date'=>'Reportagem publicada em 4 de novembro de 2026.',
+  ],
+  'es'=>[
+   'title'=>'Comienza la construcción de un proyecto de 434 condominios junto al río Miami',
+   'summary'=>'Comenzaron las obras de Faena Residences Miami, según Florida Construction News.
+El proyecto contempla 434 unidades en dos torres de 68 pisos.
+Los promotores anunciaron el inicio tras cerrar un préstamo de US$ 817 millones.
+El terreno se ubica en el número 24 de SW Fourth Street, en la ciudad de Miami.',
+   'body'=>'Comenzaron las obras de Faena Residences Miami, un proyecto de dos torres junto al río Miami, informó Florida Construction News el 4 de noviembre. Los promotores Fortune International Group y KAR Properties anunciaron el inicio tras cerrar una financiación de US$ 817 millones para la construcción, estructurada por Tyko Capital. Coastal Construction es el contratista general.
+
+El proyecto contempla 434 unidades en dos torres de 68 pisos, de aproximadamente 802 pies (244 metros) de altura, en el número 24 de SW Fourth Street. El terreno se encuentra en la ciudad de Miami, en el condado de Miami-Dade. La cifra divulgada corresponde a la financiación de las obras y no indica cuántas unidades se han vendido. El hito es el inicio de la construcción, con las unidades aún pendientes de entrega.',
+   'source_date'=>'Reportaje publicado el 4 de noviembre de 2026.',
+  ],
+  default=>null
+ };
+ if($translation!==null){$a=array_replace($a,$translation);$hasTranslation=true;}
+}
 // Opinion is an editorial type in the feed; expose it as its own public section.
 $opinionPrefixes=['Opinion | %','Opinião | %','Opinión | %'];
 $opinionSql="(kind LIKE ? OR kind LIKE ? OR kind LIKE ?)";
@@ -114,8 +145,8 @@ if(!$newsControlsPlaced)echo $newsControls;
 ?>
 
 <?php if($a):$a=$publicLabel($a);?>
-<?php if(!$articleLang&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
-<article class="article" lang="<?=h($articleLang?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
+<?php if(!$articleLang&&!$hasTranslation&&$lang!=='en'):?><p lang="<?=h($lang)?>"><?=h($lang==='pt'?'Esta matéria está disponível em inglês.':'Este artículo está disponible en inglés.')?></p><?php endif;?>
+<article class="article" lang="<?=h(($articleLang||$hasTranslation)?$lang:'en')?>"><a href="news.php?lang=<?=h($lang)?>"><?=h(['pt'=>'← Todas as notícias','en'=>'← All news','es'=>'← Todas las noticias'][$lang])?></a><div class="meta"><?=h($a['category'])?> · <?=h($a['kind'])?></div><h1><?=h($a['title'])?></h1><p class="lead"><?=h($a['summary'])?></p><p class="date">Published <?=h(date('F j, Y',strtotime($a['published'])))?> · Sion editorial</p>
 <?php paragraphs($a['body']);$chart=json_decode($a['chart'],true);if(is_array($chart)&&count($chart)>0):?>
 <figure class="chart"><figcaption>Orlando-area reported home sales — monthly comparison</figcaption><table><thead><tr><th>Period</th><th>Sales</th></tr></thead><tbody><?php foreach($chart as $point):if(!is_array($point)||count($point)!==2||!is_numeric($point[1]))continue;?><tr><th><?=h($point[0])?></th><td><?=h(number_format((float)$point[1]))?> <meter min="0" max="3000" value="<?=h($point[1])?>" aria-label="<?=h($point[0].': '.$point[1].' sales')?>"></meter></td></tr><?php endforeach?></tbody></table></figure>
 <?php endif;if($a['opinion']!==''):?><aside class="opinion"><h2>Patrick’s perspective</h2><?php paragraphs($a['opinion']);?></aside><?php endif;?>
