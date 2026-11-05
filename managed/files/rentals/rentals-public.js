@@ -67,17 +67,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   const gallery=c.querySelector('[data-gallery]'),main=gallery?.querySelector('[data-main-photo]'),thumbs=[...(gallery?.querySelectorAll('[data-thumb]')||[])],counter=gallery?.querySelector('[data-count]');
   if(!main)return;
   const sources=thumbs.length?thumbs.map(t=>t.querySelector('img')).filter(Boolean):[main];
-  let index=0;
+  let index=0,requested=0,sequence=0;
   function select(next){
-   index=(next+sources.length)%sources.length;
-   main.src=sources[index].src;
-   main.alt=(c.querySelector('h2')?.textContent||'Property')+' — photo '+(index+1);
-   thumbs.forEach((t,i)=>t.setAttribute('aria-pressed',String(i===index)));
-   if(counter)counter.textContent=(index+1)+' / '+sources.length;
+   const target=(next+sources.length)%sources.length;
+   requested=target;
+   const request=++sequence;
+   const image=new Image();
+   image.onload=()=>{
+    if(request!==sequence)return;
+    const visible=gallery.querySelector('[data-main-photo]');
+    image.setAttribute('data-main-photo','');
+    image.alt=(c.querySelector('h2')?.textContent||'Property')+' — photo '+(target+1);
+    visible.replaceWith(image);
+    index=target;
+    thumbs.forEach((t,i)=>t.setAttribute('aria-pressed',String(i===index)));
+    if(counter)counter.textContent=(index+1)+' / '+sources.length;
+   };
+   image.onerror=()=>{
+    if(request!==sequence)return;
+    requested=index;
+    if(counter)counter.textContent='Photo unavailable';
+   };
+   image.src=sources[target].getAttribute('src');
   }
   thumbs.forEach((t,i)=>t.addEventListener('click',()=>select(i)));
-  gallery?.querySelector('[data-prev]')?.addEventListener('click',()=>select(index-1));
-  gallery?.querySelector('[data-next]')?.addEventListener('click',()=>select(index+1));
+  gallery?.querySelector('[data-prev]')?.addEventListener('click',()=>select(requested-1));
+  gallery?.querySelector('[data-next]')?.addEventListener('click',()=>select(requested+1));
   const expandPhoto=()=>{
    if(!dialog||typeof dialog.showModal!=='function')return;
    selectedGallery={sources,index,title:c.querySelector('h2')?.textContent||'Property',select};
@@ -85,7 +100,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   };
   gallery?.querySelector('[data-expand]')?.addEventListener('click',expandPhoto);
   gallery?.querySelector('[data-open-larger]')?.addEventListener('click',expandPhoto);
-  select(0);
  });
  render();
 });

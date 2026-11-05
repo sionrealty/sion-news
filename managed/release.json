@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "release": "fit-public-rental-modal-photos",
+  "release": "rental-gallery-safe-photo-swap",
   "files": [
     {
-      "path": "rentals/rentals-public.css",
-      "sha256": "46199e786bcce8195be92a014da213cd0ff87b535ac37e975a0f3606c179513b",
-      "base_sha256": "d15eac3d810f90d012bb183fc6e4c8bc86d6caf5511fc66c550962e747c6897d"
+      "path": "rentals/rentals-public.js",
+      "sha256": "834608c64122e41800cd2e76e079259804be2a2673576a53cf4365296cfe18c4",
+      "base_sha256": "5df2566c69304ea416f7a6727d284cc6392c444b277700e62c42e663e23919b3"
     },
     {
       "path": "rentals/index.php",
-      "sha256": "5baacf36b54581d6428438406fed287bad4973db64836984211c9a92666805f4",
-      "base_sha256": "3619b06b06aacf4fad32909608d77636ea00ae5b01cd674dd2b67f48d306bbb5"
+      "sha256": "efaa3d1c8f01d521996c2bbfc647ab2c6ccaa4a5b9b46ff71b5a1baf19237392",
+      "base_sha256": "5baacf36b54581d6428438406fed287bad4973db64836984211c9a92666805f4"
     }
   ]
 }
