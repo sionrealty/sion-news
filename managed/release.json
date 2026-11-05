@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "release": "rental-gallery-safe-photo-swap",
+  "release": "portfolio-overview-and-expense-lines",
   "files": [
     {
-      "path": "rentals/rentals-public.js",
-      "sha256": "834608c64122e41800cd2e76e079259804be2a2673576a53cf4365296cfe18c4",
-      "base_sha256": "5df2566c69304ea416f7a6727d284cc6392c444b277700e62c42e663e23919b3"
-    },
-    {
-      "path": "rentals/index.php",
-      "sha256": "efaa3d1c8f01d521996c2bbfc647ab2c6ccaa4a5b9b46ff71b5a1baf19237392",
-      "base_sha256": "5baacf36b54581d6428438406fed287bad4973db64836984211c9a92666805f4"
+      "path": "portal/assets/app.js",
+      "sha256": "8246f00cefaaf93a00727545427b17e38d1a1ce5928e317566be6e4fe77529f2",
+      "base_sha256": "610bc093fde095bdeb19b33fe7e7ad6a1d7e183b7d07358680e01526c6d62e2e"
     }
   ]
 }
