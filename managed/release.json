@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "release": "center-rental-gallery-photos",
+  "release": "fit-public-rental-modal-photos",
   "files": [
     {
       "path": "rentals/rentals-public.css",
-      "sha256": "d15eac3d810f90d012bb183fc6e4c8bc86d6caf5511fc66c550962e747c6897d",
-      "base_sha256": "775c867d2514f9d30f0fba2eb9afeeba8edbb1d2e17069ecc95a993aa8fed6ec"
+      "sha256": "46199e786bcce8195be92a014da213cd0ff87b535ac37e975a0f3606c179513b",
+      "base_sha256": "d15eac3d810f90d012bb183fc6e4c8bc86d6caf5511fc66c550962e747c6897d"
     },
     {
       "path": "rentals/index.php",
-      "sha256": "3619b06b06aacf4fad32909608d77636ea00ae5b01cd674dd2b67f48d306bbb5",
-      "base_sha256": "90dce8b43f6b2a9021b91d5e3463ce210a8ee3434d01c80e5e28deed17d72408"
+      "sha256": "5baacf36b54581d6428438406fed287bad4973db64836984211c9a92666805f4",
+      "base_sha256": "3619b06b06aacf4fad32909608d77636ea00ae5b01cd674dd2b67f48d306bbb5"
     }
   ]
 }
