@@ -105,7 +105,24 @@ document.addEventListener('click',async event=>{const b=event.target.closest('bu
  if(['addreceipt','addexpense','fillzero'].includes(act)){requireAdmin();const r=report();if(r.status==='published')throw Error('Retire a publicação antes de editar.');const x=r.rows.find(x=>x.propertyId===state.property);if(act==='addreceipt')x.receipts.push({date:'',amount:null,note:''});if(act==='addexpense')x.expenses.push({description:'',amount:0});if(act==='fillzero'&&confirm('Confirmar aluguel devido e saldo anterior ainda vazios como zero em todos os imóveis?'))for(const x of r.rows){if(x.expected===null)x.expected=0;if(x.opening===null)x.opening=0;for(const p of x.receipts)if(p.amount===null)p.amount=0;}save();render();return;}
  if(act==='draw-auto'){requireAdmin();const r=report();if(!r||r.historical||r.status==='published')throw Error('Relatório somente para consulta.');const x=r.rows.find(x=>x.propertyId===b.dataset.id);x.drawMode='auto';save();render();return;}
  if(act==='save-draft'){requireAdmin();save();toast(storageOK?'Rascunho salvo no servidor.':'Não foi possível salvar. Faça backup.');return;}
- if(act==='extra-grid'){requireAdmin();report().rows.forEach(x=>x.expenses.push({description:'',amount:0}));save();render();return;}
+ if(act==='extra-grid'||act==='remove-expense-grid'){
+  requireAdmin();
+  const r=report();
+  if(!r||r.historical||r.status!=='draft')throw Error('Relatório somente para consulta.');
+  const previous=r.rows.map(x=>x.expenses.slice());
+  if(act==='extra-grid'){
+   const length=Math.max(0,...r.rows.map(x=>x.expenses.length))+1;
+   r.rows.forEach(x=>{while(x.expenses.length<length)x.expenses.push({description:'',amount:0});});
+  }else{
+   const i=Number(b.dataset.index);
+   if(!Number.isInteger(i)||i<0||!r.rows.some(x=>i<x.expenses.length))return;
+   if(r.rows.some(x=>x.expenses[i]?.description?.trim()||x.expenses[i]?.amount)&&!confirm('Excluir a despesa '+(i+1)+' de todos os imóveis deste relatório?'))return;
+   r.rows.forEach(x=>x.expenses.splice(i,1));
+  }
+  save();
+  if(!storageOK)r.rows.forEach((x,i)=>{x.expenses=previous[i];});
+  render();return;
+ }
  if(act==='backup'){requireAdmin();download(new Blob([JSON.stringify(db)],{type:'application/json'}),'Sion-Backup-Teste.json');return;}
  const r=report();if(!r||(!admin()&&r.status!=='published'&&!(state.includeHistory&&r.historical)))throw Error('Relatório não autorizado.');
  if(act==='pdf'){toast('Preparando PDF...');await exportPDF(r);}if(act==='xlsx'){toast('Preparando Excel...');await exportXLSX(r);}if(act==='print')window.print();
@@ -143,7 +160,7 @@ function matrix(r,edit=false){
  (!r.historical?line('Aluguel contratado',x=>input(x,'contractRent',x.contractRent,'Confirmar no cadastro'))+line('Aluguel devido no mês',x=>input(x,'expected',x.expected))+line('Saldo anterior',x=>input(x,'opening',x.opening,'Informar 0 ou saldo')):'')+
  line('Aluguel recebido',x=>input(x,'received',C.row(x).received===0&&x.receipts.every(z=>z.amount===null)?null:C.row(x).received,'Total recebido no mês'))+
  (r.historical?line('Administração informada',x=>money(C.row(x).fee)):line('Administração',x=>`<div data-admin-cell="${e(x.propertyId)}">${adminCell(x,edit)}</div>`))+
- Array.from({length:Math.max(3,...r.rows.map(x=>x.expenses.length))},(_,i)=>line('Despesa '+(i+1),x=>{const a=x.expenses[i]||{description:'',amount:0};return edit?`<input data-grid="${e(x.propertyId)}" data-col="expense-name-${i}" aria-label="Descrição ${i+1} — ${e(prop(x.propertyId).name)}" value="${e(a.description)}" placeholder="Descrição livre"><input data-grid="${e(x.propertyId)}" data-col="expense-value-${i}" aria-label="Valor ${i+1} — ${e(prop(x.propertyId).name)}" inputmode="decimal" value="${dec(a.amount)}">`:`${e(a.description)}<br>${money(a.amount)}`;})).join('')+calc('expenses')+(!r.historical?calc('net'):'')+
+ Array.from({length:Math.max(r.historical?3:0,...r.rows.map(x=>x.expenses.length))},(_,i)=>line('Despesa '+(i+1)+(edit?` <button type="button" class="btn" data-act="remove-expense-grid" data-index="${i}" aria-label="Excluir despesa ${i+1}" title="Excluir despesa ${i+1}">🗑</button>`:''),x=>{const a=x.expenses[i]||{description:'',amount:0};return edit?`<input data-grid="${e(x.propertyId)}" data-col="expense-name-${i}" aria-label="Descrição ${i+1} — ${e(prop(x.propertyId).name)}" value="${e(a.description)}" placeholder="Descrição livre"><input data-grid="${e(x.propertyId)}" data-col="expense-value-${i}" aria-label="Valor ${i+1} — ${e(prop(x.propertyId).name)}" inputmode="decimal" value="${dec(a.amount)}">`:`${e(a.description)}<br>${money(a.amount)}`;})).join('')+calc('expenses')+(!r.historical?calc('net'):'')+
  line('Repasse realizado',x=>input(x,'draw',C.row(x).draw)+(edit?`<small data-draw-mode="${e(x.propertyId)}">${x.drawMode==='auto'?'Automático · igual ao líquido':'Valor editado'}</small><button class="btn tiny" data-act="draw-auto" data-id="${e(x.propertyId)}">Usar líquido</button>`:''))+(!r.historical?calc('balance'):'')+line('Observação',x=>input(x,'notes',x.notes||''))+'</tbody></table></div>';
 }
 function syncDraftOccupancy(r){if(!r||r.historical||r.status==='published')return;let changed=false;for(const row of r.rows){if(row.statusManual===true)continue;if(row.statusAuto!==true&&row.status&&row.status!=='unknown')continue;const p=db.properties.find(p=>p.id===row.propertyId);if(!p)continue;const status=p.listing?.availability==='vacant'?'vacant':p.listing?.availability==='occupied'?'occupied':p.status;if(!['vacant','occupied','unknown'].includes(status))continue;if(row.status!==status){row.status=status;row.expected=status==='vacant'?0:row.contractRent;row.feeOverride=null;changed=true;}row.statusAuto=true;}if(changed)save();}
