@@ -1,8 +1,36 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-05T13:12:09.467Z",
+  "updated_at": "2026-11-05T13:25:32.544Z",
   "articles": [
+    {
+      "slug": "miami-river-faena-residences-construction-start-2026",
+      "category": "Florida",
+      "kind": "Miami-Dade County — condominium construction",
+      "title": "Construction begins on 434-unit condominium project on the Miami River",
+      "summary": "Construction has started at Faena Residences Miami, according to Florida Construction News.\nPlans call for 434 condominiums in two 68-story towers.\nThe developers announced the start after closing an $817 million construction loan.\nThe site is at 24 SW Fourth Street in the City of Miami.",
+      "body": "Construction has begun on Faena Residences Miami, a two-tower condominium project on the Miami River, Florida Construction News reported on November 4. Developers Fortune International Group and KAR Properties announced the start after closing $817 million in construction financing arranged through Tyko Capital. Coastal Construction is the general contractor.\n\nPlans call for 434 condominiums across two 68-story towers, approximately 802 feet tall, at 24 SW Fourth Street. The site is in the City of Miami, in Miami-Dade County. The loan is construction financing; it is not a measure of how many units have sold. The milestone is the start of work, with the units still to be delivered.",
+      "source_name": "Florida Construction News — reporting on the developers’ announcement",
+      "source_url": "https://www.floridaconstructionnews.com/construction-begins-on-817-million-faena-residences-project-in-miami/",
+      "source_date": "Reporting published November 4, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
+    {
+      "slug": "st-petersburg-edge-district-central-land-transfer-2026",
+      "category": "Florida",
+      "kind": "Pinellas County — redevelopment milestone",
+      "title": "St. Petersburg closes land deal for EDGE District redevelopment",
+      "summary": "St. Petersburg has transferred parcels tied to The Central, St. Pete Catalyst reports.\nThe project occupies the former police headquarters site on Central Avenue.\nA parking garage is complete; plans have included a hotel, offices and workforce apartments.\nThe land closing is a milestone for the project, with construction obligations still outstanding.",
+      "body": "The City of St. Petersburg has closed a land transaction for The Central, the redevelopment of the former police headquarters site at 1301 Central Avenue, according to deeds and a post-closing agreement reviewed by St. Pete Catalyst. One deed covers the planned hotel parcel; another covers property that includes the completed parking garage. The agreement lists a $6.4 million base purchase price before negotiated credits and sets out the developer’s remaining obligations.\n\nThe roughly 2.1-acre site is in the EDGE District of St. Petersburg, in Pinellas County. Plans have included a 168-room hotel, offices, restaurants, retail and 42 workforce apartments. The parking garage was completed before the land closing. The transfer advances the redevelopment, but it does not mean the hotel, offices or apartments are complete or open.",
+      "source_name": "St. Pete Catalyst — reporting based on recorded deeds and the post-closing agreement",
+      "source_url": "https://stpetecatalyst.com/st-pete-closes-land-deal-for-long-stalled-edge-project/",
+      "source_date": "Reporting published November 4, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
     {
       "slug": "florida-existing-home-sales-third-quarter-2026",
       "category": "Market",
