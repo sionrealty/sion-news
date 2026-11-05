@@ -1,11 +1,16 @@
 {
   "version": 1,
-  "release": "include-all-available-investor-rentals",
+  "release": "upload-photos-separately",
   "files": [
     {
+      "path": "portal/api.php",
+      "sha256": "bd3b8b1aa3bc281e196381947328aae1306ad2e14b6fc2932d7d376dab9171ae",
+      "base_sha256": "b8bf45e835631aff0240cef1a9b9c87828a7e009f381c451bae3ec92713e572e"
+    },
+    {
       "path": "portal/assets/listings.js",
-      "sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a",
-      "base_sha256": "e2b9a3d006acb0de5b2ad0c90bd70e02a4c277bf02f0e21ac575fe47c9803052"
+      "sha256": "18046c354e11408321dd90c961b04143e0fd70a56955313c1dda9ac318e2f7fd",
+      "base_sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a"
     }
   ]
 }

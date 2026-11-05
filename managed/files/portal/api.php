@@ -2,7 +2,7 @@
 header('Content-Type: application/json; charset=UTF-8');
 function result(array $v,int $code=200): never {http_response_code($code);echo json_encode($v,JSON_THROW_ON_ERROR|JSON_HEX_TAG|JSON_HEX_AMP);exit;}
 try{
-$action=$_GET['a']??'';$u=need_user();$write=in_array($action,['save','invite','block','logout'],true);if($write){if($_SERVER['REQUEST_METHOD']!=='POST')result(['error'=>'Método inválido.'],405);csrf();}$raw=file_get_contents('php://input');if(strlen($raw)>30*1024*1024)result(['error'=>'Arquivo grande demais.'],413);$input=$raw?json_decode($raw,true,512,JSON_THROW_ON_ERROR):[];
+$action=$_GET['a']??'';$u=need_user();$write=in_array($action,['save','upload-listing-photo','invite','block','logout'],true);if($write){if($_SERVER['REQUEST_METHOD']!=='POST')result(['error'=>'Método inválido.'],405);csrf();}$raw=file_get_contents('php://input');if(strlen($raw)>30*1024*1024)result(['error'=>'Arquivo grande demais.'],413);$input=$raw?json_decode($raw,true,512,JSON_THROW_ON_ERROR):[];
 if($action==='logout'){session_destroy();result(['ok'=>true]);}
 if($action==='users'){
  if($u['role']!=='admin')result(['error'=>'Somente administrador.'],403);
@@ -21,6 +21,15 @@ if($action==='block'){
  if($u['role']!=='admin'||($input['id']??'')===$u['id'])result(['error'=>'Ação não permitida.'],403);
  $target=query('SELECT role FROM users WHERE id=?',[$input['id']??''])->fetchColumn();if(!$target||$target==='admin')result(['error'=>'Conta protegida ou inexistente.'],422);
  query('UPDATE users SET blocked=?,session_version=session_version+1 WHERE id=?',[!empty($input['blocked'])?1:0,$input['id']]);query('DELETE FROM tokens WHERE user_id=?',[$input['id']]);query('INSERT INTO audit VALUES(?,?,?)',[time(),$u['id'],'access:'.$input['id']]);result(['ok'=>true]);
+}
+if($action==='upload-listing-photo'){
+ need_user(true);
+ $photo=$input['photo']??null;
+ if(!is_string($photo)||strlen($photo)>2*1024*1024)result(['error'=>'Foto compactada acima do limite.'],413);
+ if(!preg_match('~^data:(image/jpeg);base64,([A-Za-z0-9+/=]+)$~D',$photo,$match))result(['error'=>'Formato de foto inválido.'],422);
+ $bytes=base64_decode($match[2],true);
+ if($bytes===false)result(['error'=>'Foto base64 inválida.'],422);
+ result(['url'=>sion_store_photo_bytes($bytes,$match[1])]);
 }
 if($action==='save'){
  need_user(true);$db=sql();$db->beginTransaction();$old=state_record();if(($input['revision']??null)!==$old['revision']){$db->rollBack();result(['error'=>'Outro usuário atualizou os dados. Faça backup das suas alterações e reabra o portal antes de continuar.'],409);}
