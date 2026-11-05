@@ -1,8 +1,36 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-05T13:08:31.488Z",
+  "updated_at": "2026-11-05T13:12:09.467Z",
   "articles": [
+    {
+      "slug": "florida-existing-home-sales-third-quarter-2026",
+      "category": "Market",
+      "kind": "Florida statewide sales",
+      "title": "Florida condo and townhouse sales rose 3.1% in the third quarter",
+      "summary": "Florida recorded 22,664 existing condo and townhouse sales in the third quarter of 2026.\nThat was 3.1% more than in the same quarter of 2025.\nSingle-family closings edged up 0.2% over the same period.\nSeptember alone was weaker than the quarter as a whole.",
+      "body": "Florida Realtors reported 22,664 closed sales of existing condos and townhouses statewide in the third quarter of 2026, up 3.1% from a year earlier. Closings of existing single-family homes totaled 65,904, up 0.2%. The quarterly median sale price was $295,000 for condos and townhouses, unchanged from a year earlier, and $420,000 for single-family homes, up 2.4%.\n\nSeptember alone looked different: statewide single-family closings fell 3.5% from September 2025 to 20,537, and condo and townhouse closings slipped 0.1% to 7,179. The report lists 4.4 months of supply for single-family homes and 7.7 months for condos and townhouses. Those are statewide figures for existing homes; they do not establish prices, availability or rents for MetroWest or any specific condominium.",
+      "source_name": "Florida Realtors Research Department",
+      "source_url": "https://www.floridarealtors.org/newsroom/flas-housing-market-continues-recent-trends-sept-and-3q-2026",
+      "source_date": "September and July–September 2026 closings; statewide release reviewed November 5, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
+    {
+      "slug": "us-mortgage-rates-october-29-2026",
+      "category": "Market",
+      "kind": "U.S. weekly mortgage survey",
+      "title": "U.S. 30-year mortgage average eases to 7.24% in late October",
+      "summary": "Freddie Mac reported a 7.24% average for a 30-year fixed mortgage on October 29.\nThe average was 7.32% one week earlier.\nThe comparable reading a year earlier was 6.17%.\nThese are national survey averages, not rate quotes for individual buyers.",
+      "body": "Freddie Mac’s Primary Mortgage Market Survey put the U.S. average 30-year fixed mortgage rate at 7.24% for the week ending October 29, 2026. That was 0.08 percentage point below the previous week’s 7.32%, but 1.07 percentage points above the comparable week a year earlier.\n\nThe week-to-week decline and the year-over-year increase tell different stories about financing conditions. The survey uses applications submitted to Freddie Mac from lenders across the country. It is a national benchmark rather than a quote for an Orlando buyer or a financing estimate for a specific investment property.",
+      "source_name": "Freddie Mac — Primary Mortgage Market Survey",
+      "source_url": "https://www.freddiemac.com/pmms",
+      "source_date": "October 29, 2026 survey release; comparisons with the prior week and comparable week one year earlier.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
     {
       "slug": "orlando-housing-assistance-federal-funding-request-november-2026",
       "category": "Orange County",
@@ -28,7 +56,7 @@
       "source_url": "https://www.orlando.gov/Parking-Transportation/View-Road-Closures/A-Taste-of-Thornton-Park-2026",
       "source_date": "City advisory checked November 5, 2026; closure scheduled for November 5, 2026.",
       "chart": "",
-      "status": "published",
+      "status": "archived",
       "published": "2026-11-05"
     },
     {
@@ -42,7 +70,7 @@
       "source_url": "https://www.cwgdn.com/m/newsflash/home/detail/806",
       "source_date": "City notice posted October 15, 2026; upcoming maintenance window November 16–20, 2026.",
       "chart": "",
-      "status": "published",
+      "status": "archived",
       "published": "2026-11-05"
     },
     {
