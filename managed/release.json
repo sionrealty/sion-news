@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "upload-photos-separately",
+  "release": "public-news-clean-links",
   "files": [
     {
       "path": "portal/api.php",
@@ -11,6 +11,11 @@
       "path": "portal/assets/listings.js",
       "sha256": "18046c354e11408321dd90c961b04143e0fd70a56955313c1dda9ac318e2f7fd",
       "base_sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a"
+    },
+    {
+      "path": "home/index.html",
+      "sha256": "678d9e6fc042cded2e71201e7ff98f14202b23bd0b1a1424314a124ad4c12f2b",
+      "patch": "home/index.patch.json"
     }
   ]
 }
