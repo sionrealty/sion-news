@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "release": "include-all-available-investor-rentals",
+  "release": "remove-monthly-report-footer-note",
   "files": [
     {
-      "path": "portal/assets/listings.js",
-      "sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a",
-      "base_sha256": "e2b9a3d006acb0de5b2ad0c90bd70e02a4c277bf02f0e21ac575fe47c9803052"
+      "path": "portal/assets/exports.js",
+      "sha256": "35fcdafe6c67253abd43c9e7f1a82d8d24b9eb2a19f1821d1e2159bf0a990f48",
+      "base_sha256": "466e8b767bfbda20dbe6602343a68afcf2c363ead411ac1829deba80083e5382"
     }
   ]
 }
