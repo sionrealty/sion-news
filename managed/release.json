@@ -1,16 +1,11 @@
 {
   "version": 1,
-  "release": "all-investor-available-rentals",
+  "release": "include-all-available-investor-rentals",
   "files": [
     {
-      "path": "portal/assets/app.js",
-      "sha256": "78c7a7646566cb3bdd98888029ccfad6dd88100e93f76e73aa3438d4f5436e6f",
-      "base_sha256": "d12314e6d2dc522b9359f07dda6e9c8694f67c5518d651dd0468f182a256c1eb"
-    },
-    {
       "path": "portal/assets/listings.js",
-      "sha256": "e2b9a3d006acb0de5b2ad0c90bd70e02a4c277bf02f0e21ac575fe47c9803052",
-      "base_sha256": "18f5aaa3582edd6de85779fc6983e81c6ef67e5fc4b47a33acc7f493bafe2f39"
+      "sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a",
+      "base_sha256": "e2b9a3d006acb0de5b2ad0c90bd70e02a4c277bf02f0e21ac575fe47c9803052"
     }
   ]
 }

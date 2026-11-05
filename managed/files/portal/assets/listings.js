@@ -11,7 +11,7 @@ function listingReady(p){const l=listing(p);return !p.archived&&listingStatus(p)
 function displayListingPhotos(l){const photos=l.photos||[],i=Number.isInteger(l.coverIndex)?l.coverIndex:0;return i>0&&i<photos.length?[photos[i],...photos.filter((_,n)=>n!==i)]:photos;}
 function listedProperties(){return db.properties.filter(listingReady);}
 function availableForRent(p){return !p.archived&&listingStatus(p)==='vacant';}
-function propertyListForView(){if(state.view==='available-rentals'&&allInvestors())return listedProperties();return properties().filter(p=>state.view==='available-rentals'?availableForRent(p):!availableForRent(p));}
+function propertyListForView(){if(state.view==='available-rentals'&&allInvestors())return db.properties.filter(availableForRent);return properties().filter(p=>state.view==='available-rentals'?availableForRent(p):!availableForRent(p));}
 function listingField(key,label,value,type='text'){return `<label>${label}<input name="${key}" type="${type}" value="${e(value??'')}" ${type==='number'?'min="0" step="0.01"':''}></label>`;}
 // Compact, responsive property cards. All data comes from the existing owner records.
 const sionPropertyListStyle=`<style>
