@@ -1,8 +1,50 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-04T14:12:14.109Z",
+  "updated_at": "2026-11-05T13:08:31.488Z",
   "articles": [
+    {
+      "slug": "orlando-housing-assistance-federal-funding-request-november-2026",
+      "category": "Orange County",
+      "kind": "City of Orlando — federal funding notice",
+      "title": "Orlando sets November 17 as earliest date for federal housing funds request",
+      "summary": "Orlando plans to request the release of federal housing funds on or after November 17.\nThe notice concerns the Housing Opportunities for Persons with AIDS program.\nThe city will submit the request to the U.S. Department of Housing and Urban Development.\nThe notice does not announce a funding release or a new application period.",
+      "body": "The City of Orlando posted a notice of intent to request the release of federal funds under the Housing Opportunities for Persons with AIDS program. The city identifies November 17, 2026, as the earliest date it intends to submit that request to the U.S. Department of Housing and Urban Development.\n\nThis notice marks a step in the funding process. It does not establish that HUD has released the funds or that an application window has opened. The notice was issued by the City of Orlando; it is not a separate announcement from Orange County.",
+      "source_name": "City of Orlando — Housing and Community Development",
+      "source_url": "https://www.orlando.gov/Our-Government/Departments-Offices/Housing-and-Community-Development/Notice-of-Intent-to-Request-Release-of-Funds-November-17-2026",
+      "source_date": "City notice listed as updated November 4, 2026; proposed submission on or after November 17, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
+    {
+      "slug": "orlando-thornton-park-road-closures-november-5-2026",
+      "category": "Orange County",
+      "kind": "City of Orlando — traffic advisory",
+      "title": "Two Thornton Park street segments are scheduled to close November 5",
+      "summary": "Orlando lists temporary street closures in Thornton Park on Thursday, November 5.\nThe closures affect parts of Washington Street and Hyer Avenue.\nThe city lists noon to 11:45 p.m. as the closure window.\nLocal access remains available, though posted parking restrictions may apply.",
+      "body": "Residents and visitors in Orlando’s Thornton Park neighborhood should plan for temporary road closures on Thursday, November 5. The city lists Washington Street between Hill and James avenues and Hyer Avenue between Central Boulevard and Jefferson Street. The planned closure window is noon to 11:45 p.m. for a neighborhood event.\n\nThe city says access to homes and businesses in the affected area will be maintained for local traffic. Temporary parking restrictions may be posted. The schedule is subject to change, so follow on-site signs and detours. This advisory applies to the two street segments listed by the City of Orlando.",
+      "source_name": "City of Orlando — road closure advisory",
+      "source_url": "https://www.orlando.gov/Parking-Transportation/View-Road-Closures/A-Taste-of-Thornton-Park-2026",
+      "source_date": "City advisory checked November 5, 2026; closure scheduled for November 5, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
+    {
+      "slug": "winter-garden-planned-reclaimed-water-maintenance-november-2026",
+      "category": "Orange County",
+      "kind": "City of Winter Garden — utility advisory",
+      "title": "Winter Garden schedules reclaimed-water maintenance for November 16–20",
+      "summary": "Winter Garden has scheduled a temporary citywide pause in reclaimed-water service.\nThe maintenance window runs from November 16 through November 20.\nThe notice concerns reclaimed water used for irrigation.\nThe planned interruption is separate from the October outage.",
+      "body": "The City of Winter Garden has announced a temporary suspension of reclaimed-water service from Monday, November 16, through Friday, November 20, for maintenance. Residents, associations and property managers using the city’s reclaimed-water system can plan irrigation work around the announced window and check the city notice for changes.\n\nThis scheduled November work is distinct from the October outage, after which the city announced that reclaimed-water service had been restored. The November notice concerns reclaimed water; it does not announce a drinking-water interruption or a countywide outage.",
+      "source_name": "City of Winter Garden — utility maintenance notice",
+      "source_url": "https://www.cwgdn.com/m/newsflash/home/detail/806",
+      "source_date": "City notice posted October 15, 2026; upcoming maintenance window November 16–20, 2026.",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-05"
+    },
     {
       "slug": "onda-azul-2026-pt",
       "category": "Laws & proposals",
