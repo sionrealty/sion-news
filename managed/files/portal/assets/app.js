@@ -108,11 +108,11 @@ document.addEventListener('click',async event=>{const b=event.target.closest('bu
  if(act==='historypreview'){state.includeHistory=true;render();return;}if(act==='close'){state.modal=null;render();return;}if(act==='chartdata'){state.modal=act;render();return;}
  if(act==='publish'){if(document.querySelector('[aria-invalid=true]'))throw Error('Corrija os campos marcados antes de publicar.');publish();return;}
  if(act==='unpublish'){requireAdmin();state.modal='unpublish-report';render();return;}
- if(act==='confirm-publish'){finalizePublish();return;}
+ if(act==='confirm-publish'){await finalizePublish();return;}
  if(act==='confirm-unpublish'){withdrawReport();return;}
  if(['addreceipt','addexpense','fillzero'].includes(act)){requireAdmin();const r=report();if(r.status==='published')throw Error('Retire a publicação antes de editar.');const x=r.rows.find(x=>x.propertyId===state.property);if(act==='addreceipt')x.receipts.push({date:'',amount:null,note:''});if(act==='addexpense')x.expenses.push({description:'',amount:0});if(act==='fillzero'&&confirm('Confirmar aluguel devido e saldo anterior ainda vazios como zero em todos os imóveis?'))for(const x of r.rows){if(x.expected===null)x.expected=0;if(x.opening===null)x.opening=0;for(const p of x.receipts)if(p.amount===null)p.amount=0;}save();render();return;}
  if(act==='draw-auto'){requireAdmin();const r=report();if(!r||r.historical||r.status==='published')throw Error('Relatório somente para consulta.');const x=r.rows.find(x=>x.propertyId===b.dataset.id);x.drawMode='auto';save();render();return;}
- if(act==='save-draft'){requireAdmin();save();toast(storageOK?'Rascunho salvo no servidor.':'Não foi possível salvar. Faça backup.');return;}
+ if(act==='save-draft'){requireAdmin();if(await saveReportToServer())toast('Rascunho salvo no servidor.');return;}
  if(act==='extra-grid'||act==='remove-expense-grid'){
   requireAdmin();
   const r=report();
@@ -205,7 +205,37 @@ function adminCell(x,edit){if(x.status==='vacant')return edit?`<input data-grid=
 function trashReport(){requireAdmin();const r=report();if(!r||r.historical||r.status!=='draft')throw Error('Só é possível excluir um rascunho novo.');if(db.reports.some(x=>x.ownerId===r.ownerId&&x.status==='published'&&x.year*12+x.month>r.year*12+r.month))throw Error('Há relatório posterior publicado. Retire a publicação dos períodos seguintes antes de refazer este mês.');db.trash=db.trash||[];db.trash.push({id:'trash-'+Date.now()+'-'+Math.random().toString(36).slice(2),deletedAt:new Date().toISOString(),report:clone(r)});db.reports=db.reports.filter(x=>x!==r);state.report=null;state.modal=null;state.view='reports';save();render();toast('Rascunho excluído. O mês está livre para refazer.');}
 function restoreReport(id){requireAdmin();const t=(db.trash||[]).find(t=>t.id===id&&t.report.ownerId===state.owner);if(!t)throw Error('Relatório não encontrado na lixeira.');const r=t.report;if(db.reports.some(x=>x.ownerId===r.ownerId&&x.year===r.year&&x.month===r.month))throw Error('Já existe um relatório deste mês. Exclua o novo rascunho antes de restaurar o anterior.');db.reports.push(clone(r));db.trash=db.trash.filter(x=>x!==t);state.report=r.id;state.year=r.year;state.view='editor';state.modal=null;save();render();toast('Rascunho restaurado.');}
 
-function finalizePublish(){requireAdmin();const r=report();if(!r)throw Error('Relatório não encontrado.');const errors=C.publicationErrors(r);if(errors.length)throw Error(errors.join(' '));r.status='published';r.publishedAt=new Date().toISOString();state.modal=null;state.view='statement';save();render();toast('Relatório publicado.');}
+async function saveReportToServer(){
+ save();
+ if(!storageOK)return false;
+ await flushSave();
+ while(saveBusy)await new Promise(resolve=>setTimeout(resolve,30));
+ return storageOK&&!pendingSave;
+}
+let publishingReport=false;
+async function finalizePublish(){
+ requireAdmin();
+ if(publishingReport)return;
+ const r=report();
+ if(!r||r.historical||r.status!=='draft')throw Error('Rascunho não encontrado.');
+ const errors=C.publicationErrors(r);
+ if(errors.length)throw Error(errors.join(' '));
+ publishingReport=true;
+ const previousPublishedAt=r.publishedAt;
+ try{
+  r.status='published';r.publishedAt=new Date().toISOString();
+  if(!await saveReportToServer()){
+   r.status='draft';
+   if(previousPublishedAt===undefined)delete r.publishedAt;
+   else r.publishedAt=previousPublishedAt;
+   state.modal=null;
+   render();
+   return;
+  }
+  if(report()===r){state.modal=null;state.view='statement';render();}
+  toast('Relatório publicado e salvo no servidor.');
+ }finally{publishingReport=false;}
+}
 function withdrawReport(){requireAdmin();const r=report();if(!r||r.historical)throw Error('O histórico original é preservado.');if(db.reports.some(x=>x.ownerId===r.ownerId&&x.status==='published'&&x.year*12+x.month>r.year*12+r.month))throw Error('Há relatório posterior publicado. Retire a publicação dos períodos seguintes antes de refazer este mês.');r.status='draft';state.modal=null;state.view='editor';save();render();toast('Retirado da visão do investidor. Rascunho disponível para editar ou excluir.');}
 
 function historicalStatusCell(r,x){const value=db.historicalOccupancy?.[r.id]?.[x.propertyId]||x.status||'unknown';return admin()?`<select data-history-report="${e(r.id)}" data-history-property="${e(x.propertyId)}" aria-label="Situação histórica — ${e(x.propertyName||prop(x.propertyId).name)}">${statusOptions(value)}</select><small>Só a situação deste mês</small>`:({occupied:'Alugado',vacant:'Disponível',unknown:'A confirmar'})[value];}

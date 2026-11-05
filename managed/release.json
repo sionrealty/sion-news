@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "release": "portfolio-overview-and-expense-lines",
+  "release": "confirm-report-save-before-publication",
   "files": [
     {
       "path": "portal/assets/app.js",
-      "sha256": "8246f00cefaaf93a00727545427b17e38d1a1ce5928e317566be6e4fe77529f2",
-      "base_sha256": "610bc093fde095bdeb19b33fe7e7ad6a1d7e183b7d07358680e01526c6d62e2e"
+      "sha256": "d12314e6d2dc522b9359f07dda6e9c8694f67c5518d651dd0468f182a256c1eb",
+      "base_sha256": "8246f00cefaaf93a00727545427b17e38d1a1ce5928e317566be6e4fe77529f2"
     }
   ]
 }
