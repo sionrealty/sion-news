@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "release": "confirm-report-save-before-publication",
+  "release": "compact-annual-check-lines",
   "files": [
     {
-      "path": "portal/assets/app.js",
-      "sha256": "d12314e6d2dc522b9359f07dda6e9c8694f67c5518d651dd0468f182a256c1eb",
-      "base_sha256": "8246f00cefaaf93a00727545427b17e38d1a1ce5928e317566be6e4fe77529f2"
+      "path": "portal/assets/annual.js",
+      "sha256": "17b47ef056e0c51def20c9278636a4269b9a9a2a2ef1b01e5b2c47f899b48a00",
+      "base_sha256": "795b2b3a5cbbd039c62db8166c0259d9dbaeacf6b52798a4233ec5847b4407f1"
     }
   ]
 }
