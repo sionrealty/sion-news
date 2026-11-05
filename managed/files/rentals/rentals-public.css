@@ -86,3 +86,5 @@ body.public-rentals{background:#faf8f2;color:#332f29;color-scheme:light}
 #sion-photo-dialog .photo-dialog-view button{padding:10px 4px;background:#f5eee3;border:1px solid #d8c5a9;border-radius:7px;cursor:pointer}
 #sion-photo-dialog #sion-photo-counter{text-align:center;margin:8px 0 0}
 
+
+.gallery-main > img[data-main-photo]{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
