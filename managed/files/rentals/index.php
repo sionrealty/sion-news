@@ -3,7 +3,7 @@
     $data = is_string($feed) ? json_decode($feed,true) : null;
     foreach (($data['rentals'] ?? []) as $ad) {
         if (!is_array($ad) || !is_string($ad['address'] ?? null) || !is_string($ad['title'] ?? null)) continue;
-        $pics = array_values(array_filter((array)($ad['photos'] ?? []), static fn($v) => is_string($v) && preg_match('~^data:image/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+$~D',$v)));
+        $pics = array_values(array_filter((array)($ad['photos'] ?? []), static fn($v) => is_string($v) && preg_match('~^(?:data:image/(?:jpeg|png|webp);base64,[A-Za-z0-9+/=]+|/reports/photo\.php\?f=[a-f0-9]{64}\.(?:jpg|png|webp))$~D',$v)));
         preg_match('/\b[0-9]{5}(?:-[0-9]{4})?\b/', $ad['address'], $zip);
         $items[] = ['title'=>$ad['title'],'address'=>$ad['address'],'description'=>(is_string($ad['description']??null)?$ad['description']:''),'price'=>(is_numeric($ad['price']??null)?max(0,(float)$ad['price'])/100:0),'beds'=>(int)($ad['beds']??0),'baths'=>(float)($ad['baths']??0),'location'=>is_string($ad['area']??null)?$ad['area']:'','zip'=>$zip[0]??'','available'=>is_string($ad['availableDate']??null)?$ad['availableDate']:'','map_embed'=>'','portal_photos'=>$pics];
     }

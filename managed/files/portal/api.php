@@ -29,6 +29,21 @@ if($action==='save'){
  foreach(($d['historicalOccupancy']??[]) as $rid=>$rows){$match=null;foreach($old['data']['reports'] as $r)if($r['id']===$rid&&!empty($r['historical']))$match=$r;if(!$match||!is_array($rows))throw new RuntimeException('Relatório histórico inválido.');foreach($rows as $pid=>$status){if(!in_array((string)$pid,array_column($match['rows'],'propertyId'),true)||!in_array($status,['unknown','occupied','vacant'],true))throw new RuntimeException('Situação histórica inválida.');}}
  $allowed=['version','logo','owners','properties','reports','hoa','annual','trash','historicalOccupancy'];$next=$old['data'];foreach($allowed as $key)if(array_key_exists($key,$d))$next[$key]=$d[$key];$next['users']=[];
  if($u['role']!=='admin'){foreach($next['owners'] as &$o){$oldOwner=null;foreach($old['data']['owners'] as $oo)if($oo['id']===$o['id'])$oldOwner=$oo;$o['blocked']=$oldOwner['blocked']??false;}unset($o);}
+ foreach($next['properties'] as &$property){
+  if(!isset($property['listing']['photos']))continue;
+  $photos=&$property['listing']['photos'];
+  if(!is_array($photos)||count($photos)>20)throw new RuntimeException('Limite de 20 fotos por imóvel.');
+  foreach($photos as &$photo){
+   if(is_string($photo)&&preg_match('~^data:(image/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$~D',$photo,$match)){
+    $bytes=base64_decode($match[2],true);
+    if($bytes===false)throw new RuntimeException('Foto base64 inválida.');
+    $photo=sion_store_photo_bytes($bytes,$match[1]);
+   }
+  }
+  unset($photo,$photos);
+ }
+ unset($property);
+ sion_validate_photo_references($next['properties']);
  query('UPDATE state SET revision=revision+1,data=? WHERE id=1',[sealed(json_encode($next,JSON_THROW_ON_ERROR))]);query('INSERT INTO audit VALUES(?,?,?)',[time(),$u['id'],'save']);$db->commit();result(['ok'=>true,'revision'=>$old['revision']+1]);
 }
 result(['error'=>'Ação não encontrada.'],404);

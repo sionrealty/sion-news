@@ -11,7 +11,7 @@ $work=$home.'/sion-code-deploy';
 if(!is_dir($work)&&!mkdir($work,0700,true))throw new RuntimeException('Cannot create deployment directory');
 $lock=fopen($work.'/lock','c');if(!$lock||!flock($lock,LOCK_EX|LOCK_NB))exit("Another code deployment is active.\n");
 $map=['rentals/rentals-public.css'=>'public_html/sion-imoveis/rentals-public.css','rentals/rentals-public.js'=>'public_html/sion-imoveis/rentals-public.js','rentals/index.php'=>'public_html/sion-imoveis/index.php','home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
-foreach(['api.php','app.php','bootstrap.php','index.php','rentals.php','.htaccess'] as $f)$map['portal/'.$f]='public_html/reports/'.$f;
+foreach(['api.php','app.php','bootstrap.php','index.php','rentals.php','photo.php','.htaccess'] as $f)$map['portal/'.$f]='public_html/reports/'.$f;
 foreach(['accounts.js','annual-exports.js','annual.js','app.js','core.js','exports.js','jszip.min.js','listings.js','logo.png','pdf-lib.min.js','portal.css','server.js'] as $f)$map['portal/assets/'.$f]='public_html/reports/assets/'.$f;
 try{
  $release=json_decode(file_get_contents($repo.'/managed/release.json'),true,512,JSON_THROW_ON_ERROR);
@@ -43,9 +43,13 @@ try{
     $patchSources[]=$src;if(file_put_contents($src,$current)===false)throw new RuntimeException('Cannot write home source');
    }
   }
-  if(!is_file($src)||(!is_file($dst)&&!in_array($key,['rentals/rentals-public.css','rentals/rentals-public.js'],true)))throw new RuntimeException('Missing existing code file: '.$key);
+  if(!is_file($src)||(!is_file($dst)&&!in_array($key,['rentals/rentals-public.css','rentals/rentals-public.js','portal/photo.php'],true)))throw new RuntimeException('Missing existing code file: '.$key);
   if(!preg_match('/^[a-f0-9]{64}$/D',$f['sha256']??'')||!hash_equals($f['sha256'],hash_file('sha256',$src)))throw new RuntimeException('Hash mismatch: '.$key);
   if(str_ends_with($key,'.php')){exec(escapeshellarg(PHP_BINARY).' -l '.escapeshellarg($src).' 2>&1',$output,$code);if($code!==0)throw new RuntimeException('PHP syntax error: '.$key);}
+  if(array_key_exists('base_sha256',$f)){
+   $base=$f['base_sha256'];$current=is_file($dst)?hash_file('sha256',$dst):null;
+   if($current!==$f['sha256']&&$current!==$base)throw new RuntimeException('Production baseline changed: '.$key);
+  }
   if(!is_file($dst)||!hash_equals(hash_file('sha256',$src),hash_file('sha256',$dst)))$jobs[]=[$src,$dst,$map[$key],is_file($dst)?(fileperms($dst)&0777):0644];
  }
  $back=$work.'/backups/'.gmdate('Ymd-His').'-'.bin2hex(random_bytes(4));$applied=[];$staged=[];

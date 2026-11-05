@@ -20,3 +20,26 @@ function rate_limit(string $purpose,string $identifier,int $limit=8): bool {$key
 function password_ok(string $s): bool {return strlen($s)>=12&&strlen($s)<=256;}
 function send_access(array $u): bool {$token=bin2hex(random_bytes(32));query('DELETE FROM tokens WHERE user_id=?',[$u['id']]);query('INSERT INTO tokens(hash,user_id,expires) VALUES(?,?,?)',[hash('sha256',$token),$u['id'],time()+3600]);$url=config()['base_url'].'/?mode=reset&token='.$token;$body="Olá,\n\nUse o link abaixo para definir sua senha no Sion Owners Portal. Ele expira em uma hora e funciona uma única vez.\n\n".$url."\n\nSe você não solicitou este acesso, ignore esta mensagem.\nSion Realty & Property Management";return mail($u['email'],'Sion Owners Portal - definir senha',$body,"From: ".config()['mail_from']."\r\nContent-Type: text/plain; charset=UTF-8");}
 function html(string $s): string {return htmlspecialchars($s,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');}
+
+// Fotos dos imóveis ficam fora do public_html. Nunca use caminhos recebidos do usuário.
+function sion_photo_dir(): string {return PRIVATE_DIR.'/property-photos';}
+function sion_photo_url(string $filename): string {return '/reports/photo.php?f='.rawurlencode($filename);}
+function sion_photo_name_from_url(string $url): ?string {
+ if(!preg_match('~^/reports/photo\.php\?f=([a-f0-9]{64}\.(?:jpg|png|webp))$~D',$url,$m))return null;
+ return $m[1];
+}
+function sion_store_photo_bytes(string $bytes, string $type): string {
+ $ext=['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp'][$type]??null;
+ if(!$ext||strlen($bytes)<16||strlen($bytes)>20*1024*1024)throw new RuntimeException('Formato ou tamanho de foto inválido.');
+ $detected=(new finfo(FILEINFO_MIME_TYPE))->buffer($bytes);
+ if($detected!==$type)throw new RuntimeException('O conteúdo da foto não corresponde ao formato informado.');
+ $dir=sion_photo_dir();if(!is_dir($dir)&&!mkdir($dir,0700,true)&&!is_dir($dir))throw new RuntimeException('Não foi possível criar a pasta de fotos.');
+ $name=hash('sha256',$bytes).'.'.$ext;$path=$dir.'/'.$name;
+ if(is_file($path)){if(hash_file('sha256',$path)!==hash('sha256',$bytes))throw new RuntimeException('Falha de integridade da foto.');return sion_photo_url($name);}
+ $temp=tempnam($dir,'.photo-');if($temp===false)throw new RuntimeException('Não foi possível criar foto temporária.');
+ try{if(file_put_contents($temp,$bytes,LOCK_EX)!==strlen($bytes))throw new RuntimeException('Falha ao gravar foto.');chmod($temp,0600);if(hash_file('sha256',$temp)!==hash('sha256',$bytes))throw new RuntimeException('Falha ao verificar foto.');if(!rename($temp,$path))throw new RuntimeException('Falha ao finalizar foto.');}finally{if(is_file($temp))unlink($temp);}
+ return sion_photo_url($name);
+}
+function sion_validate_photo_references(array $properties): void {
+ foreach($properties as $p){$photos=$p['listing']['photos']??[];if(!is_array($photos)||count($photos)>20)throw new RuntimeException('Limite de 20 fotos por imóvel.');foreach($photos as $url){if(!is_string($url)||!($name=sion_photo_name_from_url($url))||!is_file(sion_photo_dir().'/'.$name))throw new RuntimeException('Referência de foto inválida. Atualize o portal antes de salvar.');}}
+}

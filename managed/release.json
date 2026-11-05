@@ -1,48 +1,36 @@
 {
   "version": 1,
-  "release": "clean-csp-safe-public-rentals",
+  "release": "private-listing-photos",
   "files": [
     {
-      "path": "portal/api.php",
-      "sha256": "a44f1d650558fe7acb2f587b978f0fad6314313b89e50ed18525a2d139b08381"
-    },
-    {
-      "path": "private/lib.php",
-      "sha256": "5c981e7f006e3522acbd1fe3b13c2c08dd36eee133ce6f3e59414e5fabea042f"
-    },
-    {
-      "path": "home/index.html",
-      "patch": "home/index.patch.json",
-      "sha256": "963a581c37b1c79ee89595128c278f17e4e41a0e431ee18244638a93d149e0f3"
-    },
-    {
-      "path": "home/regioes.html",
-      "patch": "home/regioes.patch.json",
-      "sha256": "364bd2e80a722d1d206d591287da3e2f9af6ba64a8e89802950ff1426ab047ba"
-    },
-    {
-      "path": "portal/assets/app.js",
-      "sha256": "610bc093fde095bdeb19b33fe7e7ad6a1d7e183b7d07358680e01526c6d62e2e"
-    },
-    {
-      "path": "portal/assets/listings.js",
-      "sha256": "90e68ba6d6712a64283820c3d058d8ee75d14d486a2d7f42fcf0d226b48be11f"
-    },
-    {
-      "path": "portal/rentals.php",
-      "sha256": "0d38c93161889426c54adca8b9076513cc143d61913e904e09607a4712f853c0"
+      "path": "portal/photo.php",
+      "sha256": "301dee639c6c82e1eb289d83f71bc083693df0882ad0b9ac9d69d37277fccec4",
+      "base_sha256": null
     },
     {
       "path": "rentals/index.php",
-      "sha256": "f86f565ba992f836c57836c5de8e7b29ffe14263f213ba94934a221cb489c5ab"
+      "sha256": "90dce8b43f6b2a9021b91d5e3463ce210a8ee3434d01c80e5e28deed17d72408",
+      "base_sha256": "f86f565ba992f836c57836c5de8e7b29ffe14263f213ba94934a221cb489c5ab"
     },
     {
-      "path": "rentals/rentals-public.css",
-      "sha256": "775c867d2514f9d30f0fba2eb9afeeba8edbb1d2e17069ecc95a993aa8fed6ec"
+      "path": "portal/rentals.php",
+      "sha256": "d82fcba2a3e7e34ae6d1a78cdc1c095d53006121f697d41c7bc472714557be69",
+      "base_sha256": "0d38c93161889426c54adca8b9076513cc143d61913e904e09607a4712f853c0"
     },
     {
-      "path": "rentals/rentals-public.js",
-      "sha256": "5df2566c69304ea416f7a6727d284cc6392c444b277700e62c42e663e23919b3"
+      "path": "private/lib.php",
+      "sha256": "9b02f0f690af8af988a39077f39bdd1e107ec380ad82e3c81210813359f7119e",
+      "base_sha256": "5c981e7f006e3522acbd1fe3b13c2c08dd36eee133ce6f3e59414e5fabea042f"
+    },
+    {
+      "path": "portal/api.php",
+      "sha256": "b8bf45e835631aff0240cef1a9b9c87828a7e009f381c451bae3ec92713e572e",
+      "base_sha256": "a44f1d650558fe7acb2f587b978f0fad6314313b89e50ed18525a2d139b08381"
+    },
+    {
+      "path": "portal/assets/listings.js",
+      "sha256": "18f5aaa3582edd6de85779fc6983e81c6ef67e5fc4b47a33acc7f493bafe2f39",
+      "base_sha256": "90e68ba6d6712a64283820c3d058d8ee75d14d486a2d7f42fcf0d226b48be11f"
     }
   ]
 }
