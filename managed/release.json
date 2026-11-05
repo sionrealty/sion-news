@@ -1,11 +1,16 @@
 {
   "version": 1,
-  "release": "compact-annual-check-lines",
+  "release": "all-investor-available-rentals",
   "files": [
     {
-      "path": "portal/assets/annual.js",
-      "sha256": "17b47ef056e0c51def20c9278636a4269b9a9a2a2ef1b01e5b2c47f899b48a00",
-      "base_sha256": "795b2b3a5cbbd039c62db8166c0259d9dbaeacf6b52798a4233ec5847b4407f1"
+      "path": "portal/assets/app.js",
+      "sha256": "78c7a7646566cb3bdd98888029ccfad6dd88100e93f76e73aa3438d4f5436e6f",
+      "base_sha256": "d12314e6d2dc522b9359f07dda6e9c8694f67c5518d651dd0468f182a256c1eb"
+    },
+    {
+      "path": "portal/assets/listings.js",
+      "sha256": "e2b9a3d006acb0de5b2ad0c90bd70e02a4c277bf02f0e21ac575fe47c9803052",
+      "base_sha256": "18f5aaa3582edd6de85779fc6983e81c6ef67e5fc4b47a33acc7f493bafe2f39"
     }
   ]
 }
