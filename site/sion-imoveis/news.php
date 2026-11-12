@@ -126,6 +126,7 @@ if(!$a){
 ob_start();
 public_start($a?$a['title']:'News & local insights',$a?$a['summary']:'Housing news, market reports and owner guides for Orlando, Orange County and Florida.',($a?'news.php?article='.rawurlencode($a['slug']):$listingPath));
 $newsHeader=ob_get_clean();
+$newsHeader=str_replace('src="sion-property-management.png"','src="/sion-imoveis/sion-property-management.png"',$newsHeader);
 ob_start();
 ?>
 <span class="sion-languages" role="group" aria-label="News language"><?php foreach($flags as $code=>[$label,$flag]):

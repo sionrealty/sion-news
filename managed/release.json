@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "lightweight-home-for-link-previews",
+  "release": "official-sion-whatsapp-and-news-branding",
   "files": [
     {
       "path": "portal/api.php",
@@ -32,8 +32,13 @@
       "base_sha256": "2d7563f146ce84fe08e91f5189de1a8c235bd189a029b30ee5faf280c965d3ed"
     },
     {
+      "path": "home/whatsapp-preview-v2.png",
+      "sha256": "26b3f68820b433cdb8f9ac95d25a0f6182ad6aeb34347de60b8afd55dc193d71",
+      "base_sha256": null
+    },
+    {
       "path": "home/index.html",
-      "sha256": "f760e88cd176454f9b0c65007c0374a49d5fc38cd9addae1e50ad184658e895e",
+      "sha256": "78a33ec3da5be346f677a79414352a30b79d7490868911c033e0fd6379f98eff",
       "patch": "home/index.patch.json"
     }
   ]

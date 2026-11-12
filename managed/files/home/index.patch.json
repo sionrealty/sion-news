@@ -1,15 +1,22 @@
 {
-  "base_sha256": "222d2b71e31b323816cf54d844fa9d7de79af23c981328d9968164d8fe485247",
-  "sha256": "f760e88cd176454f9b0c65007c0374a49d5fc38cd9addae1e50ad184658e895e",
-  "replacements": [],
-  "assets": {
-    "268e4514e123aefb6aea0f5beb341daddf9b61c7268f977b99f86fee2d7d0e68": "png",
-    "bd277dce414e658dd516fe93d39cc8718c4ef0dd339979727b4f175e3268b8a1": "jpg",
-    "a921aaaf0b34972290ff27723b6eacaaf6261723d0074d592e34717bcfd907ff": "jpg",
-    "1eb8daae77b801c2fe238dbc57742661b327588c659901e11698133813591270": "jpg",
-    "d661447932e9db3618e151240d85de7736bb13f0ee50b499d12fd9d532069515": "jpg",
-    "e0b7574984405ba8ba353239807106874c030b4ea6a48b0ef87d31ba1f0b6af3": "jpg",
-    "88cf0ab9c211b5a63f373ce4fb328cc6553e2686d76388a6be025a949482a621": "jpg",
-    "4362b98c818586e2b714baf60ba255647662f93ed13f5d3fdce75c1695d360b4": "png"
-  }
+  "base_sha256": "f760e88cd176454f9b0c65007c0374a49d5fc38cd9addae1e50ad184658e895e",
+  "sha256": "78a33ec3da5be346f677a79414352a30b79d7490868911c033e0fd6379f98eff",
+  "replacements": [
+    {
+      "find": "https://www.sionrealtypm.com/sion-imoveis/sion-logo.png",
+      "replace": "https://sionrealtypm.com/sion-imoveis/whatsapp-preview-v2.png"
+    },
+    {
+      "find": "property=\"og:image:width\" content=\"400\"",
+      "replace": "property=\"og:image:width\" content=\"512\""
+    },
+    {
+      "find": "property=\"og:image:height\" content=\"238\"",
+      "replace": "property=\"og:image:height\" content=\"512\""
+    },
+    {
+      "find": "Gold Sion Realty &amp; Property Management logo",
+      "replace": "Sion Property Management logo"
+    }
+  ]
 }
