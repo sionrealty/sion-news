@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "public-rent-clean-link",
+  "release": "public-rent-search-metadata",
   "files": [
     {
       "path": "portal/api.php",
@@ -14,8 +14,8 @@
     },
     {
       "path": "rentals/route.php",
-      "sha256": "3403b17a5f7e53eaa3f27634d598e21cd2851ca911f4da7e1475e3429361da8d",
-      "base_sha256": null
+      "sha256": "0b0a4b24a8a170333cb346bd6bebf6e1737996166ad3c571276da7132bec07b3",
+      "base_sha256": "3403b17a5f7e53eaa3f27634d598e21cd2851ca911f4da7e1475e3429361da8d"
     },
     {
       "path": "rentals/route.htaccess",
