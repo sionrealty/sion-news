@@ -65,6 +65,13 @@ SION_ROUTES
   trap - 0 HUP INT TERM
 fi
 
+# Defer the new Rentals link if the managed route could not be installed.
+if grep -Fq 'href="/rent"' "$SOURCE" &&
+   { ! test -f "$ROOT/sion-imoveis/rent-route.php" || ! grep -Fxq '# BEGIN SION RENT ROUTE' "$RULES"; }; then
+  echo "Rent route unavailable; keeping the previous News template." >&2
+  exit 1
+fi
+
 if test -f "$TARGET" && cmp -s "$SOURCE" "$TARGET"; then
   echo "News page already matches this release."
   exit 0

@@ -1,18 +1,10 @@
 {
-  "base_sha256": "963a581c37b1c79ee89595128c278f17e4e41a0e431ee18244638a93d149e0f3",
-  "sha256": "678d9e6fc042cded2e71201e7ff98f14202b23bd0b1a1424314a124ad4c12f2b",
+  "base_sha256": "678d9e6fc042cded2e71201e7ff98f14202b23bd0b1a1424314a124ad4c12f2b",
+  "sha256": "9d806b54616ca7ea025d6e93054ce30c8a1896a2dabd0c498cc885a12da65b60",
   "replacements": [
     {
-      "find": "href=\"/sion-imoveis/news.php\">News</a>",
-      "replace": "href=\"/news\">News</a>"
-    },
-    {
-      "find": "href=\"/sion-imoveis/news.php\">View all news →</a>",
-      "replace": "href=\"/news\">View all news →</a>"
-    },
-    {
-      "find": "href=\"/sion-imoveis/news.php\">Browse news and owner guides →</a>",
-      "replace": "href=\"/news\">Browse news and owner guides →</a>"
+      "find": "src=\"/sion-imoveis/widget.js?v=3\"",
+      "replace": "src=\"/sion-imoveis/widget.js?v=4\""
     }
   ]
 }

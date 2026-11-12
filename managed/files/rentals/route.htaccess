@@ -1,0 +1,8 @@
+# BEGIN SION RENT ROUTE
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(?:rent/|imoveis/?|sion-imoveis(?:/index\.php)?/?)$ /rent [R=301,END]
+RewriteRule ^rent$ sion-imoveis/rent-route.php [END]
+</IfModule>
+# END SION RENT ROUTE
+

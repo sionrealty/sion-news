@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "public-news-clean-links",
+  "release": "public-rent-clean-link",
   "files": [
     {
       "path": "portal/api.php",
@@ -13,8 +13,27 @@
       "base_sha256": "1f650a5c0df5c9bd7c1e464540e444ad97f90b9b15cefe26d61fc9a8f451ab0a"
     },
     {
+      "path": "rentals/route.php",
+      "sha256": "3403b17a5f7e53eaa3f27634d598e21cd2851ca911f4da7e1475e3429361da8d",
+      "base_sha256": null
+    },
+    {
+      "path": "rentals/route.htaccess",
+      "sha256": "39abb86f9d2e456d751e65787c03a2153adc8c684b90baffa2d0571e980f7649"
+    },
+    {
+      "path": "rentals/widget.js",
+      "sha256": "f311c6b06a98adef1f50cff3d9dacd6dd889ade2349a86a9fc45d1a89a3ee892",
+      "base_sha256": "67218d04ef62eeb215ce88e32315e9773669336c23341cc6c087d16ff72ad6d4"
+    },
+    {
+      "path": "rentals/sitemap.xml",
+      "sha256": "086ee1216225328a3108bf8ff9f8dac62fbf8b0d42c02d786dfb354d03313f3f",
+      "base_sha256": "2d7563f146ce84fe08e91f5189de1a8c235bd189a029b30ee5faf280c965d3ed"
+    },
+    {
       "path": "home/index.html",
-      "sha256": "678d9e6fc042cded2e71201e7ff98f14202b23bd0b1a1424314a124ad4c12f2b",
+      "sha256": "9d806b54616ca7ea025d6e93054ce30c8a1896a2dabd0c498cc885a12da65b60",
       "patch": "home/index.patch.json"
     }
   ]

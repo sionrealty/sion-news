@@ -45,7 +45,7 @@ if($cleanNews){
     $url=$match[1]==='action'?'/news':$newsPublicUrl($query);
     return $match[1].'="'.h($url).'"';
    }
-   if($url==='index.php')return 'href="/imoveis"';
+   if($url==='index.php')return 'href="/rent" target="_blank" rel="noopener"';
    if(preg_match('~^[a-z0-9_-]+\.(?:php|css)(?:\?[^#]*)?$~i',$url))return $match[1].'="/sion-imoveis/'.h($url).'"';
    return $match[0];
   },$html)??$html;

@@ -10,7 +10,7 @@ if(getenv('SION_DEPLOY_TEST_HOME'))$home=getenv('SION_DEPLOY_TEST_HOME');
 $work=$home.'/sion-code-deploy';
 if(!is_dir($work)&&!mkdir($work,0700,true))throw new RuntimeException('Cannot create deployment directory');
 $lock=fopen($work.'/lock','c');if(!$lock||!flock($lock,LOCK_EX|LOCK_NB))exit("Another code deployment is active.\n");
-$map=['rentals/rentals-public.css'=>'public_html/sion-imoveis/rentals-public.css','rentals/rentals-public.js'=>'public_html/sion-imoveis/rentals-public.js','rentals/index.php'=>'public_html/sion-imoveis/index.php','home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
+$map=['rentals/rentals-public.css'=>'public_html/sion-imoveis/rentals-public.css','rentals/rentals-public.js'=>'public_html/sion-imoveis/rentals-public.js','rentals/index.php'=>'public_html/sion-imoveis/index.php','rentals/route.php'=>'public_html/sion-imoveis/rent-route.php','rentals/route.htaccess'=>'public_html/.htaccess','rentals/widget.js'=>'public_html/sion-imoveis/widget.js','rentals/sitemap.xml'=>'public_html/sitemap.xml','home/index.html'=>'public_html/index.html','home/regioes.html'=>'public_html/regioes.html','private/lib.php'=>'sion-portal-private/lib.php'];
 foreach(['api.php','app.php','bootstrap.php','index.php','rentals.php','photo.php','.htaccess'] as $f)$map['portal/'.$f]='public_html/reports/'.$f;
 foreach(['accounts.js','annual-exports.js','annual.js','app.js','core.js','exports.js','jszip.min.js','listings.js','logo.png','pdf-lib.min.js','portal.css','server.js'] as $f)$map['portal/assets/'.$f]='public_html/reports/assets/'.$f;
 try{
@@ -20,6 +20,23 @@ try{
  foreach($release['files'] as $f){$key=$f['path']??'';if(!isset($map[$key])||isset($seen[$key]))throw new RuntimeException('Path not allowed: '.$key);$seen[$key]=true;
   $src=$repo.'/managed/files/'.$key;$dst=$home.'/'.$map[$key];
   foreach([$src,$dst,dirname($dst)] as $p)if(is_link($p))throw new RuntimeException('Symlink refused');
+
+  if($key==='rentals/route.htaccess'){
+   if(!is_file($dst)||!is_file($src)||!hash_equals($f['sha256'],hash_file('sha256',$src)))throw new RuntimeException('Invalid rental routing baseline');
+   if(file_exists($home.'/public_html/rent')||is_link($home.'/public_html/rent'))throw new RuntimeException('Public rent path already exists');
+   $current=file_get_contents($dst);
+   $rules=file_get_contents($src);
+   if($current===false||$rules===false)throw new RuntimeException('Cannot read rental routing rules');
+   if(str_starts_with($current,$rules))continue;
+   if(str_contains($current,'SION RENT ROUTE')||!str_contains($current,'# BEGIN SION PUBLIC ALIASES'))throw new RuntimeException('Unexpected rental routing baseline');
+   $f['base_sha256']=hash('sha256',$current);
+   $desired=$rules.$current;
+   $f['sha256']=hash('sha256',$desired);
+   $src=tempnam($work,'.rent-route-');
+   if(!$src)throw new RuntimeException('Cannot stage rental routing rules');
+   $patchSources[]=$src;
+   if(file_put_contents($src,$desired)!==strlen($desired))throw new RuntimeException('Cannot write rental routing rules');
+  }
 
   // Home patches carry only the requested text changes; embedded images stay on the host.
   if(in_array($key,['home/index.html','home/regioes.html'],true)&&isset($f['patch'])){
@@ -43,7 +60,7 @@ try{
     $patchSources[]=$src;if(file_put_contents($src,$current)===false)throw new RuntimeException('Cannot write home source');
    }
   }
-  if(!is_file($src)||(!is_file($dst)&&!in_array($key,['rentals/rentals-public.css','rentals/rentals-public.js','portal/photo.php'],true)))throw new RuntimeException('Missing existing code file: '.$key);
+  if(!is_file($src)||(!is_file($dst)&&!in_array($key,['rentals/rentals-public.css','rentals/rentals-public.js','rentals/route.php','portal/photo.php'],true)))throw new RuntimeException('Missing existing code file: '.$key);
   if(!preg_match('/^[a-f0-9]{64}$/D',$f['sha256']??'')||!hash_equals($f['sha256'],hash_file('sha256',$src)))throw new RuntimeException('Hash mismatch: '.$key);
   if(str_ends_with($key,'.php')){exec(escapeshellarg(PHP_BINARY).' -l '.escapeshellarg($src).' 2>&1',$output,$code);if($code!==0)throw new RuntimeException('PHP syntax error: '.$key);}
   if(array_key_exists('base_sha256',$f)){
