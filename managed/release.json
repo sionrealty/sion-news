@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "public-rent-search-metadata",
+  "release": "public-home-social-preview",
   "files": [
     {
       "path": "portal/api.php",
@@ -33,7 +33,7 @@
     },
     {
       "path": "home/index.html",
-      "sha256": "9d806b54616ca7ea025d6e93054ce30c8a1896a2dabd0c498cc885a12da65b60",
+      "sha256": "222d2b71e31b323816cf54d844fa9d7de79af23c981328d9968164d8fe485247",
       "patch": "home/index.patch.json"
     }
   ]

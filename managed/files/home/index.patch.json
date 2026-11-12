@@ -1,10 +1,10 @@
 {
-  "base_sha256": "678d9e6fc042cded2e71201e7ff98f14202b23bd0b1a1424314a124ad4c12f2b",
-  "sha256": "9d806b54616ca7ea025d6e93054ce30c8a1896a2dabd0c498cc885a12da65b60",
+  "base_sha256": "9d806b54616ca7ea025d6e93054ce30c8a1896a2dabd0c498cc885a12da65b60",
+  "sha256": "222d2b71e31b323816cf54d844fa9d7de79af23c981328d9968164d8fe485247",
   "replacements": [
     {
-      "find": "src=\"/sion-imoveis/widget.js?v=3\"",
-      "replace": "src=\"/sion-imoveis/widget.js?v=4\""
+      "find": "<title>Sion Property Management | Orlando, Florida</title>",
+      "replace": "<title>Sion Property Management | Orlando, Florida</title>\n<meta property=\"og:title\" content=\"Sion Property Management\">\n<meta property=\"og:description\" content=\"Find apartments for rent and residential property management in Orlando, Florida.\">\n<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:site_name\" content=\"Sion Property Management\">\n<meta property=\"og:url\" content=\"https://sionrealtypm.com/\">\n<meta property=\"og:image\" content=\"https://www.sionrealtypm.com/sion-imoveis/sion-logo.png\">\n<meta property=\"og:image:type\" content=\"image/png\">\n<meta property=\"og:image:width\" content=\"400\">\n<meta property=\"og:image:height\" content=\"238\">\n<meta property=\"og:image:alt\" content=\"Gold Sion Realty &amp; Property Management logo\">"
     }
   ]
 }
