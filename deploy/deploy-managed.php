@@ -38,7 +38,7 @@ try{
    if(file_put_contents($src,$desired)!==strlen($desired))throw new RuntimeException('Cannot write rental routing rules');
   }
 
-  // Home patches carry only the requested text changes; embedded images stay on the host.
+  // Home patches preserve production content and can externalize approved embedded images.
   if(in_array($key,['home/index.html','home/regioes.html'],true)&&isset($f['patch'])){
    $expectedPatch=$key==='home/index.html'?'home/index.patch.json':'home/regioes.patch.json';
    if($f['patch']!==$expectedPatch)throw new RuntimeException('Patch path not allowed');
@@ -47,9 +47,43 @@ try{
    $patch=json_decode(file_get_contents($patchPath),true,512,JSON_THROW_ON_ERROR);
    if(!hash_equals($f['sha256'],$patch['sha256']??''))throw new RuntimeException('Patch output hash mismatch');
    $current=file_get_contents($dst);
-   if(hash_equals($f['sha256'],hash('sha256',$current))){$src=$dst;}
+   $currentHash=hash('sha256',$current);
+   $installed=hash_equals($f['sha256'],$currentHash);
+   if(!$installed&&!hash_equals($patch['base_sha256']??'',$currentHash))throw new RuntimeException('Homepage changed since patch preparation');
+   if(isset($patch['assets'])){
+    $assets=$patch['assets'];
+    if($key!=='home/index.html'||!is_array($assets)||count($assets)>12)throw new RuntimeException('Invalid homepage assets');
+    $assetDir=$home.'/public_html/sion-imoveis';
+    if(is_link($assetDir)||!is_dir($assetDir))throw new RuntimeException('Invalid homepage asset directory');
+    $embedded=[];
+    if(!$installed){
+     $current=preg_replace_callback('~data:image/(png|jpeg);base64,([A-Za-z0-9+/=]+)~',static function(array $match)use($assets,&$embedded):string{
+      $data=base64_decode($match[2],true);
+      if($data===false)throw new RuntimeException('Invalid embedded homepage image');
+      $hash=hash('sha256',$data);
+      $ext=$match[1]==='png'?'png':'jpg';
+      if(($assets[$hash]??null)!==$ext)throw new RuntimeException('Unlisted embedded homepage image');
+      $embedded[$hash]=$data;
+      return '/sion-imoveis/home-asset-'.substr($hash,0,24).'.'.$ext;
+     },$current);
+     if($current===null||count($embedded)!==count($assets))throw new RuntimeException('Incomplete homepage image set');
+    }
+    foreach($assets as $hash=>$ext){
+     if(!is_string($hash)||!preg_match('/^[a-f0-9]{64}$/D',$hash)||!in_array($ext,['png','jpg'],true))throw new RuntimeException('Invalid homepage asset entry');
+     $name='home-asset-'.substr($hash,0,24).'.'.$ext;
+     $asset=$assetDir.'/'.$name;
+     if(is_link($asset))throw new RuntimeException('Homepage asset symlink refused');
+     if(is_file($asset)&&hash_equals($hash,hash_file('sha256',$asset)))continue;
+     if($installed||file_exists($asset))throw new RuntimeException('Homepage asset is missing or differs');
+     $assetSource=tempnam($work,'.home-asset-');
+     if(!$assetSource)throw new RuntimeException('Cannot stage homepage asset');
+     $patchSources[]=$assetSource;
+     if(file_put_contents($assetSource,$embedded[$hash])!==strlen($embedded[$hash]))throw new RuntimeException('Cannot write homepage asset');
+     $jobs[]=[$assetSource,$asset,'public_html/sion-imoveis/'.$name,0644];
+    }
+   }
+   if($installed){$src=$dst;}
    else{
-    if(!hash_equals($patch['base_sha256']??'',hash('sha256',$current)))throw new RuntimeException('Homepage changed since patch preparation');
     if(!is_array($patch['replacements']??null)||count($patch['replacements'])>10)throw new RuntimeException('Invalid home patch');
     foreach($patch['replacements'] as $op){
      if(!is_string($op['find']??null)||$op['find']===''||!is_string($op['replace']??null)||substr_count($current,$op['find'])!==1)throw new RuntimeException('Home patch requires a unique match');

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "public-home-social-preview",
+  "release": "lightweight-home-for-link-previews",
   "files": [
     {
       "path": "portal/api.php",
@@ -33,7 +33,7 @@
     },
     {
       "path": "home/index.html",
-      "sha256": "222d2b71e31b323816cf54d844fa9d7de79af23c981328d9968164d8fe485247",
+      "sha256": "f760e88cd176454f9b0c65007c0374a49d5fc38cd9addae1e50ad184658e895e",
       "patch": "home/index.patch.json"
     }
   ]
