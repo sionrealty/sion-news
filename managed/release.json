@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "official-sion-whatsapp-and-news-branding",
+  "release": "compact-sion-social-thumbnail",
   "files": [
     {
       "path": "portal/api.php",
@@ -37,8 +37,13 @@
       "base_sha256": null
     },
     {
+      "path": "home/whatsapp-compact-v3.png",
+      "sha256": "704cb57a71b3d897efe1c814c8bd781749accbe59a8b2034586c83ee30172800",
+      "base_sha256": null
+    },
+    {
       "path": "home/index.html",
-      "sha256": "78a33ec3da5be346f677a79414352a30b79d7490868911c033e0fd6379f98eff",
+      "sha256": "45be57a525527ce2c7dfc5b19d1509bfe01536a7fa9fc25b2ce953ed01caeef6",
       "patch": "home/index.patch.json"
     }
   ]

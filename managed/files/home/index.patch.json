@@ -1,22 +1,18 @@
 {
-  "base_sha256": "f760e88cd176454f9b0c65007c0374a49d5fc38cd9addae1e50ad184658e895e",
-  "sha256": "78a33ec3da5be346f677a79414352a30b79d7490868911c033e0fd6379f98eff",
+  "base_sha256": "78a33ec3da5be346f677a79414352a30b79d7490868911c033e0fd6379f98eff",
+  "sha256": "45be57a525527ce2c7dfc5b19d1509bfe01536a7fa9fc25b2ce953ed01caeef6",
   "replacements": [
     {
-      "find": "https://www.sionrealtypm.com/sion-imoveis/sion-logo.png",
-      "replace": "https://sionrealtypm.com/sion-imoveis/whatsapp-preview-v2.png"
+      "find": "https://sionrealtypm.com/sion-imoveis/whatsapp-preview-v2.png",
+      "replace": "https://sionrealtypm.com/sion-imoveis/whatsapp-compact-v3.png"
     },
     {
-      "find": "property=\"og:image:width\" content=\"400\"",
-      "replace": "property=\"og:image:width\" content=\"512\""
+      "find": "property=\"og:image:width\" content=\"512\"",
+      "replace": "property=\"og:image:width\" content=\"256\""
     },
     {
-      "find": "property=\"og:image:height\" content=\"238\"",
-      "replace": "property=\"og:image:height\" content=\"512\""
-    },
-    {
-      "find": "Gold Sion Realty &amp; Property Management logo",
-      "replace": "Sion Property Management logo"
+      "find": "property=\"og:image:height\" content=\"512\"",
+      "replace": "property=\"og:image:height\" content=\"256\""
     }
   ]
 }
