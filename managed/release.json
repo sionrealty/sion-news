@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "sion-rent-social-preview",
+  "release": "compact-rent-social-preview",
   "files": [
     {
       "path": "portal/api.php",
@@ -18,9 +18,14 @@
       "base_sha256": null
     },
     {
+      "path": "rentals/rent-share-v2.jpg",
+      "sha256": "f6ed62da4448db7ce8ae1e59e3bbd46c452741051f2164b4fbce9933ba6a1da2",
+      "base_sha256": null
+    },
+    {
       "path": "rentals/route.php",
-      "sha256": "38c1bc6e73809b694005b3a2aefe6b4f769e28be74f10897c2474dea7bf60d2e",
-      "base_sha256": "0b0a4b24a8a170333cb346bd6bebf6e1737996166ad3c571276da7132bec07b3"
+      "sha256": "284e0c0b9e6438c6d432ab9a015652d4e70384b075dfa68cb2c06c15c6653169",
+      "base_sha256": "38c1bc6e73809b694005b3a2aefe6b4f769e28be74f10897c2474dea7bf60d2e"
     },
     {
       "path": "rentals/route.htaccess",

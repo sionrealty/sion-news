@@ -26,10 +26,10 @@ ob_start(static function (string $html): string {
 <meta property="og:title" content="Apartments for Rent in Orlando">
 <meta property="og:description" content="See available apartments, photos, and rental details in the Orlando area.">
 <meta property="og:url" content="https://sionrealtypm.com/rent">
-<meta property="og:image" content="https://sionrealtypm.com/sion-imoveis/rent-share-v1.jpg">
+<meta property="og:image" content="https://sionrealtypm.com/sion-imoveis/rent-share-v2.jpg">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="300">
-<meta property="og:image:height" content="300">
+<meta property="og:image:width" content="256">
+<meta property="og:image:height" content="256">
 <meta property="og:image:alt" content="A small house with the Sion emblem, held in two hands">
 HTML;
     return str_replace('</head>', $share . "\n</head>", $html);
