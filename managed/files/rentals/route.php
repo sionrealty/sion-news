@@ -20,7 +20,19 @@ ob_start(static function (string $html): string {
     if (!str_contains($html, $canonical)) {
         $html = str_replace('</head>', $canonical . '</head>', $html);
     }
-    return $html;
+    $share = <<<'HTML'
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sion Property Management">
+<meta property="og:title" content="Apartments for Rent in Orlando">
+<meta property="og:description" content="See available apartments, photos, and rental details in the Orlando area.">
+<meta property="og:url" content="https://sionrealtypm.com/rent">
+<meta property="og:image" content="https://sionrealtypm.com/sion-imoveis/rent-share-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="300">
+<meta property="og:image:height" content="300">
+<meta property="og:image:alt" content="A small house with the Sion emblem, held in two hands">
+HTML;
+    return str_replace('</head>', $share . "\n</head>", $html);
 });
 
 require __DIR__ . '/index.php';
