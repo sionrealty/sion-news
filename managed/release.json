@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "release": "compact-rent-social-preview",
+  "release": "rentals-apply-online-home-navigation",
   "files": [
     {
       "path": "portal/api.php",
@@ -55,6 +55,16 @@
       "path": "home/index.html",
       "sha256": "45be57a525527ce2c7dfc5b19d1509bfe01536a7fa9fc25b2ce953ed01caeef6",
       "patch": "home/index.patch.json"
+    },
+    {
+      "path": "rentals/index.php",
+      "sha256": "b5136721ee0fc4bbc5964ac340c1672e5188468060546b3794f8d6250b4a4b51",
+      "base_sha256": "efaa3d1c8f01d521996c2bbfc647ab2c6ccaa4a5b9b46ff71b5a1baf19237392"
+    },
+    {
+      "path": "rentals/rentals-public.css",
+      "sha256": "38cbaf32ce4d499337dcb63287559f945600f02c24372057639ce87cddcaf5a6",
+      "base_sha256": "46199e786bcce8195be92a014da213cd0ff87b535ac37e975a0f3606c179513b"
     }
   ]
 }
