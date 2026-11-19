@@ -1,8 +1,36 @@
 {
   "version": 1,
   "site": "https://sionrealtypm.com",
-  "updated_at": "2026-11-12T13:43:35.040Z",
+  "updated_at": "2026-11-19T13:50:00.000Z",
   "articles": [
+    {
+      "slug": "florida-october-2026-single-family-sales-down",
+      "category": "Market",
+      "kind": "Statewide housing data",
+      "title": "Florida single-family sales fall 10.1% in October as median price rises",
+      "summary": "Florida recorded 19,049 existing single-family home sales in October, down 10.1% year over year.\nThe statewide median sale price reached $420,000, up 2.2%.\nNew pending sales fell 15.7% and active listings declined 7.4%.\nThese statewide figures do not describe rents or MetroWest prices.",
+      "body": "Florida Realtors' October 2026 report recorded 19,049 closed sales of existing single-family homes across Florida, compared with 21,191 in October 2025, a 10.1% decline. The statewide median sale price was $420,000, compared with $411,105 a year earlier, an increase of 2.2%.\n\nNew pending sales fell from 21,768 to 18,340, down 15.7%. Active listings numbered 98,734, down 7.4% from 106,585 a year earlier. The statewide supply was 4.6 months, versus 5.1 months in October 2025.\n\nThese are statewide single-family resale figures from MLS data, not local rental rates, and should not be used as price estimates for Orlando, MetroWest or a specific condominium. Florida Realtors released the October report on November 16, 2026.",
+      "source_name": "Florida Realtors Research Department",
+      "source_url": "https://www.floridarealtors.org/sites/default/files/2026-11/October-2026-Fla-single-family-summary.pdf",
+      "source_date": "Released November 16, 2026; October 2026 versus October 2025",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-19"
+    },
+    {
+      "slug": "florida-october-2026-condo-townhouse-prices-inventory",
+      "category": "Market",
+      "kind": "Condominium market",
+      "title": "Florida condo and townhouse median price falls to $290,000 in October",
+      "summary": "Florida recorded 6,862 condo and townhouse closings in October, down 5% year over year.\nThe statewide median sale price fell 3.3% to $290,000.\nInventory reached 61,983 active listings, with eight months of supply.\nLocal condo conditions can differ substantially from the statewide average.",
+      "body": "Florida Realtors reported 6,862 closed condo and townhouse sales statewide in October 2026, down 5% from October 2025. The median sale price was $290,000, a 3.3% year-over-year decline. New pending sales totaled 6,730, down 11.9% compared with the same month last year.\n\nThere were 61,983 active condo and townhouse listings at the end of October. The statewide market had eight months of inventory, compared with 7.7 months in September. The higher supply can give buyers more choice, although individual buildings and neighborhoods may behave differently.\n\nThese figures combine condos and townhouses across Florida; they do not establish the value, monthly rent, HOA fees or sales pace of any specific building in MetroWest, Miami, Tampa Bay or Sarasota. Florida Realtors released the October report on November 16, 2026.",
+      "source_name": "Florida Realtors Research Department",
+      "source_url": "https://www.floridarealtors.org/newsroom/flas-housing-market-higher-rates-slow-oct-sales-prices-mixed",
+      "source_date": "Released November 16, 2026; October 2026 versus October 2025",
+      "chart": "",
+      "status": "published",
+      "published": "2026-11-19"
+    },
     {
       "slug": "orlando-maxwell-terrace-veteran-housing-november-2026",
       "category": "Orange County",
